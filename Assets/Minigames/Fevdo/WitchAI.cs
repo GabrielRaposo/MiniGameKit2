@@ -6,6 +6,13 @@ namespace Fevdo{
     public class WitchAI: MonoBehaviour{
         enum State{Flying, Vulnerable}
         State state;
+
+        [SerializeField] int maxLives = 3;
+        int lives;
+        bool shield;
+        [SerializeField] float shieldCooldown;
+        float shieldTimer;
+
         Tweener tween;
         Vector2 screenMid;
         [SerializeField][Range(0f,1f)]
@@ -72,6 +79,14 @@ namespace Fevdo{
             if(coll.transform.GetComponent<Arrow>()){
 
             }
+        }
+
+        IEnumerator shieldRecharge(){
+            shield = false;
+            for(float i = 0; i < shieldCooldown; i+= Time.smoothDeltaTime){
+                yield return null;
+            }
+            shield = true;
         }
     }
 }
