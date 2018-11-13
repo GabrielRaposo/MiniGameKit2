@@ -40,8 +40,9 @@ public class MenuController : MonoBehaviour
 	[SerializeField] private Overlay medleySettingOverlay;
     [SerializeField] private Overlay medleyGameOverlay;
     [SerializeField] private Overlay tutorialOverlay;
-	
-	private bool hasActiveOverlay = false;
+    [SerializeField] private Overlay optionsOverlay;
+
+    private bool hasActiveOverlay = false;
 
     static bool hasSetupControllers;
     static public string FirstScreen = "startup";
@@ -51,6 +52,12 @@ public class MenuController : MonoBehaviour
         //FirstScreen = "freeplay";
         SwitchMenu(FirstScreen);
         ModeManager.State = ModeManager.GameState.FreePlay;
+
+        if (PlayerPrefs.HasKey("MUTE"))
+        {
+            AudioListener.volume = (PlayerPrefs.GetInt("MUTE") == 1) ? 0 : 1;
+        }
+        GetComponent<AudioSource>().Play();
     }
 	
 	void Update ()
@@ -119,6 +126,10 @@ public class MenuController : MonoBehaviour
             case "tutorial":
 				currentOverlay = tutorialOverlay;
 				break;
+
+            case "options":
+                currentOverlay = optionsOverlay;
+                break;
 
             default:
                 Debug.Log("Titulo de overlay incorreto.");

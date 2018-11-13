@@ -47,7 +47,7 @@ public class PlayerConfirmationPanel : MonoBehaviour {
 
         if(leftPlayer && rightPlayer)
         {
-            medleyRandomizer.CallMinigame();
+            medleyRandomizer.StartCoroutine( medleyRandomizer.CallMinigame() );
         }
     }
 

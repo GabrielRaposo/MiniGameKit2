@@ -32,6 +32,7 @@ public class TutorialObject : ScriptableObject  {
     public string codename;
     [TextArea(3, 10)] public string gameRules;
     public InputTab[] controls;
+    [TextArea(3, 10)] public string credits;
     [Space(10)] public Texture2D image;
     [Space(10)] public Texture2D icon;
 }

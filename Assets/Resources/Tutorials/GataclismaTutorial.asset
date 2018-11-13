@@ -23,5 +23,6 @@ MonoBehaviour:
     text: 'Dance
 
 '
+  credits: "V\xE1rias pessoa"
   image: {fileID: 2800000, guid: 6e079c81c5dbd4d4da78d6c53aa306f2, type: 3}
   icon: {fileID: 0}

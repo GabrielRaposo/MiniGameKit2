@@ -116,8 +116,9 @@ public class MedleyRandomizer : MonoBehaviour {
         minigameTitle.text = currentMinigame.minigameName;
     }
 
-    public void CallMinigame()
+    public IEnumerator CallMinigame()
     {
+        yield return new WaitForSeconds(1);
         medleyController.EnableOverlay("tutorial");
         minigameIcon.tutorialInfo = currentMinigame;
         minigameIcon.Press();

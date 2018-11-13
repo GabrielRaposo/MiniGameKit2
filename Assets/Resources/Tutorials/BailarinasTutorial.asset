@@ -21,5 +21,6 @@ MonoBehaviour:
   - inputKey: 2
     inputType: 2
     text: Equilibrar
+  credits: visshhh
   image: {fileID: 2800000, guid: e03edffe775cf37439be3bdba40e4dc9, type: 3}
   icon: {fileID: 2800000, guid: e03edffe775cf37439be3bdba40e4dc9, type: 3}

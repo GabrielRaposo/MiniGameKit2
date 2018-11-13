@@ -12,21 +12,28 @@ public class TutorialScreen : MonoBehaviour
 	public TextMeshProUGUI title;
     public RawImage image;
 
-    [Header("Rules References")]
-    public RectTransform boxRules;
-    public Button titleRules;
-    public GameObject arrowRules;
+    [System.Serializable]
+    public struct UIDisplay
+    {
+        public RectTransform box;
+        public Button title;
+        public GameObject arrow;
+    }
+
+    [Space(20)]
+    public UIDisplay rulesUI;
     public TextMeshProUGUI displayRules;
 
-    [Header("Controls References")]
-    public RectTransform boxControls;
-    public Button titleControls;
-    public GameObject arrowControls;
-
+    [Space(20)]
+    public UIDisplay controlsUI;
     public GameObject inputLinePrefab;
     public Transform inputLineParent;
 
+    [Space(20)]
+    public UIDisplay creditsUI;
+    public TextMeshProUGUI displayCredits;
 
+    [Space(10)]
     [Header("Values")]
     public Color colorFront;
     public Color colorBack;
@@ -36,70 +43,100 @@ public class TutorialScreen : MonoBehaviour
     string rulesText;
     Texture gameImage;
 
-    enum State { Rules, Controls }
-    State state;
-    Animator _animator;
-    List<GameObject> inputLines;
-
-    bool allowInput;
+    private enum State { Rules, Controls, Credits }
+    private State state;
+    private State previousState;
+    private List<GameObject> inputLines;
+    private int index;
+    private bool onInputDelay;
 
     private void OnEnable()
     {
         state = State.Rules;
-        SetState();
+        SetDisplays();
+    }
+
+    private void OnDisable()
+    {
+        previousState = state;
     }
 
     private void Update()
     {
-        if (!allowInput) return;
+        if (onInputDelay) return;
 
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        if (verticalInput > 0 && state != State.Controls) {
-            SwitchState(1);
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        if (horizontalInput > 0) {
+            ChangeIndex(1);
         } else 
-        if (verticalInput < 0 && state != State.Rules) {
-            SwitchState(0);
+        if (horizontalInput < 0) {
+            ChangeIndex(-1);
         }
+    }
+
+    private void ChangeIndex(int diff)
+    {
+        const int max = 3;
+        index += diff;
+        if (index < 0) index = max - 1;
+        else           index %= max;
+
+        SwitchState(index);
+        StartCoroutine(InputDelayTimer());
+    }
+
+    private IEnumerator InputDelayTimer()
+    {
+        onInputDelay = true;
+        yield return new WaitForSeconds(.2f);
+        onInputDelay = false;
     }
 
     public void SwitchState(int index)
     {
-        if (index == 0) {
-            state = State.Rules;
-        } else {
-            state = State.Controls;
+        this.index = index;
+        previousState = state;
+        switch (index)
+        {
+            default:
+            case 0: state = State.Rules; break;
+            case 1: state = State.Controls; break;
+            case 2: state = State.Credits; break;
         }
 
-        GetComponent<Animator>().SetTrigger("Swap");
-        allowInput = false;
+        SetDisplays();
     }
 
-    void SetState()
+    private void SetDisplays()
     {
-        switch (state)
+        UIDisplay previousBox = GetBoxByState(previousState);
+        UIDisplay currentBox = GetBoxByState(state);
+
+        HighlightVisual(false, previousBox);
+        HighlightVisual(true, currentBox);
+        SetDrawOrder(currentBox.box.transform, previousBox.box.transform);
+    }
+
+    private UIDisplay GetBoxByState(State localState)
+    {
+        UIDisplay box;
+        switch (localState)
         {
-            case State.Rules:
-                HighlightVisual(true, boxRules, titleRules, arrowRules);
-                HighlightVisual(false, boxControls, titleControls, arrowControls);
-                SetDrawOrder(boxRules.transform, boxControls.transform);
-            break;
-
-            case State.Controls:
-                HighlightVisual(true, boxControls, titleControls, arrowControls);
-                HighlightVisual(false, boxRules, titleRules, arrowRules);
-                SetDrawOrder(boxControls.transform, boxRules.transform);
-            break;
+            default:
+            case State.Rules:    box = rulesUI;    break;
+            case State.Controls: box = controlsUI; break;
+            case State.Credits:  box = creditsUI;  break;
         }
-        allowInput = true;
-    } 
+        return box;
+    }
 
-    void HighlightVisual(bool value, RectTransform box, Button title, GameObject arrow)
+    void HighlightVisual(bool value, UIDisplay display)
     {
         Color color = value ? colorFront : colorBack;
-        box.GetComponent<RawImage>().color = color;
-        title.GetComponent<RawImage>().color = color;
-        arrow.SetActive(!value);
-        title.interactable = !value;
+        display.box.GetComponent<RawImage>().color = color;
+        display.arrow.SetActive(!value);
+        display.title.GetComponent<RawImage>().color = color;
+        display.title.interactable = !value;
     }
 
     void SetDrawOrder(Transform front, Transform back)
@@ -108,7 +145,8 @@ public class TutorialScreen : MonoBehaviour
         front.SetAsLastSibling();
     }  
 
-    public void GetInfo(string codename, string gameTitle, string rulesText, TutorialObject.InputTab[] controls, Texture gameImage)
+    public void GetInfo
+        (string codename, string gameTitle, string rulesText, TutorialObject.InputTab[] controls, string creditsText, Texture gameImage)
 	{
         this.codename = codename;
         this.gameTitle = gameTitle;
@@ -120,6 +158,7 @@ public class TutorialScreen : MonoBehaviour
 
         displayRules.text = rulesText;
         CreateInputLines(controls);
+        displayCredits.text = creditsText;
 
         gameObject.SetActive(true);
     }

@@ -18,4 +18,6 @@ MonoBehaviour:
   - inputKey: 1
     inputType: 0
     text: Atacar
+  credits: Gabriel Raposo (Gameplay, Art)
   image: {fileID: 2800000, guid: 2b9fe7505267b684d8ea7bf71b9b1703, type: 3}
+  icon: {fileID: 0}

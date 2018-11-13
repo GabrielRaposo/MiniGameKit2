@@ -20,6 +20,7 @@ public class GameButton : ButtonManager
                 tutorialInfo.minigameName, 
                 tutorialInfo.gameRules, 
                 tutorialInfo.controls,
+                tutorialInfo.credits,
                 tutorialInfo.image
             );
         } 
