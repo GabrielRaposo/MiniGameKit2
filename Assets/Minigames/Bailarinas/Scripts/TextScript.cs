@@ -3,32 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TextScript : MonoBehaviour
+namespace Bailarinas
 {
-	public TextMeshProUGUI text;
-	Animator animator;
-
-	public bool startedGame = false;
-
-	private void Awake()
+	public class TextScript : MonoBehaviour
 	{
-		animator = GetComponent<Animator>();
+		public TextMeshProUGUI text;
+		Animator animator;
+
+		public bool startedGame = false;
+
+		private void Awake()
+		{
+			animator = GetComponent<Animator>();
+		}
+
+		public void AUXDAUNITYEUMERDASetText(string newText)
+		{
+			text.text = newText;
+		}
+
+		public void AUXDAUNITYEUMERDAToggleStartGame()
+		{
+			startedGame = true;
+		}
+
+		public void StartCoutDownAnimation()
+		{
+			animator.SetTrigger("Start");
+		}
 	}
-
-	public void AUXDAUNITYEUMERDASetText(string newText)
-	{
-		text.text = newText;
-	}
-
-	public void AUXDAUNITYEUMERDAToggleStartGame()
-	{
-		startedGame = true;
-	}
-
-	public void StartCoutDownAnimation()
-	{
-		animator.SetTrigger("Start");
-	}
-
-
 }
+
+
