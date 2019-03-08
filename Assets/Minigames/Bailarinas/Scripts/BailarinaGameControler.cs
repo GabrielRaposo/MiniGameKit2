@@ -6,7 +6,7 @@ namespace Bailarinas {
 
     public class BailarinaGameControler : MonoBehaviour {
 
-        public LayoutTextManager layoutText;
+        public TextScript layoutText;
 
         public GameObject leftP;
         public GameObject rightP;       
@@ -18,16 +18,8 @@ namespace Bailarinas {
 
         IEnumerator PreGame()
         {
-            StartCoroutine(layoutText.DownText("3", 1.0f));
-            yield return new WaitForSeconds(1.0f);
-            StartCoroutine(layoutText.DownText("2", 1.0f));
-            yield return new WaitForSeconds(1.0f);
-            StartCoroutine(layoutText.DownText("1", 1.0f));
-            yield return new WaitForSeconds(1.0f);
-            StartCoroutine(layoutText.DownText("VAI!", 0.4f));
-            yield return new WaitForSeconds(0.4f);
-            layoutText.ClearText();
-
+			layoutText.StartCoutDownAnimation();
+			yield return new WaitUntil(() =>  layoutText.startedGame );
             StartGame();
 
         }
