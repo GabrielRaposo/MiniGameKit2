@@ -39,13 +39,14 @@ namespace Bailarinas
 			set
 			{
 				angle = value;
-				arrowPivot.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, angle / 2);
+				arrowPivot.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, (angle*28) / 50);
 			}
 		}
 
 		private void Awake()
         {
             base.Start();
+			onFall += () => { GetComponent<AudioSource>().enabled = true; };
             //base.Awake();
             SetColor();
         }
@@ -71,10 +72,10 @@ namespace Bailarinas
 
         private void FixedUpdate()
         {
-            FixMovement();
+            //FixMovement();
             Move();            
             Rebalance();
-            FixMovement();
+            //FixMovement();
 
             Angle = transform.rotation.eulerAngles.z;
             if(Angle > 180)
@@ -83,13 +84,19 @@ namespace Bailarinas
             }
 
             if (Mathf.Abs(Angle) > 50.0f)
-            {                
-                Die();
+            {
+				Debug.Log("Angle > 50");
                 StartCoroutine(CallOnFall());
+                Die();
             }
         }
 
-        void FixMovement()
+		private void LateUpdate()
+		{
+			FixMovement();
+		}
+
+		void FixMovement()
         {
             transform.position = transform.position - (new Vector3(pezinho.transform.position.x - pezinho.xAxis, 0, 0));
         }
@@ -151,7 +158,6 @@ namespace Bailarinas
         {
             dead = true;
             rb.constraints = RigidbodyConstraints.None;
-            this.enabled = false;
 
 			SetTransparent(balanceBar);
 			SetTransparent(arrow);
@@ -160,6 +166,8 @@ namespace Bailarinas
             
             anim.enabled = false;
             meshTransform.SetParent(transform);
+
+            this.enabled = false;
         }
 
         public void Win()
