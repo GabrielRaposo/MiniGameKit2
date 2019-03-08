@@ -29,6 +29,8 @@ namespace Bailarinas
 		public GameObject arrow;
 		public GameObject arrowPivot;
 
+		public float angleRateCorrection;
+
 		public float Angle
 		{
 			get
@@ -39,7 +41,7 @@ namespace Bailarinas
 			set
 			{
 				angle = value;
-				arrowPivot.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, (angle*28) / 50);
+				arrowPivot.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, (angle*angleRateCorrection) / 50);
 			}
 		}
 
