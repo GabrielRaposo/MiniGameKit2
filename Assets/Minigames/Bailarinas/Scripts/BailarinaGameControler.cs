@@ -7,18 +7,13 @@ namespace Bailarinas {
     public class BailarinaGameControler : MonoBehaviour {
 
         public LayoutTextManager layoutText;
-        public UnityEngine.UI.Image clockImage;
 
         public GameObject leftP;
-        public GameObject rightP;
-
-        public float clock = 0;
-        float totalTime = 50.0f;
+        public GameObject rightP;       
 
         private void Start()
         {
             StartCoroutine(PreGame());
-
         }
 
         IEnumerator PreGame()
@@ -43,23 +38,9 @@ namespace Bailarinas {
             rightP.GetComponent<BailarinaScript>().enabled = true;
 
             leftP.GetComponent<Rigidbody>().useGravity = true;
-            rightP.GetComponent<Rigidbody>().useGravity = true;
-
-            StartCoroutine(Clock());
-
+            rightP.GetComponent<Rigidbody>().useGravity = true;           
         }
-
-        IEnumerator Clock()
-        {
-            do
-            {
-                clock += Time.deltaTime;
-                clockImage.fillAmount = (totalTime - clock) / totalTime;
-                yield return null;
-
-            } while (clock < totalTime);
-            
-        }
+       
 
         //IEnumerator StartGame()
         //{

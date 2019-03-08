@@ -24,7 +24,8 @@ namespace Bailarinas
         }
 
         private void OnTriggerEnter(Collider other)
-        {
+        {			
+
             if (other.GetComponent<BailarinaScript>() == playerLeft)
             {
                 EndMinigame(PlayersManager.Result.LeftWin);
@@ -109,12 +110,7 @@ namespace Bailarinas
                     EndMinigame(PlayersManager.Result.RightWin);
                 }
             }
-        }
-
-        public void OnTimeEnd()
-        {
-            
-        }
+        }        
 
     }
 }
