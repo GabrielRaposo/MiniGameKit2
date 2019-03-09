@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Words
 {
@@ -34,9 +35,19 @@ namespace Words
 
 		public UnityEngine.UI.Image clockImage;
 
+		public List<char> alphabet;
+
+		public List<LetterButtonScript> p1Buttons;
+		public List<LetterButtonScript> p2Buttons;
+
+		public List<TextMeshProUGUI> wordProgress;
+
+		public TextMeshProUGUI displayTargetWord;
+
 		private void Awake()
 		{
 			SelectWord();
+			SetupGame();
 
 			playerWords = new List<string>();
 			playerWords.Add(targetWord);
@@ -53,25 +64,29 @@ namespace Words
 
 		}
 
-		public void InputLetter(char letter, int player)
+		public void TryInputLetter(char letter, int player)
 		{
+			Debug.Log("Try input (" + letter.ToString() + ")");
 			if (letter == playerWords[player][0])
-				CorrectInput(player);
+				CorrectInput(letter,player);
 			else
 				IncorrectInput(player);
 		}
 
 
-		public void CorrectInput(int player)
+		public void CorrectInput(char letter,int player)
 		{
-			playerWords[player].Remove(0);
+			Debug.Log("CorrectInput");
+			wordProgress[player].text += letter.ToString();
+			playerWords[player] = playerWords[player].Remove(0,1);
+			Debug.Log(playerWords[player]);
 			if (playerWords[player].Length == 0)
 				FinishedWord(player);
 		}
 
 		public void IncorrectInput(int player)
 		{
-
+			Debug.Log("WrongInput");
 		}
 
 		void GameTimeout()
@@ -100,9 +115,16 @@ namespace Words
 
 		void SelectWord()
 		{
-			string[] wordList = { "alface", "almoço" };
+			string[] wordList = { "abcd", "aaaa", "bcbc", "bccac" };
 
 			targetWord = wordList[Random.Range(0, wordList.Length)];
+		}
+
+		void SetupGame()
+		{
+			wordProgress[0].text = "";
+			wordProgress[1].text = "";
+			displayTargetWord.text = targetWord;
 		}
 
 	}

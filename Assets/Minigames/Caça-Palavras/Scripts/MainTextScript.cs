@@ -50,7 +50,7 @@ public class MainTextScript : MonoBehaviour
 		{
 			clock = 0;
 			audio.Play();
-			FontIndex++;
+			FontIndex += Random.Range(0, 4);
 		}
 	}
 }
