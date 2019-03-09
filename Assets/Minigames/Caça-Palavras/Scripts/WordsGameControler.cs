@@ -37,8 +37,8 @@ namespace Words
 
 		public List<char> alphabet;
 
+		public List<LetterButtonScript> p0Buttons;
 		public List<LetterButtonScript> p1Buttons;
-		public List<LetterButtonScript> p2Buttons;
 
 		public List<TextMeshProUGUI> wordProgress;
 
@@ -125,6 +125,28 @@ namespace Words
 			wordProgress[0].text = "";
 			wordProgress[1].text = "";
 			displayTargetWord.text = targetWord;
+
+			//shuffle list
+
+			for(int i = 0; i<p0Buttons.Count;i++)
+			{
+				Debug.Log("ping0");
+				p0Buttons[i].letter = alphabet[i];
+				p0Buttons[i].player = 0;
+				p0Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
+			}
+
+			// shuffle de novo
+
+			for (int i = 0; i < p1Buttons.Count; i++)
+			{
+				Debug.Log("ping1");
+				p1Buttons[i].player = 1;
+				p1Buttons[i].letter = alphabet[i];
+				p1Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
+			}
+
+
 		}
 
 	}
