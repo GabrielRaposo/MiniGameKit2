@@ -78,18 +78,21 @@ namespace GataclismaNaPista
         {
             if (Input.GetButtonDown(player.playerButtons.horizontal) || Input.GetButtonDown(player.playerButtons.vertical))
             {
-                float distance = Mathf.Abs(this.transform.position.y - sequence.ArrowQueue.Peek().transform.position.y);
-                ScoreType score;
-                if (Input.GetAxisRaw(player.playerButtons.horizontal) == 1 && sequence.peekArrowScript.direction == Direction.right ||
-                    Input.GetAxisRaw(player.playerButtons.vertical) == -1 && sequence.peekArrowScript.direction == Direction.down ||
-                    Input.GetAxisRaw(player.playerButtons.horizontal) == -1 && sequence.peekArrowScript.direction == Direction.left ||
-                    Input.GetAxisRaw(player.playerButtons.vertical) == 1 && sequence.peekArrowScript.direction == Direction.up)
+                if (sequence.ArrowQueue.Count > 0)
                 {
-                    score = CalculateScore(distance);
-                }
+                    float distance = Mathf.Abs(this.transform.position.y - sequence.ArrowQueue.Peek().transform.position.y);
+                    ScoreType score;
+                    if (Input.GetAxisRaw(player.playerButtons.horizontal) == 1 && sequence.peekArrowScript.direction == Direction.right ||
+                        Input.GetAxisRaw(player.playerButtons.vertical) == -1 && sequence.peekArrowScript.direction == Direction.down ||
+                        Input.GetAxisRaw(player.playerButtons.horizontal) == -1 && sequence.peekArrowScript.direction == Direction.left ||
+                        Input.GetAxisRaw(player.playerButtons.vertical) == 1 && sequence.peekArrowScript.direction == Direction.up)
+                    {
+                        score = CalculateScore(distance);
+                    }
                     else { FailArrow(); Debug.Log("Wrong Arrow!"); score = ScoreType.wrongArrow; }
-                InstantiateScoreText(score);
-                onScoreChange.Invoke(score);
+                    InstantiateScoreText(score);
+                    onScoreChange.Invoke(score);
+                }
             }
         }
 

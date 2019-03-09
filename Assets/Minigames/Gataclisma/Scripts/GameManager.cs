@@ -42,23 +42,7 @@ namespace GataclismaNaPista
 
         IEnumerator SpawnAllArrows()
         {
-            int beats = 0;
-            /*esses beats deveriam ser o numero de setas total da música, aqui eu fui contando e vi onde que era melhor parar
-             * mas pode mudar se achar necessário */
-            while (beats < 86)
-            {
-                Debug.Log("Beats: " + beats);
-                beats++;
-                Direction direction = (Direction)Random.Range(0, 4);
-                //int duration = Random.Range(1, 3); //spawna setas de duracao entre 1 e 2
-                int duration = 1;
-                foreach (ArrowSequence sequence in allArrowSequences)
-                {
-                     sequence.SpawnArrow(direction, duration);
-                }
-                yield return new WaitForSeconds(60f / BPM * duration);
-            }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(50f);
             StartCoroutine(EndGame());
         }
 
@@ -88,4 +72,5 @@ namespace GataclismaNaPista
             StartCoroutine(ModeManager.TransitionFromMinigame());
         }
     }
+    
 }
