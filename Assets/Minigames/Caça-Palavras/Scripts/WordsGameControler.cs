@@ -68,17 +68,17 @@ namespace Words
 		{
 			Debug.Log("Try input (" + letter.ToString() + ")");
 			if (letter == playerWords[player][0])
-				CorrectInput(letter,player);
+				CorrectInput(letter, player);
 			else
 				IncorrectInput(player);
 		}
 
 
-		public void CorrectInput(char letter,int player)
+		public void CorrectInput(char letter, int player)
 		{
 			Debug.Log("CorrectInput");
 			wordProgress[player].text += letter.ToString();
-			playerWords[player] = playerWords[player].Remove(0,1);
+			playerWords[player] = playerWords[player].Remove(0, 1);
 			Debug.Log(playerWords[player]);
 			if (playerWords[player].Length == 0)
 				FinishedWord(player);
@@ -115,7 +115,7 @@ namespace Words
 
 		void SelectWord()
 		{
-			string[] wordList = { "abcd", "aaaa", "bcbc", "bccac" };
+			string[] wordList = { "taxidermista", "ornitorrinco", "raposinho", "desenvolvimento", "asfaltamento", "tropicalidade" };
 
 			targetWord = wordList[Random.Range(0, wordList.Length)];
 		}
@@ -127,20 +127,20 @@ namespace Words
 			displayTargetWord.text = targetWord;
 
 			//shuffle list
+			Shuffle<char>(alphabet);
 
-			for(int i = 0; i<p0Buttons.Count;i++)
+			for (int i = 0; i < p0Buttons.Count; i++)
 			{
-				Debug.Log("ping0");
 				p0Buttons[i].letter = alphabet[i];
 				p0Buttons[i].player = 0;
 				p0Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
 			}
 
 			// shuffle de novo
+			Shuffle<char>(alphabet);
 
 			for (int i = 0; i < p1Buttons.Count; i++)
 			{
-				Debug.Log("ping1");
 				p1Buttons[i].player = 1;
 				p1Buttons[i].letter = alphabet[i];
 				p1Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
@@ -149,7 +149,23 @@ namespace Words
 
 		}
 
+
+		public void Shuffle<T>(IList<T> list)
+		{
+			int n = list.Count;			
+
+			while (n > 1)
+			{
+				n--;
+				int k = Random.Range(0, n);
+				T value = list[k];
+				list[k] = list[n];
+				list[n] = value;
+			}
+		}
+
 	}
+
 
 }
 
