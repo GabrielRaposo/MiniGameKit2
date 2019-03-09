@@ -45,7 +45,7 @@ public class MenuController : MonoBehaviour
     private bool hasActiveOverlay = false;
 
     static bool hasSetupControllers;
-    static public string FirstScreen = "main";
+    static public string FirstScreen = "startup";
 	
 	void Start ()
 	{
@@ -95,11 +95,11 @@ public class MenuController : MonoBehaviour
 				currentMenu = mainMenu;
 				currentMenu.menuTransform.gameObject.SetActive(true);
 				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
-                if (!hasSetupControllers)
-                {
-                    EnableOverlay("controller");
-                    hasSetupControllers = true;
-                }
+                //if (!hasSetupControllers)
+                //{
+                //    EnableOverlay("controller");
+                //    hasSetupControllers = true;
+                //}
                 break;
 			case "freeplay":
 				currentMenu.menuTransform.gameObject.SetActive(false);

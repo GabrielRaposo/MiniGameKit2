@@ -14,14 +14,13 @@ public class DetachableButton : MonoBehaviour
 
     [Header("Values")]
     [Range(0f, 1f)] [SerializeField] private float transitionTime;
+    [SerializeField] private float width;
 
     private Vector3 rightTabStartingPosition;
-    private float width;
 
     private void OnEnable()
     {
         rightTabStartingPosition = rightTab.localPosition;
-        width = labelMask.GetComponent<RectTransform>().sizeDelta.x;
     }
 
     public void Highlight()
