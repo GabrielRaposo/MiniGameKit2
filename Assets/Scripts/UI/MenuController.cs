@@ -45,7 +45,7 @@ public class MenuController : MonoBehaviour
     private bool hasActiveOverlay = false;
 
     static bool hasSetupControllers;
-    static public string FirstScreen = "startup";
+    static public string FirstScreen = "main";
 	
 	void Start ()
 	{
