@@ -13,7 +13,7 @@ public class DetachableButton : MonoBehaviour
     [SerializeField] private Image icon;
 
     [Header("Values")]
-    [Range(0f, 1f)] [SerializeField] private float transitionTime;
+    [Range(0f, 1f)] [SerializeField] protected float transitionTime;
     [SerializeField] private float width;
 
     private Vector3 rightTabStartingPosition;
@@ -23,14 +23,14 @@ public class DetachableButton : MonoBehaviour
         rightTabStartingPosition = rightTab.localPosition;
     }
 
-    public void Highlight()
+    public virtual void Highlight()
     {
         rightTab.DOLocalMove(rightTabStartingPosition + (new Vector3(1f, .5f) * width), transitionTime).SetEase(Ease.InOutBounce);
         icon.DOFade(0, transitionTime / 2);
         labelMask.DOFillAmount(1, transitionTime);
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
         rightTab.DOLocalMove(rightTabStartingPosition, transitionTime);
         icon.DOFade(1, transitionTime);

@@ -5,11 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class ToggleUIButton : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class ToggleUIButton : MonoBehaviour
 {
     [Header("References")]
-    public RawImage backRectangle;
-    public TextMeshProUGUI valueDisplay;
+    public TextMeshProUGUI buttonLabel;
+    public Image indicator;
+    public Image valueDisplay;
 
     [Header("Values")]
     public Color selectedColor;
@@ -26,24 +27,23 @@ public class ToggleUIButton : MonoBehaviour, ISelectHandler, IDeselectHandler
         set
         {
             on = value;
-            valueDisplay.text = (on) ? "ON" : "OFF";
+            valueDisplay.enabled = on;
         }
     }
 
     private void OnEnable()
     {
-        OnDeselect(new BaseEventData(EventSystem.current));
+        Hide();
     }
 
-    public void OnSelect(BaseEventData eventData)
+    public void Highlight()
     {
-        backRectangle.color = selectedColor;
-        valueDisplay.color = deselectedColor;
+        valueDisplay.color = indicator.color = buttonLabel.color = selectedColor;
     }
 
-    public void OnDeselect(BaseEventData eventData)
+    public void Hide()
     {
-        backRectangle.color = deselectedColor;
-        valueDisplay.color = selectedColor;
+        valueDisplay.color = indicator.color = buttonLabel.color = deselectedColor;
     }
+
 }
