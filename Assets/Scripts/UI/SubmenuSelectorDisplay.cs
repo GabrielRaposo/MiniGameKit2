@@ -39,7 +39,7 @@ public class SubmenuSelectorDisplay : MonoBehaviour
     public void AddValue(int value)
     {
         index += value;
-        if (index < 0 ) index = 0;
+        if (index < 0 ) index = icons.Length-1;
         index %= icons.Length;
 
         UpdateDisplay();

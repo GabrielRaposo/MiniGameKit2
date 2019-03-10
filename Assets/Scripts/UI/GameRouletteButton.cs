@@ -37,6 +37,10 @@ public class GameRouletteButton : MonoBehaviour, IMoveHandler
             case MoveDirection.Right:
                 roulette.ScrollRight();
                 break;
+
+            case MoveDirection.Left:
+                roulette.ScrollLeft();
+                break;
         }
     }
 
