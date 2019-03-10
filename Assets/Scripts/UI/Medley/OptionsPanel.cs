@@ -1,11 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
-public class OptionsPanel : MonoBehaviour {
-
+public class OptionsPanel : MonoBehaviour
+{
+    [Header("Buttons")]
     public ToggleUIButton fullscreenButton;
     public ToggleUIButton muteButton;
+
+    [Header("Transition")]
+    [SerializeField] private float transitionTime;
+    [SerializeField] private RectTransform movementAnchor;
+    [SerializeField] private RawImage fadeScreen;
+
+    private Vector3 startingPosition;
+    private Color startingColor;
+
+    private void Awake()
+    {
+        startingPosition = movementAnchor.anchoredPosition;
+        startingColor = fadeScreen.color;
+
+        movementAnchor.anchoredPosition += Vector2.right * 840;
+        fadeScreen.color = Vector4.zero;
+    }
+
+    public void TransitionIn()
+    {
+        movementAnchor.DOAnchorPosX(startingPosition.x, transitionTime);
+        fadeScreen.DOColor(startingColor, transitionTime);
+    }
+
+    public void TransitionOut()
+    {
+        movementAnchor.DOAnchorPosX(840, transitionTime);
+        fadeScreen.DOColor(Vector4.zero, transitionTime).onComplete = (() => gameObject.SetActive(false));
+    }
 
     void Start ()
     {

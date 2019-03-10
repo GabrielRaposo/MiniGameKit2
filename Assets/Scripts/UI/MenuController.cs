@@ -34,7 +34,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Menu startUpMenu;
 	[SerializeField] private Menu mainMenu;
 	[SerializeField] private Menu medleyMenu;
-	[SerializeField] Menu freeplayMenu;
+	[SerializeField] private Menu freeplayMenu;
+    [SerializeField] private Menu controllerMenu;
 
 	[Space(10)]
 
@@ -55,6 +56,9 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Animator wipe;
     [SerializeField] private Animation wipeAnim;
 
+    [Header("Options")]
+    [SerializeField] private OptionsPanel optionsPanel;
+
     private bool hasActiveOverlay = false;
 
     static bool hasSetupControllers;
@@ -62,7 +66,7 @@ public class MenuController : MonoBehaviour
 	
 	void Start ()
 	{
-        SwitchMenu(FirstScreen);
+        //SwitchMenu(FirstScreen);
         ModeManager.State = ModeManager.GameState.FreePlay;
 
         if (PlayerPrefs.HasKey("MUTE"))
@@ -111,7 +115,7 @@ public class MenuController : MonoBehaviour
 				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
                 */
 
-                StartCoroutine(StartupAnimation());
+                StartCoroutine(WipeAnimation(mainMenu));
                 //if (!hasSetupControllers)
                 //{
                 //    EnableOverlay("controller");
@@ -119,22 +123,27 @@ public class MenuController : MonoBehaviour
                 //}
                 break;
 			case "freeplay":
-				currentMenu.menuTransform.gameObject.SetActive(false);
-				currentMenu = freeplayMenu;
-				currentMenu.menuTransform.gameObject.SetActive(true);
-				//eventSystem.SetSelectedGameObject(currentMenu.firstButton);
+                //currentMenu.menuTransform.gameObject.SetActive(false);
+                //currentMenu = freeplayMenu;
+                //currentMenu.menuTransform.gameObject.SetActive(true);
+                //eventSystem.SetSelectedGameObject(currentMenu.firstButton);
+                StartCoroutine(WipeAnimation(freeplayMenu));
                 ModeManager.State = ModeManager.GameState.FreePlay;
+                break;
+
+            case "controller":
+                StartCoroutine(WipeAnimation(controllerMenu));
                 break;
 		}
 	}
 
-    IEnumerator StartupAnimation()
+    private IEnumerator WipeAnimation(Menu targetMenu)
     {
         wipe.SetTrigger("Wiping");
         yield return new WaitForSeconds(.25f);
         currentMenu.menuTransform.gameObject.SetActive(false);
-        menuScreen.SetActive(true);
-        currentMenu = mainMenu;
+        targetMenu.menuTransform.gameObject.SetActive(true);
+        currentMenu = targetMenu;
         eventSystem.SetSelectedGameObject(currentMenu.firstButton);
     }
 
@@ -174,6 +183,21 @@ public class MenuController : MonoBehaviour
 		eventSystem.SetSelectedGameObject(lastSelectedObject);
 		currentOverlay.overlayTransform.gameObject.SetActive(false);
 	}
+
+    public void EnableOptionsPanel()
+    {
+        hasActiveOverlay = true;
+        optionsPanel.gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(optionsOverlay.firstButton);
+        optionsPanel.TransitionIn();
+    }
+
+    public void DisableOptionsPanel()
+    {
+        hasActiveOverlay = false;
+        eventSystem.SetSelectedGameObject(lastSelectedObject);
+        optionsPanel.TransitionOut();
+    }
 
     public void CallScene(string scene)
     {
