@@ -76,17 +76,16 @@ namespace Words
 
 		public void CorrectInput(char letter, int player)
 		{
-			Debug.Log("CorrectInput");
 			wordProgress[player].text += letter.ToString();
 			playerWords[player] = playerWords[player].Remove(0, 1);
-			Debug.Log(playerWords[player]);
+
 			if (playerWords[player].Length == 0)
 				FinishedWord(player);
 		}
 
 		public void IncorrectInput(int player)
 		{
-			Debug.Log("WrongInput");
+
 		}
 
 		void GameTimeout()

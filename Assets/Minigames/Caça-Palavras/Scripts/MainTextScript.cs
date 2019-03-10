@@ -22,7 +22,6 @@ public class MainTextScript : MonoBehaviour
 
 		set
 		{
-			Debug.Log(value.ToString() + " > " + (fonts.Count-1).ToString());
 			if (value >= fonts.Count)
 			{
 				fontIndex = (value % fonts.Count);
@@ -49,7 +48,7 @@ public class MainTextScript : MonoBehaviour
 		if(clock >= tickRate)
 		{
 			clock = 0;
-			audio.Play();
+			//audio.Play();
 			FontIndex += Random.Range(0, 4);
 		}
 	}
