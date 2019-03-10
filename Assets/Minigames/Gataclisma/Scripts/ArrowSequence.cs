@@ -30,6 +30,10 @@ namespace GataclismaNaPista
         public Arrow peekArrowScript { get; private set; } // Arrow que deve receber o input
         private GameObject unqueuedDeadArrow; // Arrow após passar a área de input
 
+        //Alerta de gambiarra para as setas dos dois jogadores serem iguais:
+        private static List<Direction> directionsList = new List<Direction>();
+        private int directionListIndex = 0;
+
         private void Awake()
         {
             ArrowQueue = new Queue<GameObject>();
@@ -37,6 +41,10 @@ namespace GataclismaNaPista
             spawnZone = (Camera.main.orthographicSize + arrowSize / 2);
             unqueueZone = this.transform.position.y - (this.GetComponent<SpriteRenderer>().bounds.size.y / 2 + arrowSize / 2);
             deadZone = -spawnZone;
+
+            //Gambiarra para as setas dos dois jogadores serem iguais
+            int numbOfDirections = 500;
+            for (int i = 0; i < numbOfDirections; i++) directionsList.Add((Direction)Random.Range(0, 4));
         }
 
         private void Start()
@@ -99,12 +107,17 @@ namespace GataclismaNaPista
             {
                 float spawnPositionY = offsetHeight + spawnZone + (arrowGap + arrowSize) * i;
 
-                Direction direction = (Direction)Random.Range(0, 4);
+                //Gambiarra paras as setas dos dois jogadores ficarem iguais
+                Direction direction = directionsList[directionListIndex];
+                directionListIndex++;
+
                 SpawnArrow(direction, spawnPositionY);
             
                 if( padrao == Padroes.UM_MEIO && i % 4 == 2)
                 {
-                    direction = (Direction)Random.Range(0, 4);
+                    direction = directionsList[directionListIndex];
+                    directionListIndex++;
+
                     SpawnArrow(direction, spawnPositionY + (arrowGap + arrowSize) / 2);
                 }
             }
