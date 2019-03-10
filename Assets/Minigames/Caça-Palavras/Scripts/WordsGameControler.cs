@@ -110,7 +110,7 @@ namespace Words
 
 		public void Results(PlayersManager.Result result)
 		{
-
+			PlayersManager.result = result;
 		}
 
 		void SelectWord()
