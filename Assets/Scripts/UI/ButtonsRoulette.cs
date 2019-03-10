@@ -111,6 +111,12 @@ public class ButtonsRoulette : MonoBehaviour
         UpdateTextDisplay();
     }
 
+    public void ScrollLeft()
+    {
+        selectorDisplay.AddValue(-1);
+        UpdateTextDisplay();
+    }
+
     private void UpdateTextDisplay()
     {
         switch (selectorDisplay.index)
