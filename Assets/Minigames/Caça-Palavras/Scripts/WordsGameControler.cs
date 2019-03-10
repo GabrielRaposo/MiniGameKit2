@@ -136,7 +136,7 @@ namespace Words
 			}
 
 			// shuffle de novo
-			Shuffle<char>(alphabet);
+			//Shuffle<char>(alphabet);
 
 			for (int i = 0; i < p1Buttons.Count; i++)
 			{
@@ -144,10 +144,7 @@ namespace Words
 				p1Buttons[i].letter = alphabet[i];
 				p1Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
 			}
-
-
 		}
-
 
 		public void Shuffle<T>(IList<T> list)
 		{
@@ -162,10 +159,7 @@ namespace Words
 				list[n] = value;
 			}
 		}
-
 	}
-
-
 }
 
 
