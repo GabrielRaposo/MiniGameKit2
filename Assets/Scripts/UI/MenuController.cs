@@ -50,7 +50,7 @@ public class MenuController : MonoBehaviour
 	void Start ()
 	{
         //FirstScreen = "freeplay";
-        SwitchMenu(FirstScreen);
+        //SwitchMenu(FirstScreen);
         ModeManager.State = ModeManager.GameState.FreePlay;
 
         if (PlayerPrefs.HasKey("MUTE"))
