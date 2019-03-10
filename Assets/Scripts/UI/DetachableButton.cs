@@ -18,7 +18,7 @@ public class DetachableButton : MonoBehaviour
 
     private Vector3 rightTabStartingPosition;
 
-    private void OnEnable()
+    private void Start()
     {
         rightTabStartingPosition = rightTab.localPosition;
     }

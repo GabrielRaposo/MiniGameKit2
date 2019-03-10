@@ -62,8 +62,7 @@ public class MenuController : MonoBehaviour
 	
 	void Start ()
 	{
-        //FirstScreen = "freeplay";
-        //SwitchMenu(FirstScreen);
+        SwitchMenu(FirstScreen);
         ModeManager.State = ModeManager.GameState.FreePlay;
 
         if (PlayerPrefs.HasKey("MUTE"))
@@ -102,7 +101,8 @@ public class MenuController : MonoBehaviour
 				currentMenu = startUpMenu;
 				currentMenu.menuTransform.gameObject.SetActive(true);
 				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
-				break;
+                //FirstScreen = "main";
+                break;
 			case "main":
                 /*
 				currentMenu.menuTransform.gameObject.SetActive(false);
@@ -110,6 +110,7 @@ public class MenuController : MonoBehaviour
 				currentMenu.menuTransform.gameObject.SetActive(true);
 				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
                 */
+
                 StartCoroutine(StartupAnimation());
                 //if (!hasSetupControllers)
                 //{
@@ -121,7 +122,7 @@ public class MenuController : MonoBehaviour
 				currentMenu.menuTransform.gameObject.SetActive(false);
 				currentMenu = freeplayMenu;
 				currentMenu.menuTransform.gameObject.SetActive(true);
-				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
+				//eventSystem.SetSelectedGameObject(currentMenu.firstButton);
                 ModeManager.State = ModeManager.GameState.FreePlay;
                 break;
 		}
@@ -131,7 +132,7 @@ public class MenuController : MonoBehaviour
     {
         wipe.SetTrigger("Wiping");
         yield return new WaitForSeconds(.25f);
-        startupScreen.SetActive(false);
+        currentMenu.menuTransform.gameObject.SetActive(false);
         menuScreen.SetActive(true);
         currentMenu = mainMenu;
         eventSystem.SetSelectedGameObject(currentMenu.firstButton);

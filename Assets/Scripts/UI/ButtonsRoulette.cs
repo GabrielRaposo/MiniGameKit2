@@ -15,8 +15,13 @@ public class ButtonsRoulette : MonoBehaviour
     [SerializeField] private TutorialObject[] tutorialObjects;
 
     [Header("UI References")]
+    [SerializeField] private ChargeableButton exitButton;
+    [SerializeField] private SubmenuSelectorDisplay selectorDisplay;
+    [Space(10)]
     [SerializeField] private TextMeshProUGUI minigameLabel;
-    [SerializeField] private TextMeshProUGUI rulesLabel;
+    [SerializeField] private RectTransform infoTab;
+    [SerializeField] private TextMeshProUGUI infoLabel;
+    [SerializeField] private TextMeshProUGUI infoDisplay;
     [SerializeField] private RawImage gameArt;
     [Space(10)]
     [SerializeField] private GameObject inputArrowUp;
@@ -27,6 +32,16 @@ public class ButtonsRoulette : MonoBehaviour
     private GameObject[] buttons;
 
     private int index;
+
+
+    private void OnEnable()
+    {
+        exitButton.enabled = true;
+        if(buttons != null && buttons.Length > 0)
+        {
+            buttons[index].GetComponent<Button>().Select();
+        }
+    }
 
     void Start()
     {
@@ -58,6 +73,14 @@ public class ButtonsRoulette : MonoBehaviour
         SetInfoScreen(tutorialObjects[index]);
     }
 
+    private void Update()
+    {
+        if (exitButton.enabled)
+        {
+            exitButton.charging = Input.GetAxisRaw("Horizontal") < 0;
+        }
+    }
+
     public void ScrollUp()
     {
         if(index > 0)
@@ -82,6 +105,45 @@ public class ButtonsRoulette : MonoBehaviour
         }
     }
 
+    public void ScrollRight()
+    {
+        selectorDisplay.AddValue(1);
+        UpdateTextDisplay();
+    }
+
+    private void UpdateTextDisplay()
+    {
+        switch (selectorDisplay.index)
+        {
+            default:
+            case 0:
+                infoLabel.text = "Rules";
+                infoDisplay.text = tutorialObjects[index].gameRules;
+                break;
+
+            case 1:
+                infoLabel.text = "Controls";
+                string s = string.Empty;
+                foreach(TutorialObject.InputTab inputTab in tutorialObjects[index].controls)
+                {
+                    s += inputTab.inputKey.ToString();
+                    if (inputTab.inputType != TutorialObject.InputType.None) s += " (" + inputTab.inputType.ToString() + ")";
+                    s += " - " + inputTab.text;
+                    s += "\n";
+                }
+                infoDisplay.text = s;
+                break;
+
+            case 2:
+                infoLabel.text = "Credits";
+                infoDisplay.text = tutorialObjects[index].credits;
+                break;
+        }
+
+        infoTab.localPosition += new Vector3(100, 0);
+        infoTab.DOLocalMove(Vector3.zero, .1f);
+    }
+
     private void UpdateInputArrows()
     {
         if (index > 0)
@@ -100,7 +162,10 @@ public class ButtonsRoulette : MonoBehaviour
         UpdateInputArrows();
 
         minigameLabel.text = tutorialObject.codename;
-        rulesLabel.text = tutorialObject.gameRules;
+        //rulesLabel.text = tutorialObject.gameRules;
         gameArt.texture = tutorialObject.image;
+
+        selectorDisplay.ResetValue();
+        UpdateTextDisplay();
     }
 }
