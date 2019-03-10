@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class MenuController : MonoBehaviour
 {
@@ -28,12 +29,16 @@ public class MenuController : MonoBehaviour
 	[SerializeField] Menu currentMenu;
 	[SerializeField] Overlay currentOverlay;
 
-	[Header("Menus")] [SerializeField] private Menu startUpMenu;
+	[Header("Menus")]
+
+    [SerializeField] private Menu startUpMenu;
 	[SerializeField] private Menu mainMenu;
 	[SerializeField] private Menu medleyMenu;
 	[SerializeField] Menu freeplayMenu;
 
-	[Space(10)] [Header("Overlays")]
+	[Space(10)]
+
+    [Header("Overlays")]
 	
 	[SerializeField] private Overlay controllerOverlay;
 	[SerializeField] private Overlay confirmOverlay;
@@ -41,6 +46,14 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Overlay medleyGameOverlay;
     [SerializeField] private Overlay tutorialOverlay;
     [SerializeField] private Overlay optionsOverlay;
+
+    [Space(10)]
+
+    [Header("Startup Sequence")]
+    [SerializeField] private GameObject startupScreen;
+    [SerializeField] private GameObject menuScreen;
+    [SerializeField] private Animator wipe;
+    [SerializeField] private Animation wipeAnim;
 
     private bool hasActiveOverlay = false;
 
@@ -91,10 +104,13 @@ public class MenuController : MonoBehaviour
 				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
 				break;
 			case "main":
+                /*
 				currentMenu.menuTransform.gameObject.SetActive(false);
 				currentMenu = mainMenu;
 				currentMenu.menuTransform.gameObject.SetActive(true);
 				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
+                */
+                StartCoroutine(StartupAnimation());
                 //if (!hasSetupControllers)
                 //{
                 //    EnableOverlay("controller");
@@ -110,6 +126,16 @@ public class MenuController : MonoBehaviour
                 break;
 		}
 	}
+
+    IEnumerator StartupAnimation()
+    {
+        wipe.SetTrigger("Wiping");
+        yield return new WaitForSeconds(.25f);
+        startupScreen.SetActive(false);
+        menuScreen.SetActive(true);
+        currentMenu = mainMenu;
+        eventSystem.SetSelectedGameObject(currentMenu.firstButton);
+    }
 
 	public void EnableOverlay(string overlay)
 	{
