@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace Words
@@ -33,18 +34,29 @@ namespace Words
 			}
 		}
 
-		public UnityEngine.UI.Image clockImage;
+		public Image clockImage;
 
 		public List<char> alphabet;
 
 		public List<LetterButtonScript> p0Buttons;
 		public List<LetterButtonScript> p1Buttons;
 
+		public WordsPlayer player0;
+		public WordsPlayer player1;
+
+		public Image boxBorderP0;
+		public Image boxBorderP1;
+
 		public List<TextMeshProUGUI> wordProgress;
 
 		public TextMeshProUGUI displayTargetWord;
 
 		private void Awake()
+		{
+			
+		}
+
+		private void Start()
 		{
 			SelectWord();
 			SetupGame();
@@ -120,7 +132,7 @@ namespace Words
 		}
 
 		void SetupGame()
-		{
+		{		
 			wordProgress[0].text = "";
 			wordProgress[1].text = "";
 			displayTargetWord.text = targetWord;
@@ -128,8 +140,12 @@ namespace Words
 			//shuffle list
 			Shuffle<char>(alphabet);
 
+			wordProgress[0].color = player0.VisibleColor;
+			boxBorderP0.color = LowSatColor(player0.VisibleColor);
+
 			for (int i = 0; i < p0Buttons.Count; i++)
 			{
+				p0Buttons[i].gameObject.GetComponent<Image>().color = player0.VisibleColor;
 				p0Buttons[i].letter = alphabet[i];
 				p0Buttons[i].player = 0;
 				p0Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
@@ -138,8 +154,13 @@ namespace Words
 			// shuffle de novo
 			//Shuffle<char>(alphabet);
 
+			wordProgress[1].color = player1.VisibleColor;
+			boxBorderP1.color = LowSatColor(player1.VisibleColor);
+
+
 			for (int i = 0; i < p1Buttons.Count; i++)
 			{
+				p1Buttons[i].gameObject.GetComponent<Image>().color = player1.VisibleColor;
 				p1Buttons[i].player = 1;
 				p1Buttons[i].letter = alphabet[i];
 				p1Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
@@ -159,6 +180,20 @@ namespace Words
 				list[n] = value;
 			}
 		}
+
+		public Color LowSatColor(Color color)
+		{
+			float h= 0 , s = 0, v = 0;
+
+			Color.RGBToHSV(color, out h, out s, out v);
+
+			s = s / 2;
+			v = v / 2;
+
+			return Color.HSVToRGB(h, s, v);
+
+		}
+
 	}
 }
 
