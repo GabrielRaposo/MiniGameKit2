@@ -78,6 +78,12 @@ namespace Words
 
 		}
 
+		private void LateUpdate()
+		{
+			boxBorderP0.color = player0.VisibleColor;
+			boxBorderP1.color = player1.VisibleColor;
+		}
+
 		public void TryInputLetter(char letter, int player)
 		{
 			Debug.Log("Try input (" + letter.ToString() + ")");
@@ -126,6 +132,9 @@ namespace Words
 			player0.GetComponent<MyEventSystem>().enabled = false;
 			player1.GetComponent<MyEventSystem>().enabled = false;
 
+			player0.GetComponent<Animator>().enabled = true;
+			player1.GetComponent<Animator>().enabled = true;
+
 			WinnerAnimation(result);
 			if (result == 0)
 				LoserAnimation(1);
@@ -153,12 +162,12 @@ namespace Words
 			if (player == 0)
 			{
 				boxBorderP0.color = player0.VisibleColor;
-				//player0.GetComponent<Animator>().SetTrigger("Win");
+				player0.GetComponent<Animator>().SetTrigger("Win");
 			}
 			else
 			{
 				boxBorderP1.color = player1.VisibleColor;
-				//player1.GetComponent<Animator>().SetTrigger("Win");
+				player1.GetComponent<Animator>().SetTrigger("Win");
 			}
 		}
 
@@ -169,19 +178,19 @@ namespace Words
 			if (player == 0)
 			{
 				wordProgress[player].color = LowSatColor(player0.VisibleColor);
-				//player0.GetComponent<Animator>().SetTrigger("Loss");
+				player0.GetComponent<Animator>().SetTrigger("Loss");
 			}
 			else
 			{
 				wordProgress[player].color = LowSatColor(player1.VisibleColor);
-				//player1.GetComponent<Animator>().SetTrigger("Loss");
+				player1.GetComponent<Animator>().SetTrigger("Loss");
 			}
 		}
 
 		void SelectWord()
 		{
 			string[] wordList = { "taxidermista", "ornitorrinco", "mononucleose", "desenvolvimento", "asfaltamento", "tropicalidade", "pluralidade", "aristotelismo", "espectroscopia", "infravermelho", "espalhamento",
-									"encaminhamento", "endocrinologia", "quilometragem", "sepultamento", "comunidadades", "cavalheirismo", "esmerilhadeira", "prestidigitador", "estequiometria"};
+									"encaminhamento", "endocrinologia", "quilometragem", "sepultamento", "comunidades", "cavalheirismo", "esmerilhadeira", "prestidigitador", "estequiometria"};
 
 			targetWord = wordList[Random.Range(0, wordList.Length)];
 		}
