@@ -31,16 +31,11 @@ public class ButtonsRoulette : MonoBehaviour
     private Vector2 scrollMovement = new Vector2(75, 256) * 1.2f;
     private GameObject[] buttons;
 
-    private int index;
-
+    private static int index;
 
     private void OnEnable()
     {
         exitButton.enabled = true;
-        if(buttons != null && buttons.Length > 0)
-        {
-            buttons[index].GetComponent<Button>().Select();
-        }
     }
 
     void Start()
@@ -60,15 +55,15 @@ public class ButtonsRoulette : MonoBehaviour
                 rouletteButton.Init(this, tutorialObjects[i]);
             }
 
-            if (i == 0)
-            {
-                button.GetComponent<Button>().Select();
-                button.transform.localScale = Vector3.one * 2.0f;
-            }
             buttons[i] = button;
         }
 
         baseButton.SetActive(false);
+
+        rectTransform.anchoredPosition = (Vector2.left * 300) + (scrollMovement * index);
+        buttons[index].GetComponent<Button>().Select();
+        buttons[index].transform.localScale = Vector3.one * 2.0f;
+        GetComponent<SelectButtonOnEnable>().firstSelection = buttons[index];
 
         SetInfoScreen(tutorialObjects[index]);
     }
@@ -168,8 +163,9 @@ public class ButtonsRoulette : MonoBehaviour
         UpdateInputArrows();
 
         minigameLabel.text = tutorialObject.codename;
-        //rulesLabel.text = tutorialObject.gameRules;
         gameArt.texture = tutorialObject.image;
+
+        GetComponent<SelectButtonOnEnable>().firstSelection = buttons[index];
 
         selectorDisplay.ResetValue();
         UpdateTextDisplay();

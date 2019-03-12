@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
+
 public class MenuController : MonoBehaviour
 {
 	[Header("References")]
@@ -15,7 +16,7 @@ public class MenuController : MonoBehaviour
 	private struct Menu
 	{
 		public Transform menuTransform;
-		public GameObject firstButton;
+		//public GameObject firstButton;
 		public string previousMenu;
 	}
 	
@@ -23,7 +24,7 @@ public class MenuController : MonoBehaviour
 	private struct Overlay
 	{
 		public Transform overlayTransform;
-		public GameObject firstButton;
+		//public GameObject firstButton;
 	}
 
 	[SerializeField] Menu currentMenu;
@@ -66,7 +67,7 @@ public class MenuController : MonoBehaviour
 	
 	void Start ()
 	{
-        //SwitchMenu(FirstScreen);
+        StartMenu(FirstScreen);
         ModeManager.State = ModeManager.GameState.FreePlay;
 
         if (PlayerPrefs.HasKey("MUTE"))
@@ -78,12 +79,6 @@ public class MenuController : MonoBehaviour
 	
 	void Update ()
 	{
-        if (!hasActiveOverlay && eventSystem.currentSelectedGameObject == null)
-        {
-            //temp pra lidar com mouse chato
-            eventSystem.SetSelectedGameObject(currentMenu.firstButton);
-        }
-
         if (Input.GetButtonDown("Cancel"))
 		{
             if (hasActiveOverlay) DisableOverlay();
@@ -96,42 +91,62 @@ public class MenuController : MonoBehaviour
 		Application.Quit();
 	}
 
+    private void StartMenu(string menu)
+    {
+        currentMenu.menuTransform.gameObject.SetActive(false);
+
+        switch (menu)
+        {
+            case "startup":
+                currentMenu = startUpMenu;
+                currentMenu.menuTransform.gameObject.SetActive(true);
+                eventSystem.SetSelectedGameObject(startUpMenu.menuTransform.GetComponent<SelectButtonOnEnable>().firstSelection);
+                break;
+
+            case "main":
+                FirstScreen = "main";
+                currentMenu = mainMenu;
+                currentMenu.menuTransform.gameObject.SetActive(true);
+                eventSystem.SetSelectedGameObject(mainMenu.menuTransform.GetComponent<SelectButtonOnEnable>().firstSelection);
+                break;
+
+            case "freeplay":
+                currentMenu = freeplayMenu;
+                currentMenu.menuTransform.gameObject.SetActive(true);
+                ModeManager.State = ModeManager.GameState.FreePlay;
+                break;
+
+            case "controller":
+                mainMenu.menuTransform.GetComponent<SelectButtonOnEnable>().firstSelection = lastSelectedObject;
+                currentMenu = controllerMenu;
+                currentMenu.menuTransform.gameObject.SetActive(true);
+                break;
+        }
+    }
+
 	public void SwitchMenu(string menu)
 	{
 		switch (menu)
 		{
 			case "startup":
-				currentMenu.menuTransform.gameObject.SetActive(false);
-				currentMenu = startUpMenu;
-				currentMenu.menuTransform.gameObject.SetActive(true);
-				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
-                //FirstScreen = "main";
+                StartCoroutine(WipeAnimation(startUpMenu));
+                eventSystem.SetSelectedGameObject(startUpMenu.menuTransform.GetComponent<SelectButtonOnEnable>().firstSelection);
                 break;
-			case "main":
-                /*
-				currentMenu.menuTransform.gameObject.SetActive(false);
-				currentMenu = mainMenu;
-				currentMenu.menuTransform.gameObject.SetActive(true);
-				eventSystem.SetSelectedGameObject(currentMenu.firstButton);
-                */
 
+			case "main":
                 StartCoroutine(WipeAnimation(mainMenu));
+                FirstScreen = "main";
                 //if (!hasSetupControllers)
-                //{
-                //    EnableOverlay("controller");
-                //    hasSetupControllers = true;
-                //}
                 break;
+
 			case "freeplay":
-                //currentMenu.menuTransform.gameObject.SetActive(false);
-                //currentMenu = freeplayMenu;
-                //currentMenu.menuTransform.gameObject.SetActive(true);
-                //eventSystem.SetSelectedGameObject(currentMenu.firstButton);
                 StartCoroutine(WipeAnimation(freeplayMenu));
                 ModeManager.State = ModeManager.GameState.FreePlay;
+                FirstScreen = "freeplay";
                 break;
 
             case "controller":
+                mainMenu.menuTransform.GetComponent<SelectButtonOnEnable>().firstSelection = lastSelectedObject;
                 StartCoroutine(WipeAnimation(controllerMenu));
                 break;
 		}
@@ -144,7 +159,6 @@ public class MenuController : MonoBehaviour
         currentMenu.menuTransform.gameObject.SetActive(false);
         targetMenu.menuTransform.gameObject.SetActive(true);
         currentMenu = targetMenu;
-        eventSystem.SetSelectedGameObject(currentMenu.firstButton);
     }
 
 	public void EnableOverlay(string overlay)
@@ -172,9 +186,8 @@ public class MenuController : MonoBehaviour
                 return;
 		}
 		hasActiveOverlay = true;
-		currentOverlay.overlayTransform.gameObject.SetActive(true);
 		lastSelectedObject = eventSystem.currentSelectedGameObject;
-		eventSystem.SetSelectedGameObject(currentOverlay.firstButton);
+        currentOverlay.overlayTransform.gameObject.SetActive(true);
 	}
 
 	public void DisableOverlay()
@@ -187,8 +200,8 @@ public class MenuController : MonoBehaviour
     public void EnableOptionsPanel()
     {
         hasActiveOverlay = true;
+        lastSelectedObject = eventSystem.currentSelectedGameObject;
         optionsPanel.gameObject.SetActive(true);
-        eventSystem.SetSelectedGameObject(optionsOverlay.firstButton);
         optionsPanel.TransitionIn();
     }
 

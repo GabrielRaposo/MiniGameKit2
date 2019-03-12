@@ -14,13 +14,14 @@ public class ChargeableButton : MonoBehaviour
     private int charge;
     public bool charging;
 
-    void OnEnable()
+    private void OnEnable()
     {
+        charging = false;
         charge = 0;
         UpdateFillDisplay();
     }
 
-    void Update()
+    private void Update()
     {
         if (charging)
         {
