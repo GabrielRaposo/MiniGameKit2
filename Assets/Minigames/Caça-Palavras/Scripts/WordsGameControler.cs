@@ -34,6 +34,8 @@ namespace Words
 			}
 		}
 
+		float clockSpeed = 1;
+
 		public Image clockImage;
 
 		public List<char> alphabet;
@@ -70,7 +72,7 @@ namespace Words
 
 		public void Update()
 		{
-			Clock -= Time.deltaTime;
+			Clock -= Time.deltaTime * clockSpeed;
 			if (Clock <= 0)
 				GameTimeout();
 
@@ -91,6 +93,8 @@ namespace Words
 			wordProgress[player].text += letter.ToString();
 			playerWords[player] = playerWords[player].Remove(0, 1);
 
+			wordProgress[player].GetComponent<AudioSource>().Play();
+
 			if (playerWords[player].Length == 0)
 				FinishedWord(player);
 		}
@@ -103,9 +107,9 @@ namespace Words
 		void GameTimeout()
 		{
 			if (playerWords[0].Length > playerWords[1].Length)
-				Results(PlayersManager.Result.RightWin);
+				Results(1);
 			else if (playerWords[0].Length < playerWords[1].Length)
-				Results(PlayersManager.Result.LeftWin);
+				Results(0);
 			else
 				Results(PlayersManager.Result.Draw);
 		}
@@ -113,20 +117,71 @@ namespace Words
 		public void FinishedWord(int player)
 		{
 			//Alguma firula de gamefeel aqui
-			if (player == 0)
-				Results(PlayersManager.Result.LeftWin);
-			if (player == 1)
-				Results(PlayersManager.Result.RightWin);
+			Results(player);
+		}
+
+		public void Results(int result)
+		{
+			clockSpeed = 0;
+			player0.GetComponent<MyEventSystem>().enabled = false;
+			player1.GetComponent<MyEventSystem>().enabled = false;
+
+			WinnerAnimation(result);
+			if (result == 0)
+				LoserAnimation(1);
+			else
+				LoserAnimation(0);
+
+			Debug.Log("GAME OVER: " + result.ToString());
+			//PlayersManager.result = result;
 		}
 
 		public void Results(PlayersManager.Result result)
 		{
-			PlayersManager.result = result;
+			if(result == PlayersManager.Result.Draw)
+			{
+				player0.GetComponent<MyEventSystem>().enabled = false;
+				player1.GetComponent<MyEventSystem>().enabled = false;
+
+				LoserAnimation(1);
+				LoserAnimation(0);
+			}
+		}
+
+		public void WinnerAnimation(int player)
+		{
+			if (player == 0)
+			{
+				boxBorderP0.color = player0.VisibleColor;
+				//player0.GetComponent<Animator>().SetTrigger("Win");
+			}
+			else
+			{
+				boxBorderP1.color = player1.VisibleColor;
+				//player1.GetComponent<Animator>().SetTrigger("Win");
+			}
+		}
+
+		public void LoserAnimation(int player)
+		{
+			wordProgress[player].color = new Vector4(wordProgress[player].color.r, wordProgress[player].color.g, wordProgress[player].color.b, 0.5f);
+
+			if (player == 0)
+			{
+				wordProgress[player].color = LowSatColor(player0.VisibleColor);
+				//player0.GetComponent<Animator>().SetTrigger("Loss");
+			}
+			else
+			{
+				wordProgress[player].color = LowSatColor(player1.VisibleColor);
+				//player1.GetComponent<Animator>().SetTrigger("Loss");
+			}
 		}
 
 		void SelectWord()
 		{
-			string[] wordList = { "taxidermista", "ornitorrinco", "raposinho", "desenvolvimento", "asfaltamento", "tropicalidade" };
+			string[] wordList = { "taxidermista", "ornitorrinco", "mononucleose", "desenvolvimento", "asfaltamento", "tropicalidade", "pluralidade", "aristotelismo", "espectroscopia", "infravermelho", "espalhamento",
+									"encaminhamento", "endocrinologia", "quilometragem", "sepultamento", "comunidadades", "cavalheirismo", "esmerilhadeira", "prestidigitador", "estequiometria"};
 
 			targetWord = wordList[Random.Range(0, wordList.Length)];
 		}
@@ -143,6 +198,10 @@ namespace Words
 			wordProgress[0].color = player0.VisibleColor;
 			boxBorderP0.color = LowSatColor(player0.VisibleColor);
 
+			player0.gameObject.GetComponent<MyInputModule>().horizontalAxis = player0.playerButtons.horizontal;
+			player0.gameObject.GetComponent<MyInputModule>().verticalAxis = player0.playerButtons.vertical;
+			player0.gameObject.GetComponent<MyInputModule>().submitButton = player0.playerButtons.action;
+
 			for (int i = 0; i < p0Buttons.Count; i++)
 			{
 				p0Buttons[i].gameObject.GetComponent<Image>().color = player0.VisibleColor;
@@ -157,6 +216,9 @@ namespace Words
 			wordProgress[1].color = player1.VisibleColor;
 			boxBorderP1.color = LowSatColor(player1.VisibleColor);
 
+			player1.gameObject.GetComponent<MyInputModule>().horizontalAxis = player1.playerButtons.horizontal;
+			player1.gameObject.GetComponent<MyInputModule>().verticalAxis = player1.playerButtons.vertical;
+			player1.gameObject.GetComponent<MyInputModule>().submitButton = player1.playerButtons.action;
 
 			for (int i = 0; i < p1Buttons.Count; i++)
 			{
