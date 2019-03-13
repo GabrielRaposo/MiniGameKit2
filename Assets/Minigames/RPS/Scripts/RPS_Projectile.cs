@@ -5,7 +5,7 @@ using UnityEngine;
 public class RPS_Projectile : MonoBehaviour
 {
     int dir;
-    int element;
+    public int element;
     [SerializeField] float speed;
 
     public RPS_GameManager manager;
@@ -21,6 +21,11 @@ public class RPS_Projectile : MonoBehaviour
 
         dir = direction;
         element = type;
+
+        if(dir == -1)
+        {
+            transform.GetChild(0).transform.eulerAngles = new Vector3(0,0,180);
+        }
 
         switch (type)
         {
@@ -43,8 +48,28 @@ public class RPS_Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.gameObject.name);
-        manager.TakeDamage(true);
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Player")
+        {
+            if (dir == -1) manager.TakeDamage(true);
+            else manager.TakeDamage(false);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Projectile")
+        {
+            int otherElement = collision.gameObject.GetComponent<RPS_Projectile>().element;
+            if (element == otherElement)
+            {
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
+            }
+            else
+            {
+                print(element);
+                if(element == 0 && otherElement == 2) Destroy(collision.gameObject);
+                else if (element > otherElement && !(element==2 && otherElement ==0)) Destroy(collision.gameObject);
+            }
+        }
+
     }
 }

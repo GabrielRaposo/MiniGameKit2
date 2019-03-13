@@ -34,6 +34,7 @@ public class RPS_GameManager : MonoBehaviour
     [Header("Player 1")]
 
     [SerializeField] Image p1HpBar;
+    [SerializeField] Image p1HpFillBar;
     [SerializeField] Image p1MpBar;
 
     [Space(10)]
@@ -66,6 +67,7 @@ public class RPS_GameManager : MonoBehaviour
     [Header("Player 2")]
 
     [SerializeField] Image p2HpBar;
+    [SerializeField] Image p2HpFillBar;
     [SerializeField] Image p2MpBar;
     
     [Space(10)]
@@ -150,23 +152,61 @@ public class RPS_GameManager : MonoBehaviour
                 }
             }
         }
-        else if(!isP1 && p2CanCast && p2.mp > 1f)
+        else if(!isP1 && p2CanCast)
         {
-            //print("P2");
-            p2Sprite.sprite = p2Attack;
-            p2AttackCharge.SetActive(true);
-            p2CanCast = false;
-            //Instantiate(projectile, new Vector3(.75f, 0, 0));
-            p2.mp-=1f;
-            UpdateHud(false);
-            p2Charge.SetActive(false);
-            StartCoroutine(Coooldown(false));
+            if (p2.mp > 1f)
+            {
+                //print("P1");
+                p2Sprite.sprite = p2Attack;
+                p2AttackCharge.SetActive(true);
+                p2CanCast = false;
+                //Instantiate(projectile, new Vector3(-.75f, 0, 0));
+                shot = Instantiate(projectile, new Vector3(.65f, .025f, 0), Quaternion.identity, null);
+                shot.GetComponent<RPS_Projectile>().manager = this;
+                shot.GetComponent<RPS_Projectile>().Shoot(-1, p2.currentMagic);
+                p2.mp -= 1f;
+                UpdateHud(false);
+                p2Charge.SetActive(false);
+                StartCoroutine(Coooldown(false));
+            }
+            else
+            {
+                //print("Shake");
+                switch (p2.currentMagic)
+                {
+                    case 0:
+                        //print("Shake Rock");
+                        p2Rock.DORewind();
+                        p2Rock.DOShakePosition(.5f, 1.5f, 20, 90, true);
+                        break;
+                    case 1:
+                        //print("Shake Paper");
+                        p2Paper.DORewind();
+                        p2Paper.DOShakePosition(.5f, 1.5f, 20, 90, true);
+                        break;
+                    case 2:
+                        //print("Shake Scissors");
+                        p2Scissors.DORewind();
+                        p2Scissors.DOShakePosition(.5f, 1.5f, 20, 90, true);
+                        break;
+                }
+            }
         }
     }
 
     public void TakeDamage(bool isP1)
     {
         cam.DOShakePosition(.4f, .02f, 13, 90, true);
+        if(isP1)
+        {
+            p1.hp -= 3f;
+            UpdateHud(true);
+        }
+        else
+        {
+            p2.hp -= 3f;
+            UpdateHud(false);
+        }
     }
 
     IEnumerator Coooldown(bool isP1)
@@ -273,6 +313,180 @@ public class RPS_GameManager : MonoBehaviour
             p1CanCast = true;
             p1CanSwitch = true;
         }
+        else
+        {
+            //p1Skills.DOLocalMoveY(p1Skills.transform.localPosition.y - 64, .25f, false);
+            //yield return new WaitForSeconds(.125f);
+
+            switch (p1.currentMagic)
+            {
+                case 0: //Rock -> Paper
+                    p1RockBorder.gameObject.SetActive(false);
+                    //p1Skills.DOLocalMoveY(128, 0, false);
+                    //p1Skills.localPosition = new Vector3(32, -128, 0);
+                    p1Skills.DOLocalMoveY(p1Skills.transform.localPosition.y + 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p1PaperBorder.gameObject.SetActive(true);
+                    p1.currentMagic = 1;
+                    p1Charge.GetComponent<SpriteRenderer>().color = paperColor;
+                    p1AttackCharge.GetComponent<SpriteRenderer>().color = paperColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+
+                case 1: //Paper -> Scissors
+                    p1PaperBorder.gameObject.SetActive(false);
+                    p1Skills.DOLocalMoveY(p1Skills.transform.localPosition.y + 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p1ScissorsBorder.gameObject.SetActive(true);
+                    p1.currentMagic = 2;
+                    p1Charge.GetComponent<SpriteRenderer>().color = scissorsColor;
+                    p1AttackCharge.GetComponent<SpriteRenderer>().color = scissorsColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+
+                case 2: //Scissors -> Rock
+                    p1ScissorsBorder.gameObject.SetActive(false);
+                    p1Skills.localPosition = new Vector3(32, -128, 0);
+                    p1Skills.DOLocalMoveY(p1Skills.transform.localPosition.y + 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p1RockBorder.gameObject.SetActive(true);
+                    p1.currentMagic = 0;
+                    p1Charge.GetComponent<SpriteRenderer>().color = rockColor;
+                    p1AttackCharge.GetComponent<SpriteRenderer>().color = rockColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+            }
+            
+            p1CanCast = true;
+            p1CanSwitch = true;
+        }
+    }
+
+    IEnumerator P2SwitchSpell(bool isUp)
+    {
+        p2CanCast = false;
+        p2CanSwitch = false;
+        if (isUp)
+        {
+            //p1Skills.DOLocalMoveY(p1Skills.transform.localPosition.y - 64, .25f, false);
+            //yield return new WaitForSeconds(.125f);
+
+            switch (p2.currentMagic)
+            {
+                case 0: //Rock -> Scissors
+                    p2RockBorder.gameObject.SetActive(false);
+                    //p1Skills.DOLocalMoveY(128, 0, false);
+                    p2Skills.localPosition = new Vector3(48, 128, 0);
+                    p2Skills.DOLocalMoveY(p2Skills.transform.localPosition.y - 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p2ScissorsBorder.gameObject.SetActive(true);
+                    p2.currentMagic = 2;
+                    p2Charge.GetComponent<SpriteRenderer>().color = scissorsColor;
+                    p2AttackCharge.GetComponent<SpriteRenderer>().color = scissorsColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+
+                case 1: //Paper -> Rock
+                    p2PaperBorder.gameObject.SetActive(false);
+                    p2Skills.DOLocalMoveY(p2Skills.transform.localPosition.y - 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p2RockBorder.gameObject.SetActive(true);
+                    p2.currentMagic = 0;
+                    p2Charge.GetComponent<SpriteRenderer>().color = rockColor;
+                    p2AttackCharge.GetComponent<SpriteRenderer>().color = rockColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+
+                case 2: //Scissors -> Paper
+                    p2ScissorsBorder.gameObject.SetActive(false);
+                    p2Skills.localPosition = new Vector3(48, 64, 0);
+                    p2Skills.DOLocalMoveY(p2Skills.transform.localPosition.y - 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p2PaperBorder.gameObject.SetActive(true);
+                    p2.currentMagic = 1;
+                    p2Charge.GetComponent<SpriteRenderer>().color = paperColor;
+                    p2AttackCharge.GetComponent<SpriteRenderer>().color = paperColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+            }
+            
+            p2CanCast = true;
+            p2CanSwitch = true;
+        }
+        else
+        {
+            //p1Skills.DOLocalMoveY(p1Skills.transform.localPosition.y - 64, .25f, false);
+            //yield return new WaitForSeconds(.125f);
+
+            switch (p2.currentMagic)
+            {
+                case 0: //Rock -> Paper
+                    p2RockBorder.gameObject.SetActive(false);
+                    //p1Skills.DOLocalMoveY(128, 0, false);
+                    //p1Skills.localPosition = new Vector3(32, -128, 0);
+                    p2Skills.DOLocalMoveY(p2Skills.transform.localPosition.y + 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p2PaperBorder.gameObject.SetActive(true);
+                    p2.currentMagic = 1;
+                    p2Charge.GetComponent<SpriteRenderer>().color = paperColor;
+                    p2AttackCharge.GetComponent<SpriteRenderer>().color = paperColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+
+                case 1: //Paper -> Scissors
+                    p2PaperBorder.gameObject.SetActive(false);
+                    p2Skills.DOLocalMoveY(p2Skills.transform.localPosition.y + 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p2ScissorsBorder.gameObject.SetActive(true);
+                    p2.currentMagic = 2;
+                    p2Charge.GetComponent<SpriteRenderer>().color = scissorsColor;
+                    p2AttackCharge.GetComponent<SpriteRenderer>().color = scissorsColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+
+                case 2: //Scissors -> Rock
+                    p2ScissorsBorder.gameObject.SetActive(false);
+                    p2Skills.localPosition = new Vector3(48, -128, 0);
+                    p2Skills.DOLocalMoveY(p2Skills.transform.localPosition.y + 64, .25f, true).SetEase(Ease.OutQuint);
+
+                    yield return new WaitForSeconds(.125f);
+
+                    p2RockBorder.gameObject.SetActive(true);
+                    p2.currentMagic = 0;
+                    p2Charge.GetComponent<SpriteRenderer>().color = rockColor;
+                    p2AttackCharge.GetComponent<SpriteRenderer>().color = rockColor;
+
+                    yield return new WaitForSeconds(.125f);
+                    break;
+            }
+            
+            p2CanCast = true;
+            p2CanSwitch = true;
+        }
     }
 
     void UpdateHud(bool isP1)
@@ -280,13 +494,43 @@ public class RPS_GameManager : MonoBehaviour
         //print("Update HUD");
         if (isP1)
         {
-            p1HpBar.DOFillAmount(p1.hp/healthPoints, .25f);
+            p1HpBar.DOFillAmount(p1.hp/healthPoints, .1f);
+            p1HpFillBar.DOFillAmount(p1.hp/healthPoints, .5f).SetDelay(.25f);
             p1MpBar.DOFillAmount((float)p1.mp/magicPoints, .25f);
+            CheckDeath(true);
         }
         else
         {
-            p2HpBar.DOFillAmount(p2.hp/healthPoints, .25f);
+            p2HpBar.DOFillAmount(p2.hp/healthPoints, .1f);
+            p2HpFillBar.DOFillAmount(p2.hp/healthPoints, .5f).SetDelay(.25f);
             p2MpBar.DOFillAmount((float)p2.mp/magicPoints, .25f);
+            CheckDeath(false);
+        }
+    }
+
+    void CheckDeath(bool isP1)
+    {
+        if (isP1)
+        {
+            if (p1.hp < 0f)
+            {
+                p1CanCast = false;
+                p1CanSwitch = false;
+                p2CanCast = false;
+                p2CanSwitch = false;
+                print("P2 Wins!");
+            }
+        }
+        else
+        {
+            if (p2.hp < 0f)
+            {
+                p1CanCast = false;
+                p1CanSwitch = false;
+                p2CanCast = false;
+                p2CanSwitch = false;
+                print("P1 Wins!");
+            }
         }
     }
 
@@ -297,14 +541,14 @@ public class RPS_GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //print("Attack");
-            Attack(true);
-        }
+        if (Input.GetKeyDown(KeyCode.Space)) Attack(true);
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) Attack(false);
 
         if (Input.GetKeyDown(KeyCode.W) && p1CanSwitch) StartCoroutine(P1SwitchSpell(true));
         if (Input.GetKeyDown(KeyCode.S) && p1CanSwitch) StartCoroutine(P1SwitchSpell(false));
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && p2CanSwitch) StartCoroutine(P2SwitchSpell(true));
+        if (Input.GetKeyDown(KeyCode.DownArrow) && p2CanSwitch) StartCoroutine(P2SwitchSpell(false));
 
         //Mana Check
         if (p1.mp < magicPoints)
