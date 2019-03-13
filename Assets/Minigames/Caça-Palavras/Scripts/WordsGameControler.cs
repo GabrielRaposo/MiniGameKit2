@@ -80,8 +80,8 @@ namespace Words
 
 		private void LateUpdate()
 		{
-			//boxBorderP0.color = player0.VisibleColor;
-			//boxBorderP1.color = player1.VisibleColor;
+			boxBorderP0.color = player0.VisibleColor;
+			boxBorderP1.color = player1.VisibleColor;
 		}
 
 		public void TryInputLetter(char letter, int player)
@@ -137,17 +137,13 @@ namespace Words
 
 			WinnerAnimation(result);
 			if (result == 0)
-			{
 				LoserAnimation(1);
-				StartCoroutine(SendGameResult(PlayersManager.Result.LeftWin));
-			}
 			else
-			{
 				LoserAnimation(0);
-				StartCoroutine(SendGameResult(PlayersManager.Result.RightWin));
-			}
-		}
 
+			Debug.Log("GAME OVER: " + result.ToString());
+			//PlayersManager.result = result;
+		}
 
 		public void Results(PlayersManager.Result result)
 		{
@@ -159,16 +155,6 @@ namespace Words
 				LoserAnimation(1);
 				LoserAnimation(0);
 			}
-
-			StartCoroutine(SendGameResult(result));
-
-		}
-
-		IEnumerator SendGameResult(PlayersManager.Result result)
-		{
-			yield return new WaitForSeconds(3.0f);
-			Debug.Log("GAME OVER: " + result.ToString());
-			PlayersManager.result = (result);			
 		}
 
 		public void WinnerAnimation(int player)
