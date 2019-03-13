@@ -34,7 +34,7 @@ namespace Words
 			}
 		}
 
-		float clockSpeed = 1;
+		float clockSpeed = 0;
 
 		public Image clockImage;
 
@@ -53,9 +53,15 @@ namespace Words
 
 		public TextMeshProUGUI displayTargetWord;
 
+		public AudioSource audioTyping;
+		public AudioSource audioMain;
+
+		public float endgameAnimationDelay = 2.0f;
+		public float animationEndgameDuration = 2.2f;
+
 		private void Awake()
 		{
-			
+						
 		}
 
 		private void Start()
@@ -63,30 +69,39 @@ namespace Words
 			SelectWord();
 			SetupGame();
 
-			playerWords = new List<string>();
-			playerWords.Add(targetWord);
-			playerWords.Add(targetWord);
-
+			audioMain.Pause();
 			clock = maxTime;
 		}
 
 		public void Update()
 		{
 			Clock -= Time.deltaTime * clockSpeed;
-			if (Clock <= 0)
+			if (Clock <= 0 && clockSpeed > 0)
+			{
+				clockSpeed = 0;
 				GameTimeout();
+			}
 
 		}
 
 		private void LateUpdate()
 		{
-			boxBorderP0.color = player0.VisibleColor;
-			boxBorderP1.color = player1.VisibleColor;
+			boxBorderP0.color = KeepColorTone(boxBorderP0.color, player0.VisibleColor);
+			boxBorderP1.color = KeepColorTone(boxBorderP1.color, player1.VisibleColor);
+		}
+
+		public Color KeepColorTone(Color target, Color tone)
+		{
+			target = new Color(tone.r, tone.g, tone.b, target.a);
+
+			return target;
 		}
 
 		public void TryInputLetter(char letter, int player)
 		{
-			Debug.Log("Try input (" + letter.ToString() + ")");
+			if (playerWords[player] == "")
+				return;
+
 			if (letter == playerWords[player][0])
 				CorrectInput(letter, player);
 			else
@@ -113,9 +128,15 @@ namespace Words
 		void GameTimeout()
 		{
 			if (playerWords[0].Length > playerWords[1].Length)
+			{
 				Results(1);
+				StartCoroutine(TypeAnything(targetWord, wordProgress[1]));
+			}
 			else if (playerWords[0].Length < playerWords[1].Length)
+			{
 				Results(0);
+				StartCoroutine(TypeAnything(targetWord, wordProgress[0]));
+			}
 			else
 				Results(PlayersManager.Result.Draw);
 		}
@@ -130,19 +151,40 @@ namespace Words
 		{
 			clockSpeed = 0;
 			player0.GetComponent<MyEventSystem>().enabled = false;
-			player1.GetComponent<MyEventSystem>().enabled = false;
+			player1.GetComponent<MyEventSystem>().enabled = false;			
 
-			player0.GetComponent<Animator>().enabled = true;
-			player1.GetComponent<Animator>().enabled = true;
+			StartCoroutine(EndGameAnimations(result));
+			
+		}
 
-			WinnerAnimation(result);
+		IEnumerator EndGameAnimations(int result)
+		{
+			yield return new WaitForSeconds(endgameAnimationDelay);
+
+			switch (result)
+			{
+				case 0:
+					WinnerAnimation(0);
+					LoserAnimation(1);
+					break;
+				case 1:
+					WinnerAnimation(1);
+					LoserAnimation(0);
+					break;
+				case -1:
+					LoserAnimation(1);
+					LoserAnimation(0);
+					break;
+			}
+
+			yield return new WaitForSeconds(animationEndgameDuration);
 			if (result == 0)
-				LoserAnimation(1);
+				PlayersManager.result = PlayersManager.Result.LeftWin;
+			else if (result == 1)
+				PlayersManager.result = PlayersManager.Result.RightWin;
 			else
-				LoserAnimation(0);
+				PlayersManager.result = PlayersManager.Result.Draw;
 
-			Debug.Log("GAME OVER: " + result.ToString());
-			//PlayersManager.result = result;
 		}
 
 		public void Results(PlayersManager.Result result)
@@ -152,27 +194,28 @@ namespace Words
 				player0.GetComponent<MyEventSystem>().enabled = false;
 				player1.GetComponent<MyEventSystem>().enabled = false;
 
-				LoserAnimation(1);
-				LoserAnimation(0);
+				StartCoroutine(EndGameAnimations(-1));
 			}
 		}
 
 		public void WinnerAnimation(int player)
 		{
+			player0.GetComponent<Animator>().enabled = true;
+			player1.GetComponent<Animator>().enabled = true;
 			if (player == 0)
-			{
-				boxBorderP0.color = player0.VisibleColor;
+			{				
 				player0.GetComponent<Animator>().SetTrigger("Win");
 			}
 			else
-			{
-				boxBorderP1.color = player1.VisibleColor;
+			{				
 				player1.GetComponent<Animator>().SetTrigger("Win");
 			}
 		}
 
 		public void LoserAnimation(int player)
 		{
+			player0.GetComponent<Animator>().enabled = true;
+			player1.GetComponent<Animator>().enabled = true;
 			wordProgress[player].color = new Vector4(wordProgress[player].color.r, wordProgress[player].color.g, wordProgress[player].color.b, 0.5f);
 
 			if (player == 0)
@@ -199,13 +242,18 @@ namespace Words
 		{		
 			wordProgress[0].text = "";
 			wordProgress[1].text = "";
-			displayTargetWord.text = targetWord;
+
+			playerWords = new List<string>();
+			playerWords.Add("");
+			playerWords.Add("");
+
+			//displayTargetWord.text = targetWord;
 
 			//shuffle list
 			Shuffle<char>(alphabet);
 
 			wordProgress[0].color = player0.VisibleColor;
-			boxBorderP0.color = LowSatColor(player0.VisibleColor);
+			boxBorderP0.color = new Color(player0.VisibleColor.r, player0.VisibleColor.g, player0.VisibleColor.b, 0.6f);
 
 			player0.gameObject.GetComponent<MyInputModule>().horizontalAxis = player0.playerButtons.horizontal;
 			player0.gameObject.GetComponent<MyInputModule>().verticalAxis = player0.playerButtons.vertical;
@@ -223,7 +271,7 @@ namespace Words
 			//Shuffle<char>(alphabet);
 
 			wordProgress[1].color = player1.VisibleColor;
-			boxBorderP1.color = LowSatColor(player1.VisibleColor);
+			boxBorderP1.color = new Color(player1.VisibleColor.r, player1.VisibleColor.g, player1.VisibleColor.b, 0.6f);
 
 			player1.gameObject.GetComponent<MyInputModule>().horizontalAxis = player1.playerButtons.horizontal;
 			player1.gameObject.GetComponent<MyInputModule>().verticalAxis = player1.playerButtons.vertical;
@@ -236,6 +284,50 @@ namespace Words
 				p1Buttons[i].letter = alphabet[i];
 				p1Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
 			}
+
+			StartCoroutine(IntroTypeWord());
+
+		}
+
+		IEnumerator IntroTypeWord()
+		{
+
+			displayTargetWord.text = "";
+
+			displayTargetWord.gameObject.GetComponent<MainTextScript>().enabled = false;
+
+			yield return new WaitForSeconds(1.1f);
+
+			for(int i = 0; i < targetWord.Length; i++)
+			{
+				displayTargetWord.text += targetWord[i];
+				audioTyping.Play();
+				yield return  new  WaitForSeconds((1.7f)/targetWord.Length);
+			}
+
+			clockSpeed = 1;
+
+			audioMain.Play();
+			displayTargetWord.gameObject.GetComponent<MainTextScript>().enabled = true;
+
+
+			playerWords[0] = targetWord;
+			playerWords[1] = targetWord;
+
+		}
+
+		IEnumerator TypeAnything(string word, TextMeshProUGUI targetText)
+		{
+			float totalDuration = 1.7f;
+			int n = word.Length - targetText.text.Length;
+
+			for(int i = 0; i < n; i++)
+			{
+				targetText.text += word[word.Length - n + i];
+				audioTyping.Play();
+				yield return new WaitForSeconds(totalDuration / n);
+			}
+
 		}
 
 		public void Shuffle<T>(IList<T> list)

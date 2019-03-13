@@ -17,10 +17,21 @@ namespace Words
 
 			set
 			{
-				color = value;
+				//color = value;
 			}
 		}
-		
+
+		private void Awake()
+		{			
+			base.Start();
+			//base.Awake();
+		}
+
+		new private void Start()
+		{
+			
+		}
+
 
 	}
 }
