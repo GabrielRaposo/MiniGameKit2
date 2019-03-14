@@ -104,6 +104,9 @@ public class RPS_GameManager : MonoBehaviour
     public Color paperColor;
     public Color scissorsColor;
     [Space(5)]
+    [SerializeField] GameObject p1Victory;
+    [SerializeField] GameObject p2Victory;
+    [Space(5)]
     [SerializeField] Camera cam;
         
     void Attack(bool isP1)
@@ -519,6 +522,7 @@ public class RPS_GameManager : MonoBehaviour
                 p2CanCast = false;
                 p2CanSwitch = false;
                 print("P2 Wins!");
+                p2Victory.SetActive(true);
             }
         }
         else
@@ -530,6 +534,7 @@ public class RPS_GameManager : MonoBehaviour
                 p2CanCast = false;
                 p2CanSwitch = false;
                 print("P1 Wins!");
+                p1Victory.SetActive(true);
             }
         }
     }
