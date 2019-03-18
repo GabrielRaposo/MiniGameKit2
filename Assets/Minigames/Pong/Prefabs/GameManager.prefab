@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &378417805023206512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378417805023206526}
+  - component: {fileID: 7083548963432460152}
+  - component: {fileID: 2084972730}
+  - component: {fileID: 9026939978298815500}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &378417805023206526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378417805023206512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.23, y: -1.6470505, z: 0.05398395}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7083548963432460152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378417805023206512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfa9c3181dd20b4da0aba10b58e8e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 0}
+  linhaDeAviso: {fileID: 0}
+  powerUp: {fileID: 0}
+--- !u!114 &2084972730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378417805023206512}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51af8bcd12617824fbfbafd4be7310ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballsUpperHalf: {fileID: 3224221297908352850, guid: 157e2c9851caee549bcc1ce4443fb9e0,
+    type: 3}
+  ballsLowerHalf: {fileID: 989389101154895748, guid: d7fe615cb03b981498b704d1609e80e9,
+    type: 3}
+  spriteBall: {fileID: 1709684100387403196, guid: 0c9c6d6d6a7ca4a48950cba8f8785386,
+    type: 3}
+--- !u!114 &9026939978298815500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378417805023206512}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b4ee9cf89e0f942b1ad3e9e8345982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireMessageColor: {r: 1, g: 0, b: 0, a: 1}
+  iceMessageColor: {r: 0, g: 0.69411767, b: 1, a: 1}
+  standardMessageColor: {r: 1, g: 1, b: 1, a: 1}
+  canvas: {fileID: 0}
+  timeScreenApparition: 1
+  timeFinishGame: 1
