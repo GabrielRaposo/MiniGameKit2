@@ -31,6 +31,8 @@ namespace Bailarinas
 
 		public float angleRateCorrection;
 
+		public bool winning;
+
 		public float Angle
 		{
 			get
@@ -74,24 +76,28 @@ namespace Bailarinas
 
         private void FixedUpdate()
         {
-            //FixMovement();
-            Move();            
-            Rebalance();
-            //FixMovement();
+			if (!dead)
+			{
+				//FixMovement();
+				Move();
+				Rebalance();
+				//FixMovement();
 
-            Angle = transform.rotation.eulerAngles.z;
-            if(Angle > 180)
-            {
-                Angle -= 360;
-            }
+				Angle = transform.rotation.eulerAngles.z;
+				if (Angle > 180)
+				{
+					Angle -= 360;
+				}
 
-            if (Mathf.Abs(Angle) > 50.0f)
-            {
-				Debug.Log("Angle > 50");
-                StartCoroutine(CallOnFall());
-                Die();
-            }
-        }
+				if (Mathf.Abs(Angle) > 50.0f)
+				{
+					Debug.Log("Angle > 50");
+					StartCoroutine(CallOnFall());
+					Die();
+				}
+
+			}
+		}
 
 		private void LateUpdate()
 		{
@@ -179,6 +185,11 @@ namespace Bailarinas
 
 			SetTransparent(balanceBar);
 			SetTransparent(arrow);
+
+			anim.SetLayerWeight(1, 0);
+			anim.SetTrigger("Win");
+
+			Debug.Log("Win " + name);
 
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeAll;
