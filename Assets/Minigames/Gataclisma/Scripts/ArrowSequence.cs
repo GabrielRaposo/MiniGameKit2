@@ -20,7 +20,9 @@ namespace GataclismaNaPista
         public float fallSpeed;
         public float absoluteOffset;    //diferença entre tempo do script e tempo da música
         public static float arrowSize;
-        
+
+        private GameManager gameManager;
+
         private float firstArrowDelay; //tempo que a primeira seta demora do spawn até a input box em segundos
         private static float deadZone;
         private static float unqueueZone;
@@ -51,6 +53,7 @@ namespace GataclismaNaPista
         {
             int BPM = FindObjectOfType<GameManager>().BPM;
 
+            gameManager = FindObjectOfType<GameManager>();
 
             SpawnSequence(4.8f, 20.042f, BPM, Padroes.NORMAL);
             SpawnSequence(20.042f, 29.134f, BPM, Padroes.UM_MEIO);
@@ -65,7 +68,10 @@ namespace GataclismaNaPista
 
         private void FixedUpdate()
         {
-            FallAllArrows();
+            if (Time.time > gameManager.musicStartTime)
+            {
+                FallAllArrows();
+            }
         }
 
         void FallAllArrows()

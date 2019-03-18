@@ -664,7 +664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -5.700012}
+  m_AnchoredPosition: {x: 0, y: -5.7000732}
   m_SizeDelta: {x: 1280, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &812239520
@@ -918,8 +918,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1015223858}
   - component: {fileID: 1015223860}
-  - component: {fileID: 1015223859}
   - component: {fileID: 1015223861}
+  - component: {fileID: 1015223859}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -1030,8 +1030,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1447647441}
   - component: {fileID: 1447647444}
-  - component: {fileID: 1447647443}
   - component: {fileID: 1447647442}
+  - component: {fileID: 1447647443}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -1405,6 +1405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BPM: 165
   text: {fileID: 912228656}
+  leftCat: {fileID: 1015223861}
+  rightCat: {fileID: 1447647442}
 --- !u!4 &1876497068
 Transform:
   m_ObjectHideFlags: 0

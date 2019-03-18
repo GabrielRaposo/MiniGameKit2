@@ -49,6 +49,8 @@ namespace GataclismaNaPista
         //jogador da esquerda (player.side = false) ou direita (player.side = true)
         private PlayerInfo player;
 
+        public int consecutiveHits { get; private set; }
+
         private void Awake()
         {
             player = transform.parent.GetComponent<PlayerInfo>();
@@ -67,6 +69,8 @@ namespace GataclismaNaPista
             Debug.Log("Great = " + (this.transform.position.y + greatDistance));
             Debug.Log("Good = " + (this.transform.position.y + goodDistance));
             Debug.Log("Almost = " + (this.transform.position.y + almostDistance));
+
+            consecutiveHits = 0;
         }
 
         void Update()
@@ -88,8 +92,25 @@ namespace GataclismaNaPista
                         Input.GetAxisRaw(player.playerButtons.vertical) == 1 && sequence.peekArrowScript.direction == Direction.up)
                     {
                         score = CalculateScore(distance);
+
+                        consecutiveHits++;
+
+                        //Animacao
+                        transform.parent.GetComponentInChildren<Animator>().SetInteger("consecutiveHits", consecutiveHits);
+                        transform.parent.GetComponentInChildren<Animator>().SetBool("failed", false);
                     }
-                    else { FailArrow(); Debug.Log("Wrong Arrow!"); score = ScoreType.wrongArrow; }
+                    else
+                    {
+                        FailArrow();
+                        Debug.Log("Wrong Arrow!");
+                        score = ScoreType.wrongArrow;
+                   
+                        //Animacao
+                        consecutiveHits = 0;
+                        transform.parent.GetComponentInChildren<Animator>().SetInteger("consecutiveHits", consecutiveHits);
+                        transform.parent.GetComponentInChildren<Animator>().SetBool("failed", true);
+                    }
+
                     InstantiateScoreText(score);
                     onScoreChange.Invoke(score);
                 }
