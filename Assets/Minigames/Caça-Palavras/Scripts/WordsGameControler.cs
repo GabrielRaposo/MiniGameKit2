@@ -55,6 +55,7 @@ namespace Words
 
 		public AudioSource audioTyping;
 		public AudioSource audioMain;
+		public AudioSource audioWin;
 
 		public float endgameAnimationDelay = 2.0f;
 		public float animationEndgameDuration = 2.2f;
@@ -144,6 +145,8 @@ namespace Words
 		public void FinishedWord(int player)
 		{
 			//Alguma firula de gamefeel aqui
+			audioWin.Play();
+			audioMain.volume = 0.1f;
 			Results(player);
 		}
 
@@ -178,12 +181,16 @@ namespace Words
 			}
 
 			yield return new WaitForSeconds(animationEndgameDuration);
+
 			if (result == 0)
 				PlayersManager.result = PlayersManager.Result.LeftWin;
 			else if (result == 1)
 				PlayersManager.result = PlayersManager.Result.RightWin;
 			else
 				PlayersManager.result = PlayersManager.Result.Draw;
+
+			StartCoroutine(ModeManager.TransitionFromMinigame());
+			
 
 		}
 
