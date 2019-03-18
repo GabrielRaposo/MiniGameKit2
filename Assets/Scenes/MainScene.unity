@@ -1553,6 +1553,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b863e01279b3481408aeca03fbf83ffe, type: 2}
   - {fileID: 11400000, guid: b615d921783ac5444a3b7570276358de, type: 2}
   - {fileID: 11400000, guid: 31ec85659f08d9a43bb56316eebdd022, type: 2}
+  - {fileID: 11400000, guid: c24216735607fcc42b91c0b5e6b75b4c, type: 2}
   exitButton: {fileID: 1540428795}
   selectorDisplay: {fileID: 522276925}
   minigameLabel: {fileID: 837203347}
@@ -5466,6 +5467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72aa484b4a60bb409e7457a6d564f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 2128891624}
 --- !u!1 &487478313
 GameObject:
   m_ObjectHideFlags: 0
@@ -24353,14 +24355,14 @@ RectTransform:
   m_GameObject: {fileID: 2128891622}
   m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 581415001}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -19.66}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2128891624
@@ -24372,26 +24374,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2128891622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8679245, g: 0.8638305, b: 0.8638305, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300012, guid: 16af9a986f089854bb23e4c2c7ec5100, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 1
+  m_Texture: {fileID: 2800000, guid: 7bc26d7b8741dee4884b64fc3ae0a3a2, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &2128891625
 CanvasRenderer:
   m_ObjectHideFlags: 0

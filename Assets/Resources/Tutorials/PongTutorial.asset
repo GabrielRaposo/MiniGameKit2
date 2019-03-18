@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c82f7b83b063c4ea7c016ab8887c1d, type: 3}
+  m_Name: PongTutorial
+  m_EditorClassIdentifier: 
+  minigameName: A Pong of Ice and Fire
+  codename: Pong
+  gameRules: "\xC9 pong!"
+  controls:
+  - inputKey: 3
+    inputType: 2
+    text: Move
+  credits: Gabriel Ferreira
+  image: {fileID: 2800000, guid: 24f3f82ba060f5a4f9bd3dac3d80b04e, type: 3}
+  icon: {fileID: 2800000, guid: 3d94cb7acd1244a44a8f86d6b8a5cf75, type: 3}

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameRouletteButton : MonoBehaviour, IMoveHandler
 {
+    [SerializeField] private RawImage icon;
+
     private ButtonsRoulette roulette;
     private TutorialObject tutorialObject;
 
@@ -19,6 +21,11 @@ public class GameRouletteButton : MonoBehaviour, IMoveHandler
         if (button)
         {
             button.onClick.AddListener(() => CallMinigame());
+        }
+
+        if(icon && tutorialObject.icon != null)
+        {
+            icon.texture = tutorialObject.icon;
         }
     }
 

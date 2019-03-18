@@ -162,7 +162,7 @@ public class ButtonsRoulette : MonoBehaviour
     {
         UpdateInputArrows();
 
-        minigameLabel.text = tutorialObject.codename;
+        minigameLabel.text = tutorialObject.minigameName;
         gameArt.texture = tutorialObject.image;
 
         GetComponent<SelectButtonOnEnable>().firstSelection = buttons[index];
