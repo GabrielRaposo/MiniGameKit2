@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c82f7b83b063c4ea7c016ab8887c1d, type: 3}
+  m_Name: WordsTutorial
+  m_EditorClassIdentifier: 
+  minigameName: "Ca\xE7a-Palavras"
+  codename: "Ca\xE7a-Palavras"
+  gameRules: "Tente escrever a palavra no topo da tela antes que o seu advers\xE1rio!"
+  controls:
+  - inputKey: 2
+    inputType: 0
+    text: Move
+  - inputKey: 3
+    inputType: 0
+    text: Move
+  - inputKey: 1
+    inputType: 0
+    text: Confirma
+  credits: Igor
+  image: {fileID: 2800000, guid: ab8ed34b9021cf64db664e8d3ba7a31c, type: 3}
+  icon: {fileID: 2800000, guid: 2057ef3da875e304c8cd566ab629307f, type: 3}

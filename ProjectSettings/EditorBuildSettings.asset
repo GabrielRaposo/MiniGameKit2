@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Minigames/Gataclisma/Gataclisma.unity
     guid: 3d1307472cf3456409ecf7f5cc7569c6
+  - enabled: 1
+    path: Assets/Minigames/Pong/Pong.unity
+    guid: a770b2dbcd5264448a16a1b00f936a2a
+  - enabled: 1
+    path: "Assets/Minigames/Ca\xE7a-Palavras/Ca\xE7a-Palavras.unity"
+    guid: bd79043e4a2c1b940809b0f02a7346f8
   m_configObjects: {}

@@ -144,9 +144,12 @@ namespace Words
 
 		public void FinishedWord(int player)
 		{
-			//Alguma firula de gamefeel aqui
-			audioWin.Play();
-			audioMain.volume = 0.1f;
+            //Alguma firula de gamefeel aqui
+            //if (audioWin != null)
+            //{
+			    //audioWin.Play();
+			    //audioMain.volume = 0.1f;
+            //}
 			Results(player);
 		}
 
