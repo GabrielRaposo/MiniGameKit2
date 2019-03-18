@@ -69,7 +69,7 @@ namespace Words
 			SelectWord();
 			SetupGame();
 
-			audioMain.Pause();
+			//audioMain.Pause();
 			clock = maxTime;
 		}
 
@@ -285,6 +285,7 @@ namespace Words
 				p1Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = alphabet[i].ToString();
 			}
 
+			audioMain.Play();
 			StartCoroutine(IntroTypeWord());
 
 		}
@@ -306,8 +307,7 @@ namespace Words
 			}
 
 			clockSpeed = 1;
-
-			audioMain.Play();
+						
 			displayTargetWord.gameObject.GetComponent<MainTextScript>().enabled = true;
 
 

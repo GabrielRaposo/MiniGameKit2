@@ -575,7 +575,7 @@ MonoBehaviour:
   displayTargetWord: {fileID: 453465483}
   audioTyping: {fileID: 930276796}
   audioMain: {fileID: 331474309}
-  endgameAnimationDelay: 2
+  endgameAnimationDelay: 0.5
   animationEndgameDuration: 2.2
 --- !u!4 &331474308
 Transform:
@@ -602,8 +602,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 631dbb81895f96e4ebb9d8ba20d60f0b, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: d79c5d687e2d2ce4b8dbb52259a8e6c6, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 126.55
+  m_fontSize: 125.55
   m_fontSizeBase: 110
   m_fontWeight: 400
   m_enableAutoSizing: 1
