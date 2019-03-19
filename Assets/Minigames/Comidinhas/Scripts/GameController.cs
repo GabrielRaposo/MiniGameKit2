@@ -15,6 +15,7 @@ namespace Comidinhas
 
         public TextMeshProUGUI timerText;
         public TextMeshProUGUI readyTimerText;
+        public TextMeshProUGUI resultsDisplay;
 
         public Player leftFatty;
         public Player rightFatty;
@@ -46,7 +47,12 @@ namespace Comidinhas
                 {
                     readyTime -= Time.deltaTime;
                     if (readyTime >= 0.5f) readyTimerText.text = readyTime.ToString("0");
-                    else readyTimerText.text = "GO";
+                    else
+                    {
+                        readyTimerText.text = "GO";
+                        if(!readyTimerText.GetComponent<AudioSource>().isPlaying)
+                            readyTimerText.GetComponent<AudioSource>().Play();
+                    }
                 }
             }
 	    }
@@ -59,19 +65,20 @@ namespace Comidinhas
 
             if (leftFatty.score > rightFatty.score) {
                 Debug.Log("Esquerda é o vencedor!");
-                timerText.text = "Left wins!";
+                resultsDisplay.text = "Esquerda vence!";
                 PlayersManager.result = PlayersManager.Result.LeftWin;
             } else
             if (leftFatty.score < rightFatty.score) {
                 Debug.Log("Direita é o vencedor!");
-                timerText.text = "Right wins!";
+                resultsDisplay.text = "Direita vence!";
                 PlayersManager.result = PlayersManager.Result.RightWin;
             } else
             {
                 Debug.Log("Empate!");
-                timerText.text = "Draw...";
+                resultsDisplay.text = "Empate...";
                 PlayersManager.result = PlayersManager.Result.Draw;
             }
+            resultsDisplay.gameObject.SetActive(true);
 
             StartCoroutine(EndGameAnimation());
         }
@@ -95,7 +102,7 @@ namespace Comidinhas
 
         IEnumerator EndGameAnimation()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
 
             StartCoroutine(ModeManager.TransitionFromMinigame());
         } 

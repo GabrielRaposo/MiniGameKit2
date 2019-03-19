@@ -14,13 +14,19 @@ namespace Comidinhas
         [Header("Color replacement")]
         public Color baseColor;
 
+        [Header("Audios")]
+        public AudioSource moveSound;
+        public AudioSource attackSound;
+        public AudioSource hitSound;
+        public AudioSource biteSound;
+
         private enum PlayerState { Idle, Inflated, Stunned }
         private PlayerState state;
         private bool allowMovement;
 
         Animator animator;
         float playerSpeed = 100f;
-        Vector3 x;
+        Vector3 horizontal;
 
 	    public override void Start()
         {
@@ -54,14 +60,28 @@ namespace Comidinhas
 
         private void Move()
         {
-            x = new Vector3(Input.GetAxisRaw(playerButtons.horizontal), 0, 0);
-            animator.SetInteger("MoveSpeed", (int)x.x);
-            transform.Translate(x * playerSpeed * Time.deltaTime);
+            horizontal = new Vector3(Input.GetAxisRaw(playerButtons.horizontal), 0, 0);
+            animator.SetInteger("MoveSpeed", (int)horizontal.x);
+            transform.Translate(horizontal * playerSpeed * Time.deltaTime);
+
+            if(horizontal.x == 0)
+            {
+                moveSound.Stop();
+            }
+            else
+            {
+                if(!moveSound.isPlaying)
+                {
+                    moveSound.Play();
+                }
+            }
+            
         }
 
         private void Action()
         {
             animator.SetTrigger("Inflate");
+            attackSound.Play();
             state = PlayerState.Inflated;
         }
 
@@ -74,6 +94,7 @@ namespace Comidinhas
                 Food food = col.gameObject.GetComponent<Food>();
                 if (food) { food.Disable();}
                 animator.SetTrigger("Eat");
+                biteSound.Play();
                 score++;
                 scoreboardText.text = score.ToString();
             } else 
@@ -106,6 +127,7 @@ namespace Comidinhas
         {
             animator.SetTrigger("Stun");
             state = PlayerState.Stunned;
+            hitSound.Play();
 
             float speed = 5f;
             while (speed > 0)
