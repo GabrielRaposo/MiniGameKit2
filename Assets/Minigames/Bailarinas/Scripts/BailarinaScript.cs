@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
-using System;
-using Random = UnityEngine.Random;
 using UnityEngine.Animations;
+using Random = UnityEngine.Random;
 
 namespace Bailarinas
 {
 
-    public class BailarinaScript : PlayerInfo
+	public class BailarinaScript : PlayerInfo
     {
         private bool lockedMovement;
 
@@ -19,7 +18,6 @@ namespace Bailarinas
         private Rigidbody rb;
 
         private PezinhoScript pezinho;
-        
 
         public Action onFall;
         private float angle;
@@ -27,9 +25,32 @@ namespace Bailarinas
         public Animator anim;
         public Transform meshTransform;
 
-        private void Awake()
+		public GameObject balanceBar;
+		public GameObject arrow;
+		public GameObject arrowPivot;
+
+		public float angleRateCorrection;
+
+		public bool winning;
+
+		public float Angle
+		{
+			get
+			{
+				return angle;
+			}
+
+			set
+			{
+				angle = value;
+				arrowPivot.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, (angle*angleRateCorrection) / 50);
+			}
+		}
+
+		private void Awake()
         {
             base.Start();
+			onFall += () => { GetComponent<AudioSource>().enabled = true; };
             //base.Awake();
             SetColor();
         }
@@ -48,32 +69,42 @@ namespace Bailarinas
             speed = rb.velocity.z;
             if (!dead)
             {
-                anim.SetFloat("Blend", angle);
+                anim.SetFloat("Blend", Angle);
                 anim.SetFloat("Speed", rb.velocity.magnitude);
             }
         }
 
         private void FixedUpdate()
         {
-            FixMovement();
-            Move();            
-            Rebalance();
-            FixMovement();
+			if (!dead)
+			{
+				//FixMovement();
+				Move();
+				Rebalance();
+				//FixMovement();
 
-            angle = transform.rotation.eulerAngles.z;
-            if(angle > 180)
-            {
-                angle -= 360;
-            }
+				Angle = transform.rotation.eulerAngles.z;
+				if (Angle > 180)
+				{
+					Angle -= 360;
+				}
 
-            if (Mathf.Abs(angle) > 50.0f)
-            {                
-                Die();
-                StartCoroutine(CallOnFall());
-            }
-        }
+				if (Mathf.Abs(Angle) > 50.0f)
+				{
+					Debug.Log("Angle > 50");
+					StartCoroutine(CallOnFall());
+					Die();
+				}
 
-        void FixMovement()
+			}
+		}
+
+		private void LateUpdate()
+		{
+			FixMovement();
+		}
+
+		void FixMovement()
         {
             transform.position = transform.position - (new Vector3(pezinho.transform.position.x - pezinho.xAxis, 0, 0));
         }
@@ -135,18 +166,30 @@ namespace Bailarinas
         {
             dead = true;
             rb.constraints = RigidbodyConstraints.None;
-            this.enabled = false;
 
-            meshTransform.GetComponent<PositionConstraint>().enabled = false;
+			SetTransparent(balanceBar);
+			SetTransparent(arrow);
+			
+			meshTransform.GetComponent<PositionConstraint>().enabled = false;
             
             anim.enabled = false;
             meshTransform.SetParent(transform);
+
+            this.enabled = false;
         }
 
         public void Win()
         {
             transform.rotation = Quaternion.identity;
             transform.position.Set(transform.position.x, transform.position.y + 3.0f, transform.position.z);
+
+			SetTransparent(balanceBar);
+			SetTransparent(arrow);
+
+			anim.SetLayerWeight(1, 0);
+			anim.SetTrigger("Win");
+
+			Debug.Log("Win " + name);
 
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -156,8 +199,23 @@ namespace Bailarinas
         public void SetColor()
         {
             meshTransform.Find("Mesh").GetComponent<SkinnedMeshRenderer>().materials[3].color = color;
-            //GetComponentInChildren<MeshRenderer>().materials[3].color = color;
-        }
+			arrow.GetComponent<UnityEngine.UI.Image>().color = color;
+
+			float h = 1, s = 1, v = 1;
+			Color lowSatColor;
+
+			Color.RGBToHSV(color, out h, out s, out v);
+
+			s *= 0.5f;
+			lowSatColor = Color.HSVToRGB(h, s, v);
+
+
+			balanceBar.GetComponent<UnityEngine.UI.Image>().color = lowSatColor;
+
+			
+
+			//GetComponentInChildren<MeshRenderer>().materials[3].color = color;
+		}
 
         public IEnumerator CallOnFall()
         {
@@ -165,7 +223,14 @@ namespace Bailarinas
             onFall();
         }
 
-    }
+		void SetTransparent(GameObject go)
+		{
+			go.GetComponent<UnityEngine.UI.Image>().color = Color.clear;
+		}
+
+	}
+
+
 
 }
 
