@@ -7,6 +7,7 @@ public class RPS_Projectile : MonoBehaviour
     int dir;
     public int element;
     [SerializeField] float speed;
+    [SerializeField] GameObject hitFx;
 
     public RPS_GameManager manager;
 
@@ -14,6 +15,8 @@ public class RPS_Projectile : MonoBehaviour
     {
         //manager = GameObject.FindWithTag("GameController").GetComponent<RPS_GameManager>();
     }
+
+
 
     public void Shoot(int direction, int type)
     {
@@ -60,6 +63,7 @@ public class RPS_Projectile : MonoBehaviour
             int otherElement = collision.gameObject.GetComponent<RPS_Projectile>().element;
             if (element == otherElement)
             {
+                Instantiate(hitFx, (transform.position + collision.transform.position)/2f, Quaternion.identity, null);
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
             }

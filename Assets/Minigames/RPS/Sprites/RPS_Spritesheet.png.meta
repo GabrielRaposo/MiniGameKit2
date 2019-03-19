@@ -18,6 +18,14 @@ TextureImporter:
     21300026: RPS_Projectile
     21300028: RPS_Charge_Idle
     21300030: RPS_Charge_Attack
+    21300032: RPS_Charge_Idle2
+    21300034: RPS_Charge_Particle3
+    21300036: RPS_Charge_Particle2
+    21300038: RPS_Charge_Particle1
+    21300040: RPS_P1_Spawn
+    21300042: RPS_P2_Spawn
+    21300044: RPS_P1_Hit
+    21300046: RPS_P2_Hit
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -426,6 +434,166 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 4dd432dea5d70ee46bf983961e620b64
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_Charge_Idle2
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 243
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95446b3b2ae375b43ac0d83f69cd40a0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_Charge_Particle3
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 245
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b3603ac960ab848ac3b04e682ad5c6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_Charge_Particle2
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 250
+        width: 3
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be4050492e9c744a921d732c3c2b50f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_Charge_Particle1
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 250
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d4b3b1104e35e5439d36f01301d0eb1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_P1_Spawn
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 0
+        width: 48
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5625, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a85da17ae947464480f0acdfb1253d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_P2_Spawn
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 48
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5425, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8fb01e5e6b352468a3060ca10c0ba9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_P1_Hit
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 48
+        height: 46
+      alignment: 9
+      pivot: {x: 0.6, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d9c63f4424ad54e82db2bac460eccc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_P2_Hit
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 48
+        height: 46
+      alignment: 9
+      pivot: {x: 0.42, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a303a6f955b9ebf43a63e4324ed00848
       vertices: []
       indices: 
       edges: []
