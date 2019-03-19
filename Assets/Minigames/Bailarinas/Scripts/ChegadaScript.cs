@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Bailarinas
 {
-
     public class ChegadaScript : MonoBehaviour {
 
         private BailarinaScript closerPlayer;        
 
         public BailarinaScript playerLeft;
         public BailarinaScript playerRight;
+
+		bool endGame = false;
 
         private void Start()
         {
@@ -23,20 +25,46 @@ namespace Bailarinas
             //closerPlayer = CheckCloser();
         }
 
-        private void OnTriggerEnter(Collider other)
-        {			
+		private void LateUpdate()
+		{
+			if(endGame == false)
+			{			
 
+				if(playerLeft.winning && playerRight.winning)
+				{
+					EndMinigame(PlayersManager.Result.Draw);
+					endGame = true;
+				}
+
+				if (playerLeft.winning)
+				{
+					EndMinigame(PlayersManager.Result.LeftWin);
+					endGame = true;
+				}
+				else if (playerRight.winning)
+				{
+					EndMinigame(PlayersManager.Result.RightWin);
+					endGame = true;
+				}
+			}
+		}
+
+		private void OnTriggerEnter(Collider other)
+        {	
             if (other.GetComponent<BailarinaScript>() == playerLeft)
             {
-                EndMinigame(PlayersManager.Result.LeftWin);
+				playerLeft.winning = true;				
+                //EndMinigame(PlayersManager.Result.LeftWin);
             }
 
             if (other.GetComponent<BailarinaScript>() == playerRight)
             {
-                EndMinigame(PlayersManager.Result.RightWin);
+				playerRight.winning = true;
+                //EndMinigame(PlayersManager.Result.RightWin);
             }
-
         }        
+
+		
 
         BailarinaScript CheckCloser()
         {
@@ -63,26 +91,44 @@ namespace Bailarinas
                 PlayersManager.result = PlayersManager.Result.LeftWin;
                 playerLeft.Win();
                 playerRight.Die();
+				MoveCameraToPlayer(playerLeft.transform);
             }
             else if (result == PlayersManager.Result.RightWin)
             {
                 PlayersManager.result = PlayersManager.Result.RightWin;
                 playerLeft.Die();
                 playerRight.Win();
+				MoveCameraToPlayer(playerRight.transform);
             }
             else
             {
                 PlayersManager.result = PlayersManager.Result.Draw;
-                Destroy(playerRight);
-                Destroy(playerLeft);
+
+				if(playerRight.winning && playerLeft.winning)
+				{
+					playerLeft.Win();
+					playerRight.Win();
+				}
+				else
+				{
+					Destroy(playerRight);
+					Destroy(playerLeft);
+				}
             }
 
             StartCoroutine(DelayToTransition());
         }
 
+		void MoveCameraToPlayer(Transform transform)
+		{
+			Vector3 targetPosition = transform.position - new Vector3(0, -0.823f, 3.61f);
+
+			Camera.main.transform.DOMove(targetPosition, 1.0f);
+		}
+
         IEnumerator DelayToTransition()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4.5f);
             StartCoroutine(ModeManager.TransitionFromMinigame());
         }
 
