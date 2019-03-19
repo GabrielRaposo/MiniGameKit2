@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -18,6 +19,8 @@ MonoBehaviour:
   - inputKey: 1
     inputType: 0
     text: Atacar
-  credits: Gabriel Raposo (Gameplay, Art)
-  image: {fileID: 2800000, guid: 2b9fe7505267b684d8ea7bf71b9b1703, type: 3}
-  icon: {fileID: 0}
+  credits: 'Gabriel Raposo (Gameplay, Art)
+
+    Wilson Santos (Soundtrack)'
+  image: {fileID: 2800000, guid: 2e11350b1510dc84c9602f6583ca90ab, type: 3}
+  icon: {fileID: 2800000, guid: 53fa502acd333ee4cb5b22dcc48f4c82, type: 3}

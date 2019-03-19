@@ -12,6 +12,8 @@ namespace Samurais
         public float speed;
         public float deltaPosition;
 
+        public AudioSource slideSound;
+
         public bool isOpen { get; private set; }
 
         Vector2 leftOriginalPosition, rightOriginalPosition;
@@ -22,7 +24,6 @@ namespace Samurais
             rightOriginalPosition = rightDoor.anchoredPosition;
 
             isOpen = false;
-            //CloseDoor
         }
 
         public void ToggleState()
@@ -39,6 +40,8 @@ namespace Samurais
         {
             float targetLeft  = leftDoor.anchoredPosition.x  - deltaPosition;
             //float targetRight = rightDoor.anchoredPosition.x + deltaPosition;
+
+            slideSound.Play();
 
             while (leftDoor.anchoredPosition.x > targetLeft)
             {
@@ -58,6 +61,8 @@ namespace Samurais
         {
             float targetLeft  = leftOriginalPosition.x;
             float targetRight = rightOriginalPosition.x;
+
+            slideSound.Play();
 
             while (leftDoor.anchoredPosition.x < targetLeft)
             {

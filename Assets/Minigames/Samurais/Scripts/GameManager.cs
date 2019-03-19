@@ -17,6 +17,9 @@ namespace Samurais {
         public TransitionDoor transitionDoor;
         public GameObject sliceEffect;
 
+        [Header("Audio")]
+        public AudioSource errorSound;
+
         [Header("Gameplay Variables")]
         public int minTimer;
         public int maxTimer;
@@ -50,13 +53,18 @@ namespace Samurais {
                     break;
 
                 case GameState.Ready:
+                    if (Input.GetButtonDown(leftSamurai.playerButtons.action) && !leftSamurai.locked &&
+                        Input.GetButtonDown(rightSamurai.playerButtons.action) && !rightSamurai.locked)
+                    {
+                        Debug.Log("Randomize");
+                        DuelResults(Random.Range(1, 3));
+                    } else
                     if (Input.GetButtonDown(leftSamurai.playerButtons.action)  && !leftSamurai.locked) {
                         DuelResults(1);
                     } else 
                     if (Input.GetButtonDown(rightSamurai.playerButtons.action) && !rightSamurai.locked) {
                         DuelResults(2);
                     }
-                    //Depois lidar com empates, por enquanto prioriza o da esquerda
                     break;
 
                 default:
@@ -78,6 +86,7 @@ namespace Samurais {
 
         void DuelResults(int result)
         {
+            Time.timeScale = 1;
             StopCoroutine(timeOutCoroutine);
 
             if (result == 1) {
@@ -129,6 +138,7 @@ namespace Samurais {
 
         void SetReadyState()
         {
+            Time.timeScale = 0;
             bgm.Stop();
             actionDisplay.text = "ATAQUE!";
             actionDisplay.GetComponent<AudioSource>().Play();
@@ -180,7 +190,7 @@ namespace Samurais {
 
             roundIndex++;
             roundDisplay.transform.localScale = Vector3.one * 3;
-            roundDisplay.text = "Round " + roundIndex;
+            roundDisplay.text = "Rodada: " + roundIndex;
             roundDisplay.enabled = true;
             roundDisplay.transform.DOScale(1, .1f);
             roundDisplay.GetComponent<AudioSource>().Play();
@@ -204,28 +214,38 @@ namespace Samurais {
 
         IEnumerator EndMinigame(int results)
         {
+            yield return new WaitForSeconds(1);
+
             if (results == 1) {
-                actionDisplay.text = "Left wins!";
+                actionDisplay.text = "Esquerda venceu!";
                 PlayersManager.result = PlayersManager.Result.LeftWin;
             } else
             if (results == 2) {
-                actionDisplay.text = "Right wins!";
+                actionDisplay.text = "Direita venceu!";
                 PlayersManager.result = PlayersManager.Result.RightWin;
             } else
             {
-                actionDisplay.text = "Draw!";
+                actionDisplay.text = "Empate!";
                 PlayersManager.result = PlayersManager.Result.Draw;
             }
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
+
+            Time.timeScale = 1;
 
             StartCoroutine(ModeManager.TransitionFromMinigame());
         }
 
         IEnumerator TimeOutTimer()
         {
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSecondsRealtime(3);
+
             actionDisplay.text = "LENTOS DEMAIS!";
+
+            yield return new WaitForSecondsRealtime(.5f);
+
+            Time.timeScale = 1;
+            errorSound.Play();
             DuelResults(0);
         }
 
