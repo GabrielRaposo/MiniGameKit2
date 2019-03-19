@@ -33,6 +33,11 @@ public class RPS_GameManager : MonoBehaviour
 
     [Header("Player 1")]
 
+    [SerializeField] RPS_PlayerInfo player1;
+
+    [SerializeField] Image p1Gem;
+    [SerializeField] Image p1VictoryGem;
+
     [SerializeField] Image p1HpBar;
     [SerializeField] Image p1HpFillBar;
     [SerializeField] Image p1MpBar;
@@ -66,6 +71,11 @@ public class RPS_GameManager : MonoBehaviour
     [Space(20)]
 
     [Header("Player 2")]
+
+    [SerializeField] RPS_PlayerInfo player2;
+
+    [SerializeField] Image p2Gem;
+    [SerializeField] Image p2VictoryGem;
 
     [SerializeField] Image p2HpBar;
     [SerializeField] Image p2HpFillBar;
@@ -562,6 +572,8 @@ public class RPS_GameManager : MonoBehaviour
                 p2Victory.SetActive(true);
                 p2Victory.transform.localScale = Vector3.zero;
                 p2Victory.transform.DOScale(1f,.15f).SetEase(Ease.OutBack);
+                PlayersManager.result = PlayersManager.Result.RightWin;
+                StartCoroutine(EndGame());
             }
         }
         else
@@ -576,8 +588,16 @@ public class RPS_GameManager : MonoBehaviour
                 p1Victory.SetActive(true);
                 p1Victory.transform.localScale = Vector3.zero;
                 p1Victory.transform.DOScale(1f,.15f).SetEase(Ease.OutBack);
+                PlayersManager.result = PlayersManager.Result.LeftWin;
+                StartCoroutine(EndGame());
             }
         }
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(ModeManager.TransitionFromMinigame());
     }
 
     IEnumerator StartSequence()
@@ -612,10 +632,17 @@ public class RPS_GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartSequence());
+
+        p1Gem.color = player1.GetColor();
+        p1VictoryGem.color = player1.GetColor();
+
+        p2Gem.color = player2.GetColor();
+        p2VictoryGem.color = player2.GetColor();
     }
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Space)) Attack(true);
         if (Input.GetKeyDown(KeyCode.LeftArrow)) Attack(false);
 
@@ -624,6 +651,19 @@ public class RPS_GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && p2CanSwitch) StartCoroutine(P2SwitchSpell(true));
         if (Input.GetKeyDown(KeyCode.DownArrow) && p2CanSwitch) StartCoroutine(P2SwitchSpell(false));
+        */
+
+        //Player 1
+        if (Input.GetButtonDown(player1.playerButtons.action)) Attack(true);
+
+        if (Input.GetAxisRaw(player1.playerButtons.vertical) > 0.9f && p1CanSwitch) StartCoroutine(P1SwitchSpell(true));
+        if (Input.GetAxisRaw(player1.playerButtons.vertical) < -0.9f && p1CanSwitch) StartCoroutine(P1SwitchSpell(false));
+
+        //Player 2
+        if (Input.GetButtonDown(player2.playerButtons.action)) Attack(false);
+
+        if (Input.GetAxisRaw(player2.playerButtons.vertical) > 0.9f && p2CanSwitch) StartCoroutine(P2SwitchSpell(true));
+        if (Input.GetAxisRaw(player2.playerButtons.vertical) < -0.9f && p2CanSwitch) StartCoroutine(P2SwitchSpell(false));
 
         //Mana Check
         if (p1.mp < magicPoints)

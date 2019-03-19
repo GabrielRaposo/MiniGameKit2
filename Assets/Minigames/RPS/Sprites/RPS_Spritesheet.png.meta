@@ -26,6 +26,7 @@ TextureImporter:
     21300042: RPS_P2_Spawn
     21300044: RPS_P1_Hit
     21300046: RPS_P2_Hit
+    21300048: RPS_Gem
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -594,6 +595,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a303a6f955b9ebf43a63e4324ed00848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RPS_Gem
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81ec7ff9b3115394495a821f6085330f
       vertices: []
       indices: 
       edges: []
