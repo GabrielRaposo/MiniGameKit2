@@ -857,6 +857,7 @@ MonoBehaviour:
   arrow: {fileID: 571223563060013146}
   arrowPivot: {fileID: 571223562121110472}
   angleRateCorrection: 22
+  winning: 0
 --- !u!82 &4976567788620698779
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1140,8 +1141,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.056291, y: 1.6256884, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.056291, y: 1.8191258, z: 1}
+  m_Center: {x: 0, y: 0.096718684, z: -9.0680705e-15}
 --- !u!54 &571223562884323540
 Rigidbody:
   m_ObjectHideFlags: 0
