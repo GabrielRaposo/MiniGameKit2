@@ -24,4 +24,4 @@ MonoBehaviour:
     text: Usar Magia
   credits: Matheus Pinheiro (Game Design, Programming, Art)
   image: {fileID: 2800000, guid: dab4d0d394d66474195735364bac0ad7, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: ca1cd46a4b12b04419a8515850e11c00, type: 3}

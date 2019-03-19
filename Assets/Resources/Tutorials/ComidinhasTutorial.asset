@@ -25,4 +25,4 @@ MonoBehaviour:
   credits: "Jo\xE3o Rabello (Gameplay, Original concept), \nGabriel Raposo (Character
     art), \nRoberta Paz (Background art),\nDouglas Cunha (Soundtrack)"
   image: {fileID: 2800000, guid: a38b0c4b9ea51254f89c2f6a3c4bc406, type: 3}
-  icon: {fileID: 2800000, guid: 655b45ae9ee21734e8e1e16f88830f0e, type: 3}
+  icon: {fileID: 2800000, guid: 2c0367971ed556e4c9f0351e9acc57c2, type: 3}
