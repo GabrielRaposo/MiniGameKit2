@@ -25,7 +25,7 @@ public class DetachableButton : MonoBehaviour
 
     public virtual void Highlight()
     {
-        rightTab.DOLocalMove(rightTabStartingPosition + (new Vector3(1f, .5f) * width), transitionTime).SetEase(Ease.InOutBounce);
+        rightTab.DOLocalMove(rightTabStartingPosition + (new Vector3(1f, .55f) * width), transitionTime).SetEase(Ease.InOutBounce);
         icon.DOFade(0, transitionTime / 2);
         labelMask.DOFillAmount(1, transitionTime);
     }

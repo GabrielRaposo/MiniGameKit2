@@ -295,7 +295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 149.99998}
+  m_AnchoredPosition: {x: 0, y: 140.6}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &17675834
@@ -318,7 +318,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Right
+  m_text: Direita
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d949e3acaff6f7e41a66231461b6762d, type: 2}
   m_sharedMaterial: {fileID: 21365869596300552, guid: d949e3acaff6f7e41a66231461b6762d,
@@ -347,8 +347,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 70.2
-  m_fontSizeBase: 70.2
+  m_fontSize: 57
+  m_fontSizeBase: 57
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 17675834}
-    characterCount: 5
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -396,11 +396,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -479,7 +479,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Select your controller option
+  m_text: "Escolha a sua op\xE7\xE3o de controle"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -508,8 +508,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 115
-  m_fontSizeBase: 115
+  m_fontSize: 110
+  m_fontSizeBase: 110
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -549,19 +549,19 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 20586059}
-    characterCount: 29
+    characterCount: 31
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 5
+    wordCount: 6
     linkCount: 0
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1760,7 +1760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 149.99998}
+  m_AnchoredPosition: {x: 0, y: 140.6}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178922749
@@ -1783,7 +1783,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Left
+  m_text: Esquerda
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d949e3acaff6f7e41a66231461b6762d, type: 2}
   m_sharedMaterial: {fileID: 21365869596300552, guid: d949e3acaff6f7e41a66231461b6762d,
@@ -1812,8 +1812,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 70.2
-  m_fontSizeBase: 70.2
+  m_fontSize: 57
+  m_fontSizeBase: 57
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1853,7 +1853,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 178922749}
-    characterCount: 4
+    characterCount: 8
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -1861,11 +1861,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -3481,9 +3481,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Press
+  m_text: 'Aperte
 
-    any key'
+    qualquer
+
+    tecla'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -3512,8 +3514,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 43
+  m_fontSizeBase: 43
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3553,19 +3555,19 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 251769936}
-    characterCount: 13
+    characterCount: 21
     spriteCount: 0
     spaceCount: 2
     wordCount: 3
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4484,11 +4486,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5527,7 +5529,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Quit
+  m_text: Sair
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -5605,11 +5607,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6408,7 +6410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.56078434}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6563,7 +6565,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Freeplay
+  m_text: Brincar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -6633,7 +6635,7 @@ MonoBehaviour:
   m_margin: {x: 100, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 537990914}
-    characterCount: 8
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -6641,11 +6643,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -7647,7 +7649,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Controllers
+  m_text: Controles
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -7717,7 +7719,7 @@ MonoBehaviour:
   m_margin: {x: 100, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 600057672}
-    characterCount: 11
+    characterCount: 9
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -7725,11 +7727,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -8948,7 +8950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.68235296, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.68235296, b: 1, a: 0.56078434}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10669,9 +10671,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Mute
-
-'
+  m_text: Mudo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -10741,19 +10741,19 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 905764316}
-    characterCount: 5
+    characterCount: 4
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -12976,7 +12976,7 @@ MonoBehaviour:
   labelMask: {fileID: 333374862}
   icon: {fileID: 631415154}
   transitionTime: 0.1
-  width: 400
+  width: 350
   imageRenderers:
   - {fileID: 1054096105}
   - {fileID: 1249913405}
@@ -13559,7 +13559,7 @@ MonoBehaviour:
   labelMask: {fileID: 615176496}
   icon: {fileID: 1627065988}
   transitionTime: 0.1
-  width: 400
+  width: 350
 --- !u!1 &1240868616
 GameObject:
   m_ObjectHideFlags: 0
@@ -13726,7 +13726,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Fullscreen
+  m_text: Tela cheia
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -13798,17 +13798,17 @@ MonoBehaviour:
     textComponent: {fileID: 1247104795}
     characterCount: 10
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -14107,7 +14107,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 335762211}
   m_OnClick:
     m_PersistentCalls:
@@ -14152,7 +14152,7 @@ MonoBehaviour:
   labelMask: {fileID: 1902124557}
   icon: {fileID: 738566456}
   transitionTime: 0.1
-  width: 350
+  width: 450
 --- !u!114 &1258171975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16801,7 +16801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.56078434}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -18013,9 +18013,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Press
+  m_text: 'Aperte
 
-    any key'
+    qualquer
+
+    tecla'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -18044,8 +18046,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 43
+  m_fontSizeBase: 43
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -18792,7 +18794,7 @@ MonoBehaviour:
   labelMask: {fileID: 1964720054}
   icon: {fileID: 1203740236}
   transitionTime: 0.1
-  width: 370
+  width: 300
   imageRenderers:
   - {fileID: 1329750964}
   - {fileID: 297042606}
@@ -20082,7 +20084,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 300}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -521.8, y: -346.6}
+  m_AnchoredPosition: {x: -532.4, y: -356.19}
   m_SizeDelta: {x: 1200, y: 301.2}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1807614451
@@ -20105,7 +20107,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: OPTIONS
+  m_text: "OP\xC7\xD5ES"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -20175,7 +20177,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1807614451}
-    characterCount: 7
+    characterCount: 6
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -20183,11 +20185,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -20699,7 +20701,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Press action button
+  m_text: "Pressione A\xC7\xC3O"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -20769,10 +20771,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1828058539}
-    characterCount: 19
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -22813,7 +22815,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Options
+  m_text: "Op\xE7\xF5es"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -22883,7 +22885,7 @@ MonoBehaviour:
   m_margin: {x: 100, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1980279931}
-    characterCount: 7
+    characterCount: 6
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -22891,11 +22893,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -23484,7 +23486,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Go back
+  m_text: Voltar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5880832700b760d4a91b6c48991b9a5b, type: 2}
   m_sharedMaterial: {fileID: 21354487824172118, guid: 5880832700b760d4a91b6c48991b9a5b,
@@ -23554,19 +23556,19 @@ MonoBehaviour:
   m_margin: {x: 100, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2047485520}
-    characterCount: 7
+    characterCount: 6
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -24429,7 +24431,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2143607532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 758a580338b528e4b84eaf237f1fd014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Horizontal
@@ -24439,6 +24441,7 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
+  m_DeleteButton: Delete
 --- !u!114 &2143607534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24448,12 +24451,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2143607532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 571689eb293d72d4cbc40135140db9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+  inputModule: {fileID: 2143607533}
 --- !u!4 &2143607535
 Transform:
   m_ObjectHideFlags: 0

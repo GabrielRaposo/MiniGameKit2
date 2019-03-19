@@ -118,12 +118,12 @@ public class ButtonsRoulette : MonoBehaviour
         {
             default:
             case 0:
-                infoLabel.text = "Rules";
+                infoLabel.text = "Regras";
                 infoDisplay.text = tutorialObjects[index].gameRules;
                 break;
 
             case 1:
-                infoLabel.text = "Controls";
+                infoLabel.text = "Controles";
                 string s = string.Empty;
                 foreach(TutorialObject.InputTab inputTab in tutorialObjects[index].controls)
                 {
@@ -136,7 +136,7 @@ public class ButtonsRoulette : MonoBehaviour
                 break;
 
             case 2:
-                infoLabel.text = "Credits";
+                infoLabel.text = "Créditos";
                 infoDisplay.text = tutorialObjects[index].credits;
                 break;
         }
