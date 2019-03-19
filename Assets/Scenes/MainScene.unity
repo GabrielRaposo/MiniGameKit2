@@ -1554,8 +1554,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b615d921783ac5444a3b7570276358de, type: 2}
   - {fileID: 11400000, guid: fb69d4037625f8344bcff34495fa1036, type: 2}
   - {fileID: 11400000, guid: c24216735607fcc42b91c0b5e6b75b4c, type: 2}
-  - {fileID: 11400000, guid: 31ec85659f08d9a43bb56316eebdd022, type: 2}
   - {fileID: 11400000, guid: b863e01279b3481408aeca03fbf83ffe, type: 2}
+  - {fileID: 11400000, guid: 31ec85659f08d9a43bb56316eebdd022, type: 2}
   exitButton: {fileID: 1540428795}
   selectorDisplay: {fileID: 522276925}
   minigameLabel: {fileID: 837203347}
