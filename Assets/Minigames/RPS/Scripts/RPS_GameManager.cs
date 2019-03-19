@@ -57,7 +57,6 @@ public class RPS_GameManager : MonoBehaviour
     [SerializeField] SpriteRenderer p1Sprite;
     [SerializeField] Sprite p1Idle;
     [SerializeField] Sprite p1Attack;
-    [SerializeField] Sprite p1Damage;
     [SerializeField] GameObject p1Charge;
     [SerializeField] GameObject p1AttackCharge;
     bool p1CanCast = true;
@@ -91,7 +90,6 @@ public class RPS_GameManager : MonoBehaviour
     [SerializeField] SpriteRenderer p2Sprite;
     [SerializeField] Sprite p2Idle;
     [SerializeField] Sprite p2Attack;
-    [SerializeField] Sprite p2Damage;
     [SerializeField] GameObject p2Charge;
     [SerializeField] GameObject p2AttackCharge;
     bool p2CanCast = true;
@@ -110,8 +108,6 @@ public class RPS_GameManager : MonoBehaviour
     [SerializeField] GameObject p2Victory;
     [Space(5)]
     [SerializeField] Camera cam;
-    [Space(5)]
-    [SerializeField] GameObject hitFx;
         
     void Attack(bool isP1)
     {
@@ -202,51 +198,18 @@ public class RPS_GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator Freeze(float duration)
-    {
-        Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(duration);
-        Time.timeScale = 1f;
-    }
-
     public void TakeDamage(bool isP1)
     {
         cam.DOShakePosition(.4f, .02f, 13, 90, true);
         if(isP1)
         {
-            Instantiate(hitFx, p1AttackCharge.transform.position, Quaternion.identity, null);
-            StartCoroutine(Freeze(.1f));
-            p1Charge.SetActive(false);
-            p1Sprite.sprite = p1Damage;
-            StartCoroutine(ReturnToIdle(.25f,true));
             p1.hp -= 3f;
             UpdateHud(true);
         }
         else
         {
-            Instantiate(hitFx, p2AttackCharge.transform.position, Quaternion.identity, null);
-            StartCoroutine(Freeze(.1f));
-            p2Charge.SetActive(false);
-            p2Sprite.sprite = p2Damage;
-            StartCoroutine(ReturnToIdle(.25f,false));
             p2.hp -= 3f;
             UpdateHud(false);
-        }
-    }
-
-    IEnumerator ReturnToIdle(float duration, bool isP1)
-    {
-        if(isP1)
-        {
-            yield return new WaitForSeconds(duration);
-            p1Sprite.sprite = p1Idle;
-            p1Charge.SetActive(true);
-        }
-        else
-        {
-            yield return new WaitForSeconds(duration);
-            p2Sprite.sprite = p2Idle;
-            p2Charge.SetActive(true);
         }
     }
 
@@ -561,8 +524,6 @@ public class RPS_GameManager : MonoBehaviour
                 p2CanSwitch = false;
                 print("P2 Wins!");
                 p2Victory.SetActive(true);
-                p2Victory.transform.localScale = Vector3.zero;
-                p2Victory.transform.DOScale(1f,.15f).SetEase(Ease.OutBack);
             }
         }
         else
@@ -575,12 +536,11 @@ public class RPS_GameManager : MonoBehaviour
                 p2CanSwitch = false;
                 print("P1 Wins!");
                 p1Victory.SetActive(true);
-                p1Victory.transform.localScale = Vector3.zero;
-                p1Victory.transform.DOScale(1f,.15f).SetEase(Ease.OutBack);
             }
         }
     }
 
+<<<<<<< HEAD
     IEnumerator StartSequence()
     {
         p1CanCast = false;
@@ -614,9 +574,11 @@ public class RPS_GameManager : MonoBehaviour
         p2CanSwitch = true;
     }
 
+=======
+>>>>>>> parent of 72fd814... Polish
     private void Start()
     {
-        StartCoroutine(StartSequence());
+        
     }
 
     private void Update()

@@ -151,9 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24c81911a896a24a88ce7544cc226cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: 0
   speed: 3
-  hitFx: {fileID: 2340020559704751848, guid: 10f74a472f0900e4faf2aaa46256ecd9, type: 3}
   manager: {fileID: 0}
 --- !u!50 &6261290454258739551
 Rigidbody2D:
