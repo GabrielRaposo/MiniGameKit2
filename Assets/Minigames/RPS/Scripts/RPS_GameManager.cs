@@ -124,8 +124,7 @@ public class RPS_GameManager : MonoBehaviour
             if (p1.mp > 1f)
             {
                 //print("P1");
-                //p1Sprite.sprite = p1Attack;
-                p1Sprite.gameObject.GetComponent<Animator>().SetTrigger("Attack");
+                p1Sprite.sprite = p1Attack;
                 p1AttackCharge.SetActive(true);
                 p1CanCast = false;
                 //Instantiate(projectile, new Vector3(-.75f, 0, 0));
@@ -265,7 +264,7 @@ public class RPS_GameManager : MonoBehaviour
             yield return new WaitForSeconds(.2f);
             p1AttackCharge.SetActive(false);
             yield return new WaitForSeconds(.2f);
-            //p1Sprite.sprite = p1Idle;
+            p1Sprite.sprite = p1Idle;
 
             yield return new WaitForSeconds(p1.cooldown - .4f);
 
@@ -597,13 +596,9 @@ public class RPS_GameManager : MonoBehaviour
         p1Sprite.enabled = true;
         p2Sprite.enabled = true;
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
 
-        p1Sprite.gameObject.GetComponent<Animator>().SetTrigger("Start");
-
-        yield return new WaitForSeconds(.5f);
-
-        //p1Sprite.sprite = p1Idle;
+        p1Sprite.sprite = p1Idle;
         p2Sprite.sprite = p2Idle;
         p1Charge.SetActive(true);
         p2Charge.SetActive(true);
