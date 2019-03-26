@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +40,7 @@ namespace GataclismaNaPista
             for(int i = 3; i > 0; i--)
             {
                 text.text = i.ToString();
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(60f/BPM);
             }
             text.text = "GO!";
             text.GetComponent<RectTransform>().DOMoveY(0.5f, 0.5f);

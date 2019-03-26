@@ -98,6 +98,8 @@ namespace GataclismaNaPista
                         //Animacao
                         transform.parent.GetComponentInChildren<Animator>().SetInteger("consecutiveHits", consecutiveHits);
                         transform.parent.GetComponentInChildren<Animator>().SetBool("failed", false);
+                        transform.parent.GetChild(0).GetChild(0).GetComponentInChildren<Animator>().SetInteger("consecutiveHits", consecutiveHits);
+                        transform.parent.GetChild(0).GetChild(0).GetComponentInChildren<Animator>().SetBool("failed", false);
                     }
                     else
                     {
@@ -109,6 +111,8 @@ namespace GataclismaNaPista
                         consecutiveHits = 0;
                         transform.parent.GetComponentInChildren<Animator>().SetInteger("consecutiveHits", consecutiveHits);
                         transform.parent.GetComponentInChildren<Animator>().SetBool("failed", true);
+                        transform.parent.GetChild(0).GetChild(0).GetComponentInChildren<Animator>().SetInteger("consecutiveHits", consecutiveHits);
+                        transform.parent.GetChild(0).GetChild(0).GetComponentInChildren<Animator>().SetBool("failed", true);
                     }
 
                     InstantiateScoreText(score);

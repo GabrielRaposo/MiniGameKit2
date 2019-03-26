@@ -55,10 +55,10 @@ namespace GataclismaNaPista
 
             gameManager = FindObjectOfType<GameManager>();
 
-            SpawnSequence(4.8f, 20.042f, BPM, Padroes.NORMAL);
-            SpawnSequence(20.042f, 29.134f, BPM, Padroes.UM_MEIO);
-            SpawnSequence(32f, 43.311f, BPM, Padroes.NORMAL);
-            SpawnSequence(43.311f, 52.409f, BPM, Padroes.UM_MEIO);
+            SpawnSequence(3.79f, 19.032f, BPM, Padroes.NORMAL);
+            SpawnSequence(19.032f, 28.124f, BPM, Padroes.UM_MEIO);
+            SpawnSequence(30.99f, 42.301f, BPM, Padroes.NORMAL);
+            SpawnSequence(42.301f, 51.399f, BPM, Padroes.UM_MEIO);
         }
 
         private void Update()
