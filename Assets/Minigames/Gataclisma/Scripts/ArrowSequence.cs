@@ -121,8 +121,8 @@ namespace GataclismaNaPista
             
                 if( padrao == Padroes.UM_MEIO && i % 4 == 2)
                 {
+                    directionListIndex--;
                     direction = directionsList[directionListIndex];
-                    directionListIndex++;
 
                     SpawnArrow(direction, spawnPositionY + (arrowGap + arrowSize) / 2);
                 }
@@ -144,6 +144,7 @@ namespace GataclismaNaPista
                 }
                 else
                 {
+                    ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.white;
                     peekArrowScript.animator.Play("ArrowExplode");
                     Destroy(ArrowQueue.Peek(), 1f);
                 }
@@ -163,6 +164,8 @@ namespace GataclismaNaPista
                 unqueuedDeadArrow = ArrowQueue.Peek();
                 ArrowQueue.Dequeue();
                 unqueuedDeadArrow.GetComponent<SpriteRenderer>().color = Color.gray;
+                if(peekArrowScript.missed == true) // testeTJEWBRUVWYAIHDOAJSDM#######
+                Debug.Log("MISS");
                 if (ArrowQueue.Count > 0)
                 {
                     peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();

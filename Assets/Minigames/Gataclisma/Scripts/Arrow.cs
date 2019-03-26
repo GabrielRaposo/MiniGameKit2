@@ -17,6 +17,9 @@ namespace GataclismaNaPista
         public int duration { get; private set; } // duration é um integer aleatório de 1 até 2
         public Animator animator { get; private set; }
 
+        //super gambiarra pra identificar a seta que tomou miss
+        public bool missed = true;
+
         public void Awake()
         {
             this.animator = GetComponent<Animator>();
