@@ -12,7 +12,10 @@ namespace GataclismaNaPista
     {
         public int BPM;
         public TextMeshProUGUI text;
-        
+        public List<SpriteRenderer> fadeOutSpriteRendererObjects;
+        public List<TextMeshProUGUI> fadeOutTextMeshProObjects;
+        private AudioSource catHit;
+
         public float musicStartTime { get; private set; }
 
         private ArrowSequence[] allArrowSequences;
@@ -27,6 +30,7 @@ namespace GataclismaNaPista
         {
             allArrowSequences = GameObject.FindObjectsOfType<ArrowSequence>();
             scoreCalculation = GameObject.FindObjectOfType<ScoreCalculation>();
+            catHit = this.GetComponent<AudioSource>();
 
             musicStartTime = Time.time;
         }
@@ -55,10 +59,27 @@ namespace GataclismaNaPista
             StartCoroutine(EndGame());
         }
 
+        IEnumerator CatHit()
+        {
+            yield return new WaitForSeconds(0.1f);
+            catHit.Play();
+        }
+
         IEnumerator EndGame()
         {
+            StartCoroutine(CatHit());
             text.GetComponent<RectTransform>().DOMoveY(0.5f, 0.5f);
             text.DOColor(new Color(1, 1, 1, 1), 0.5f);
+            foreach(SpriteRenderer sp in fadeOutSpriteRendererObjects)
+            {
+                sp.DOFade(0, 0.3f);
+            }
+            foreach(TextMeshProUGUI txt in fadeOutTextMeshProObjects)
+            {
+                txt.DOFade(0, 0.3f);
+            }
+
+
             //text.resizeTextForBestFit = true;
             if(scoreCalculation.Winner > 0)
             {

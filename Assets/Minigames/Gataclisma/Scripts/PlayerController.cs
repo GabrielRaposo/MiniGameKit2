@@ -99,6 +99,7 @@ namespace GataclismaNaPista
                     {
                         score = CalculateScore(distance);
 
+                        sequence.peekArrowScript.clicked = true;
                         consecutiveHits++;
 
                         if(consecutiveHits > 9)
@@ -123,7 +124,12 @@ namespace GataclismaNaPista
                                 ColorUtility.TryParseHtmlString("#FAF9B2FF", out clr[1]);
                                 ColorUtility.TryParseHtmlString("#FFEC00FF", out clr[2]);
                                 ColorUtility.TryParseHtmlString("#A14811FF", out clr[3]);
-                                streakText.colorGradientPreset = new TMP_ColorGradient(clr[0], clr[1], clr[2], clr[3]);
+                                TMP_ColorGradient grd = ScriptableObject.CreateInstance("TMP_ColorGradient") as TMP_ColorGradient;
+                                grd.topLeft = clr[0];
+                                grd.topRight = clr[1];
+                                grd.bottomLeft = clr[2];
+                                grd.bottomRight = clr[3];
+                                streakText.colorGradientPreset = grd;
                             }
                             if (consecutiveHits == 50)
                             {
@@ -132,7 +138,12 @@ namespace GataclismaNaPista
                                 ColorUtility.TryParseHtmlString("#FFFB00FF", out clr[1]);
                                 ColorUtility.TryParseHtmlString("#46FF00FF", out clr[2]);
                                 ColorUtility.TryParseHtmlString("#023F2CFF", out clr[3]);
-                                streakText.colorGradientPreset = new TMP_ColorGradient(clr[0], clr[1], clr[2], clr[3]);
+                                TMP_ColorGradient grd = ScriptableObject.CreateInstance("TMP_ColorGradient") as TMP_ColorGradient;
+                                grd.topLeft = clr[0];
+                                grd.topRight = clr[1];
+                                grd.bottomLeft = clr[2];
+                                grd.bottomRight = clr[3];
+                                streakText.colorGradientPreset = grd;
                             }
                         }
 
@@ -152,8 +163,9 @@ namespace GataclismaNaPista
 
                         streakText.GetComponent<RectTransform>().DOScale(streakText.rectTransform.localScale * 1.2f, 0.1f);
                         //streakText.GetComponent<RectTransform>().DOScale(0, 0.2f);
-                        streakText.DOFade(0, 0.3f);
+                        streakText.DOFade(0, 0.2f);
                         streakText.GetComponent<RectTransform>().localScale = Vector3.one;
+                        streakText.GetComponent<RectTransform>().DOScale(Vector3.one, 0f);
                         streakText.transform.position = TextPos;
                         //streakText.text = "";
                         //Animacao
@@ -169,13 +181,39 @@ namespace GataclismaNaPista
                 }
             }
         }
+        private void LateUpdate()
+        {
+            if (sequence.unqueuedDeadArrow != null)
+            {
+                if (sequence.unqueuedDeadArrow.GetComponent<Arrow>().clicked == false )//&& consecutiveHits > 9)
+                {
+                    Debug.Log("MISS");
+                    consecutiveHits = 0;
+                    streakText.colorGradientPreset = FirstStreakColor;
 
+                    streakText.GetComponent<RectTransform>().DOScale(streakText.rectTransform.localScale * 1.2f, 0.1f);
+                    streakText.DOFade(0, 0.2f);
+                    streakText.GetComponent<RectTransform>().localScale = Vector3.one;
+                    streakText.GetComponent<RectTransform>().DOScale(Vector3.one, 0f);
+                    streakText.transform.position = TextPos;
+                    //streakText.text = "";
+                    //Animacao
+                    transform.parent.GetComponentInChildren<Animator>().SetInteger("consecutiveHits", consecutiveHits);
+                    transform.parent.GetComponentInChildren<Animator>().SetBool("failed", true);
+                    transform.parent.GetChild(0).GetChild(0).GetComponentInChildren<Animator>().SetInteger("consecutiveHits", consecutiveHits);
+                    transform.parent.GetChild(0).GetChild(0).GetComponentInChildren<Animator>().SetBool("failed", true);
+                }
+            }
+        }
+
+        //####################
         private ScoreType CalculateScore(float distance)
         {
             float points;
             ScoreType score;
             if (distance < almostDistance)
             {
+
                 if (distance < perfectDistance)
                 {
                     Debug.Log("perfect!");

@@ -30,7 +30,7 @@ namespace GataclismaNaPista
 
         /*Essas variáveis aqui são meio gambiarras, eu acho? Tô inseguro*/
         public Arrow peekArrowScript { get; private set; } // Arrow que deve receber o input
-        private GameObject unqueuedDeadArrow; // Arrow após passar a área de input
+        public GameObject unqueuedDeadArrow; // Arrow após passar a área de input
 
         //Alerta de gambiarra para as setas dos dois jogadores serem iguais:
         private static List<Direction> directionsList = new List<Direction>();
@@ -84,9 +84,9 @@ namespace GataclismaNaPista
             }
         }
 
-        private void SpawnArrow(Direction direction, float spawnPositionY)
+        private void SpawnArrow(Direction direction, float spawnPositionY, float z)
         {
-            GameObject newArrow = Instantiate(arrowPrefab, new Vector3(this.transform.position.x, spawnPositionY), Quaternion.identity, this.transform);
+            GameObject newArrow = Instantiate(arrowPrefab, new Vector3(this.transform.position.x, spawnPositionY, z), Quaternion.identity, this.transform);
             newArrow.GetComponent<Arrow>().Initialize(direction, 1);
             ArrowQueue.Enqueue(newArrow);
             peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
@@ -117,14 +117,14 @@ namespace GataclismaNaPista
                 Direction direction = directionsList[directionListIndex];
                 directionListIndex++;
 
-                SpawnArrow(direction, spawnPositionY);
+                SpawnArrow(direction, spawnPositionY, spawnPositionY);
             
                 if( padrao == Padroes.UM_MEIO && i % 4 == 2)
                 {
                     directionListIndex--;
                     direction = directionsList[directionListIndex];
 
-                    SpawnArrow(direction, spawnPositionY + (arrowGap + arrowSize) / 2);
+                    SpawnArrow(direction, spawnPositionY + (arrowGap + arrowSize) / 2, spawnPositionY + (arrowGap + arrowSize) / 2);
                 }
             }
         }
@@ -164,8 +164,7 @@ namespace GataclismaNaPista
                 unqueuedDeadArrow = ArrowQueue.Peek();
                 ArrowQueue.Dequeue();
                 unqueuedDeadArrow.GetComponent<SpriteRenderer>().color = Color.gray;
-                if(peekArrowScript.missed == true) // testeTJEWBRUVWYAIHDOAJSDM#######
-                Debug.Log("MISS");
+                //#########
                 if (ArrowQueue.Count > 0)
                 {
                     peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
