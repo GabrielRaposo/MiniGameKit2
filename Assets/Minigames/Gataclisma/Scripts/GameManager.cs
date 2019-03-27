@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 namespace GataclismaNaPista
 {
     public class GameManager : MonoBehaviour
     {
         public int BPM;
-        public Text text;
+        public TextMeshProUGUI text;
         
         public float musicStartTime { get; private set; }
 
@@ -58,7 +59,7 @@ namespace GataclismaNaPista
         {
             text.GetComponent<RectTransform>().DOMoveY(0.5f, 0.5f);
             text.DOColor(new Color(1, 1, 1, 1), 0.5f);
-            text.resizeTextForBestFit = true;
+            //text.resizeTextForBestFit = true;
             if(scoreCalculation.Winner > 0)
             {
                 text.text = "DIREITA VENCE!";
