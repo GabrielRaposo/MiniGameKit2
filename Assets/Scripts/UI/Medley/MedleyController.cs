@@ -31,6 +31,8 @@ public class MedleyController : MonoBehaviour
     [Header("Menus")]
     [SerializeField] private Menu titleMenu;
     [SerializeField] private Menu mainMenu;
+	[SerializeField] private Menu settingsMenu;
+	[SerializeField] private Menu playerSettingsMenu;
 
     [Space(10)]
     [Header("Overlays")]
@@ -68,6 +70,9 @@ public class MedleyController : MonoBehaviour
 
     public void SwitchMenu(string menu)
     {
+		if (menu == "")
+			return;
+
         currentMenu.menuTransform.gameObject.SetActive(false);
         switch (menu)
         {
@@ -78,9 +83,16 @@ public class MedleyController : MonoBehaviour
                 currentMenu = mainMenu;
                 FirstScreen = "main";
                 break;
+			case "settings":
+				currentMenu = settingsMenu;
+				break;
             case "main menu":
                 CallScene("main menu");
                 break;
+			case "playerDisplay":
+				currentMenu = playerSettingsMenu;
+				GetComponent<MedleySetup>().SettupPlayerDisplay();
+				break;
             default:
                 return;
         }

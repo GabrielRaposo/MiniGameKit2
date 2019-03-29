@@ -21,6 +21,7 @@ public class PlayerInfo : MonoBehaviour {
     /// </summary>
     public PlayerButtons playerButtons;
     protected Color color;
+	public new string name;
 
     public virtual void Start() {
         if (ControllerManager.instance != null) {
@@ -42,5 +43,6 @@ public class PlayerInfo : MonoBehaviour {
             }
         }
         color = PlayersManager.playerColor[playerId];
+		name = PlayersManager.playerName[playerId];
     }
 }
