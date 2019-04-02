@@ -9,6 +9,7 @@ namespace GataclismaNaPista
 
         private Animator animator;
         private PlayerInfo player;
+        private PlayerController playerController;
         private int BPM;
 
         /*[System.NonSerialized]
@@ -18,6 +19,7 @@ namespace GataclismaNaPista
         {
             animator = transform.GetComponent<Animator>();
             player = transform.parent.GetComponent<PlayerInfo>();
+            playerController = transform.parent.GetComponentInChildren<PlayerController>();
             BPM = GameObject.FindObjectOfType<GameManager>().BPM;
         }
 
@@ -26,7 +28,7 @@ namespace GataclismaNaPista
             //GetComponent<SpriteRenderer>().color = this.color;
         }
 
-        public void playAnimation(ScoreType score)
+        /*public void playAnimation(ScoreType score)
         {
             if (score != ScoreType.wrongArrow && score != ScoreType.fail)
             {
@@ -53,12 +55,13 @@ namespace GataclismaNaPista
             }
             StopAllCoroutines();
             StartCoroutine(AnimationDelay());
-        }
+        }*/
 
-        IEnumerator AnimationDelay()
+
+        /*IEnumerator AnimationDelay()
         {
-            yield return new WaitForSeconds(60f / BPM * 2f /* esse 1.5f é gambiarra; deveria ter um multiplicador da duration aqui */);
+            yield return new WaitForSeconds(60f / BPM * 2f // esse 1.5f é gambiarra; deveria ter um multiplicador da duration aqui );
             animator.Play("Default");
-        }
+        }*/
     }
 }

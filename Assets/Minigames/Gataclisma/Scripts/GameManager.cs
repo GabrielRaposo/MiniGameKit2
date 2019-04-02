@@ -10,8 +10,13 @@ namespace GataclismaNaPista
     {
         public int BPM;
         public Text text;
+        
+        public float musicStartTime { get; private set; }
 
         private ArrowSequence[] allArrowSequences;
+
+        [SerializeField] private CatAnimation leftCat;
+        [SerializeField] private CatAnimation rightCat;
 
         //gambiarra
         private ScoreCalculation scoreCalculation;
@@ -20,6 +25,8 @@ namespace GataclismaNaPista
         {
             allArrowSequences = GameObject.FindObjectsOfType<ArrowSequence>();
             scoreCalculation = GameObject.FindObjectOfType<ScoreCalculation>();
+
+            musicStartTime = Time.time;
         }
 
         private void Start()
@@ -32,7 +39,7 @@ namespace GataclismaNaPista
             for(int i = 3; i > 0; i--)
             {
                 text.text = i.ToString();
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.7f);
             }
             text.text = "GO!";
             text.GetComponent<RectTransform>().DOMoveY(0.5f, 0.5f);
@@ -42,23 +49,7 @@ namespace GataclismaNaPista
 
         IEnumerator SpawnAllArrows()
         {
-            int beats = 0;
-            /*esses beats deveriam ser o numero de setas total da música, aqui eu fui contando e vi onde que era melhor parar
-             * mas pode mudar se achar necessário */
-            while (beats < 86)
-            {
-                Debug.Log("Beats: " + beats);
-                beats++;
-                Direction direction = (Direction)Random.Range(0, 4);
-                //int duration = Random.Range(1, 3); //spawna setas de duracao entre 1 e 2
-                int duration = 1;
-                foreach (ArrowSequence sequence in allArrowSequences)
-                {
-                     sequence.SpawnArrow(direction, duration);
-                }
-                yield return new WaitForSeconds(60f / BPM * duration);
-            }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(50f);
             StartCoroutine(EndGame());
         }
 
@@ -71,11 +62,20 @@ namespace GataclismaNaPista
             {
                 text.text = "DIREITA VENCE!";
                 PlayersManager.result = PlayersManager.Result.RightWin;
+
+                //Animação
+                rightCat.GetComponent<Animator>().SetInteger("vencedor", 1);
+                leftCat.GetComponent<Animator>().SetInteger("vencedor", -1);
             }
             else if(scoreCalculation.Winner < 0)
             {
                 text.text = "ESQUERDA VENCE!";
                 PlayersManager.result = PlayersManager.Result.LeftWin;
+
+                //Animação
+                //Animação
+                rightCat.GetComponent<Animator>().SetInteger("vencedor", -1);
+                leftCat.GetComponent<Animator>().SetInteger("vencedor", 1);
             }
             else
             {
@@ -88,4 +88,5 @@ namespace GataclismaNaPista
             StartCoroutine(ModeManager.TransitionFromMinigame());
         }
     }
+    
 }
