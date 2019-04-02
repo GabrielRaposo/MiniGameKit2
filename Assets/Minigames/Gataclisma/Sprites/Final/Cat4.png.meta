@@ -1,0 +1,719 @@
+fileFormatVersion: 2
+guid: 9512a1475aed2744cbd8f46d42a9544d
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Cat4_0
+    21300002: Cat4_1
+    21300004: Cat4_2
+    21300006: Cat4_3
+    21300008: Cat4_4
+    21300010: Cat4_5
+    21300012: Cat4_6
+    21300014: Cat4_7
+    21300016: Cat4_8
+    21300018: Cat4_9
+    21300020: Cat4_10
+    21300022: Cat4_11
+    21300024: Cat4_12
+    21300026: Cat4_13
+    21300028: Cat4_14
+    21300030: Cat4_15
+    21300032: Cat4_16
+    21300034: Cat4_17
+    21300036: Cat4_18
+    21300038: Cat4_19
+    21300040: Cat4_20
+    21300042: Cat4_21
+    21300044: Cat4_22
+    21300046: Cat4_23
+    21300048: Cat4_24
+    21300050: Cat4_25
+    21300052: Cat4_26
+    21300054: Cat4_27
+    21300056: Cat4_28
+  externalObjects: {}
+  serializedVersion: 9
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 300
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cat4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1848
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4810797b21d01c43b0169a6b8038dac
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_1
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1848
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3ca797130c44d745b7ccccb79e60428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_2
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1848
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cce02d72773ebd4d8f9ec2411e88660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1648
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b90025463f3785e45aff64fa09fec1bf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_4
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1648
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6984cd002f123b349a8c4267cec2ce40
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_5
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1648
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6186aa37ed21a7b4a97d1f01e2a7f8c5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1448
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93bfd9c5aec0194b8e32fc0aca326ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_7
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1448
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30337909ff7e24f4db1eb6b1370ae756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_8
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1448
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 705db141b1a559448bfec44e536c229c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1248
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4f5a0d65cd84ec47a74df2ca6d10bd6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_10
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1248
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 864155ee972428f478f1cb92eec3d2fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_11
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1248
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0481261de352aa74ab48c24be6d3e6d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1048
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8081f16901d4b489d010141e1c1ca2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_13
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1048
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a81e1baa5c6f6b4dba02198336678b5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_14
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 1048
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27c3e6f856208ee45ab92cde6cffc1ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 848
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4045289139a02498e7200178df2a99
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_16
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 848
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea4834baa7e8d914396adfe1cc8b8380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_17
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 848
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5e5e5a0c6d3b9640a9f3ff2c7e3905e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 648
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb86466793faffb4eac8b07a982c0ec0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_19
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 648
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 329f637d5ae2f3a4a8932a28bc02be86
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_20
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 648
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27d4d7a8f18367c478e893d237c447ae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d02faa68c7c2a84e83e2000fb2aad20
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_22
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 448
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d9fa6fe411a49d4580724b39e22bf0c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_23
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 448
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 102cda50a332dda4fb0ad15542083cb4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 248
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c420d9dd680cb4b8e934c1ad92ba78
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_25
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 248
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1912fdc0491de3439f137e190661ae0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_26
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 248
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a117607693d2b324ea8388b43b0551f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d23162a72909e174fb7a5d118fe2cb2b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat4_28
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 48
+        width: 257
+        height: 200
+      alignment: 9
+      pivot: {x: 0.53, y: 0.688}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 895cd576b2768b14aa817869f26f617c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3c7f3037cc0f2084ebb7c00abcad64f5
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

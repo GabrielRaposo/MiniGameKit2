@@ -30,7 +30,7 @@ namespace GataclismaNaPista
 
         /*Essas variáveis aqui são meio gambiarras, eu acho? Tô inseguro*/
         public Arrow peekArrowScript { get; private set; } // Arrow que deve receber o input
-        private GameObject unqueuedDeadArrow; // Arrow após passar a área de input
+        public GameObject unqueuedDeadArrow; // Arrow após passar a área de input
 
         //Alerta de gambiarra para as setas dos dois jogadores serem iguais:
         private static List<Direction> directionsList = new List<Direction>();
@@ -55,10 +55,10 @@ namespace GataclismaNaPista
 
             gameManager = FindObjectOfType<GameManager>();
 
-            SpawnSequence(4.8f, 20.042f, BPM, Padroes.NORMAL);
-            SpawnSequence(20.042f, 29.134f, BPM, Padroes.UM_MEIO);
-            SpawnSequence(32f, 43.311f, BPM, Padroes.NORMAL);
-            SpawnSequence(43.311f, 52.409f, BPM, Padroes.UM_MEIO);
+            SpawnSequence(3.79f, 19.032f, BPM, Padroes.NORMAL);
+            SpawnSequence(19.032f, 28.124f, BPM, Padroes.UM_MEIO);
+            SpawnSequence(30.99f, 42.301f, BPM, Padroes.NORMAL);
+            SpawnSequence(42.301f, 51.399f, BPM, Padroes.UM_MEIO);
         }
 
         private void Update()
@@ -84,9 +84,9 @@ namespace GataclismaNaPista
             }
         }
 
-        private void SpawnArrow(Direction direction, float spawnPositionY)
+        private void SpawnArrow(Direction direction, float spawnPositionY, float z)
         {
-            GameObject newArrow = Instantiate(arrowPrefab, new Vector3(this.transform.position.x, spawnPositionY), Quaternion.identity, this.transform);
+            GameObject newArrow = Instantiate(arrowPrefab, new Vector3(this.transform.position.x, spawnPositionY, z), Quaternion.identity, this.transform);
             newArrow.GetComponent<Arrow>().Initialize(direction, 1);
             ArrowQueue.Enqueue(newArrow);
             peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
@@ -117,14 +117,14 @@ namespace GataclismaNaPista
                 Direction direction = directionsList[directionListIndex];
                 directionListIndex++;
 
-                SpawnArrow(direction, spawnPositionY);
+                SpawnArrow(direction, spawnPositionY, spawnPositionY);
             
                 if( padrao == Padroes.UM_MEIO && i % 4 == 2)
                 {
+                    directionListIndex--;
                     direction = directionsList[directionListIndex];
-                    directionListIndex++;
 
-                    SpawnArrow(direction, spawnPositionY + (arrowGap + arrowSize) / 2);
+                    SpawnArrow(direction, spawnPositionY + (arrowGap + arrowSize) / 2, spawnPositionY + (arrowGap + arrowSize) / 2);
                 }
             }
         }
@@ -144,6 +144,7 @@ namespace GataclismaNaPista
                 }
                 else
                 {
+                    ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.white;
                     peekArrowScript.animator.Play("ArrowExplode");
                     Destroy(ArrowQueue.Peek(), 1f);
                 }
@@ -163,6 +164,7 @@ namespace GataclismaNaPista
                 unqueuedDeadArrow = ArrowQueue.Peek();
                 ArrowQueue.Dequeue();
                 unqueuedDeadArrow.GetComponent<SpriteRenderer>().color = Color.gray;
+                //#########
                 if (ArrowQueue.Count > 0)
                 {
                     peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();

@@ -32,6 +32,8 @@ namespace GataclismaNaPista
         private void Start()
         {
             crownPosition = crown.transform.position;
+            crown.SetActive(false);
+            this.Winner = 0;
         }
 
         public void UpdateScorebar()

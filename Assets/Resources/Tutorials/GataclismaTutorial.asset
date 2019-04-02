@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,16 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameName: Gataclisma na pista
   codename: Gataclisma
-  gameRules: Dance dance wohooooo
+  gameRules: "Conduza seu felino dan\xE7ante e cause um gataclisma na pista!"
   controls:
   - inputKey: 2
     inputType: 1
-    text: Dance
+    text: "Dan\xE7ar"
   - inputKey: 3
     inputType: 1
-    text: 'Dance
-
-'
-  credits: "V\xE1rias pessoa"
-  image: {fileID: 2800000, guid: 6e079c81c5dbd4d4da78d6c53aa306f2, type: 3}
-  icon: {fileID: 0}
+    text: "Dan\xE7ar\n"
+  credits: "Eduardo Melo (Programming, Soundtrack)\r\nGabriel Ferreira (Programming)\r\nRafael
+    de Aguiar (Art)"
+  image: {fileID: 2800000, guid: d8d15d570508a27438ce7d2ee17b6a7c, type: 3}
+  icon: {fileID: 2800000, guid: 6767030ec7833b341b0e0b6597c447f0, type: 3}

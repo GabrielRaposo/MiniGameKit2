@@ -16,7 +16,10 @@ namespace GataclismaNaPista
             base.Start();
             
             scoreBar.color = base.color;
-            catSprite.color = base.color;
+
+            float H, S, V;
+            Color.RGBToHSV(base.color, out H, out S, out V);
+            catSprite.color = Color.HSVToRGB(H, 0.4f, V);
         }
     }
 
