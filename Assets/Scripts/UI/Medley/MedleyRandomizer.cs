@@ -4,123 +4,130 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
-public class MedleyRandomizer : MonoBehaviour {
+//Raposo
+//public class MedleyRandomizer : MonoBehaviour {
 
-    public MedleyController medleyController;
-    public TutorialObject[] minigameOptions;
-    public GameObject confirmationPanel;
+//    public MedleyController medleyController;
+//    public TutorialObject[] minigameOptions;
+//    public GameObject confirmationPanel;
 
-    [Header("Randomizer references")]
-    public PlayerIcon leftPlayerIcon;
-    public PlayerIcon rightPlayerIcon;
-    public GameButton minigameIcon;
-    public TextMeshProUGUI minigameTitle;
+//    [Header("Randomizer references")]
+//    public PlayerIcon leftPlayerIcon;
+//    public PlayerIcon rightPlayerIcon;
+//    public GameButton minigameIcon;
+//    public TextMeshProUGUI minigameTitle;
 
-    public static readonly int maxNumberOfPlayers = 4;
-    MedleyManager medleyManager;
+//    public static readonly int maxNumberOfPlayers = 12;
+//    MedleyManager medleyManager;
+//	MedleySetup medleySetup;
 
-    public struct Matchup
-    {
-        public int leftPlayer;
-        public int rightPlayer;
+//    public struct Matchup
+//    {
+//        public int leftPlayer;
+//        public int rightPlayer;
 
-        public Matchup(int left, int right)
-        {
-            leftPlayer = left;
-            rightPlayer = right;
-        }
+//        public Matchup(int left, int right)
+//        {
+//            leftPlayer = left;
+//            rightPlayer = right;
+//        }
 
-        public override string ToString()
-        {
-            return "P" + leftPlayer + " vs P" + rightPlayer;
-        }
-    }
-    private static Stack<Matchup> matchupStack;
-    public static Matchup currentMatchup;
+//        public override string ToString()
+//        {
+//            return "P" + leftPlayer + " vs P" + rightPlayer;
+//        }
+//    }
+//    private static Stack<Matchup> matchupStack;
+//    public static Matchup currentMatchup;
 
-    private int nPLayers;
-    private PlayerIcon currentLeftPlayer;
-    private PlayerIcon currentRightPlayer;
-    private TutorialObject currentMinigame;
+//    private int nPLayers;
+//    private PlayerIcon currentLeftPlayer;
+//    private PlayerIcon currentRightPlayer;
+//    private TutorialObject currentMinigame;
 
-    public void Call (MedleyManager medleyManager, bool reroll)
-    {
-        this.medleyManager = medleyManager;
+//	private void Awake()
+//	{
+//		medleySetup = GetComponent<MedleySetup>();
+//	}
 
-        nPLayers = MedleySettings.nPlayers;
-        if(reroll) GenerateMatchups();
+//	public void Call (MedleyManager medleyManager, bool reroll)
+//    {
+//        this.medleyManager = medleyManager;
 
-        StartCoroutine(ShuffleAnimation());
-    }
+//        nPLayers = MedleySetup.nOfPlayers;
+//        if(reroll) GenerateMatchups();
 
-    private void GenerateMatchups()
-    {
-        Debug.Log("Turn 1 - Matchup Stack created.");
+//        StartCoroutine(ShuffleAnimation());
+//    }
 
-        matchupStack = new Stack<Matchup>();
-        for (int i = 0; i < nPLayers; i++)
-        {
-            for (int j = i + 1; j < nPLayers; j++)
-            {
-                matchupStack.Push(new Matchup(i, j));
-            }
-        }
+//    private void GenerateMatchups()
+//    {
+//        Debug.Log("Turn 1 - Matchup Stack created.");
 
-        // Shuffle
-        matchupStack = new Stack<Matchup>(matchupStack.OrderBy(x => Random.Range(-100, 100)));
-    }
+//        matchupStack = new Stack<Matchup>();
+//        for (int i = 0; i < nPLayers; i++)
+//        {
+//            for (int j = i + 1; j < nPLayers; j++)
+//            {
+//                matchupStack.Push(new Matchup(i, j));
+//            }
+//        }
 
-    // Gera os matchups entre os jogadores que porventura empataram ao termino dos matchups originais.
-    private void GenerateMatchups(int[] tiedPlayers)
-    {
-        matchupStack = new Stack<Matchup>();
-        for (int i = 0; i < tiedPlayers.Length; i++)
-        {
-            for (int j = i + 1; j < tiedPlayers.Length; j++)
-            {
-                matchupStack.Push(new Matchup(tiedPlayers[i], tiedPlayers[j]));
-            }
-        }
+//        // Shuffle
+//        matchupStack = new Stack<Matchup>(matchupStack.OrderBy(x => Random.Range(-100, 100)));
+//    }
 
-        // Shuffle
-        matchupStack = new Stack<Matchup>(matchupStack.OrderBy(x => Random.Range(-100, 100)));
-    }
+//    // Gera os matchups entre os jogadores que porventura empataram ao termino dos matchups originais.
+//    private void GenerateMatchups(int[] tiedPlayers)
+//    {
+//        matchupStack = new Stack<Matchup>();
+//        for (int i = 0; i < tiedPlayers.Length; i++)
+//        {
+//            for (int j = i + 1; j < tiedPlayers.Length; j++)
+//            {
+//                matchupStack.Push(new Matchup(tiedPlayers[i], tiedPlayers[j]));
+//            }
+//        }
 
-    private TutorialObject GetRandomMinigame()
-    {
-        int index = Random.Range(0, minigameOptions.Length);
-        return minigameOptions[index];
-    }
+//        // Shuffle
+//        matchupStack = new Stack<Matchup>(matchupStack.OrderBy(x => Random.Range(-100, 100)));
+//    }
 
-    private IEnumerator ShuffleAnimation()
-    {
-        SetCurrentMatchup(currentMatchup = matchupStack.Pop());
+//    private TutorialObject GetRandomMinigame()
+//    {
+//        int index = Random.Range(0, minigameOptions.Length);
+//        return minigameOptions[index];
+//    }
 
-        yield return new WaitForSeconds(1f);
+//    private IEnumerator ShuffleAnimation()
+//    {
+//        SetCurrentMatchup(currentMatchup = matchupStack.Pop());
 
-        confirmationPanel.GetComponent<PlayerConfirmationPanel>().Call(this);
-        //medleyManager.CallNextDisplay();
-    }
+//        yield return new WaitForSeconds(1f);
 
-    private void SetCurrentMatchup(Matchup matchup)
-    {
-        PlayersManager.currentLeftPlayer = matchup.leftPlayer;
-        currentLeftPlayer = medleyManager.GetPlayerAt(matchup.leftPlayer);
-        leftPlayerIcon.Init(currentLeftPlayer.title, currentLeftPlayer.score, currentLeftPlayer.color);
+//        confirmationPanel.GetComponent<PlayerConfirmationPanel>().Call(this);
+//        //medleyManager.CallNextDisplay();
+//    }
 
-        PlayersManager.currentRightPlayer = matchup.rightPlayer;
-        currentRightPlayer = medleyManager.GetPlayerAt(matchup.rightPlayer);
-        rightPlayerIcon.Init(currentRightPlayer.title, currentRightPlayer.score, currentRightPlayer.color);
+//    private void SetCurrentMatchup(Matchup matchup)
+//    {
+//        PlayersManager.currentLeftPlayer = matchup.leftPlayer;
+//        currentLeftPlayer = medleyManager.GetPlayerAt(matchup.leftPlayer);
+//        leftPlayerIcon.Init(currentLeftPlayer.title, currentLeftPlayer.score, currentLeftPlayer.color);
 
-        currentMinigame = GetRandomMinigame();
-        minigameTitle.text = currentMinigame.minigameName;
-    }
+//        PlayersManager.currentRightPlayer = matchup.rightPlayer;
+//        currentRightPlayer = medleyManager.GetPlayerAt(matchup.rightPlayer);
+//        rightPlayerIcon.Init(currentRightPlayer.title, currentRightPlayer.score, currentRightPlayer.color);
 
-    public IEnumerator CallMinigame()
-    {
-        yield return new WaitForSeconds(1);
-        medleyController.EnableOverlay("tutorial");
-        minigameIcon.tutorialInfo = currentMinigame;
-        minigameIcon.Press();
-    }
-}
+//        currentMinigame = GetRandomMinigame();
+//        minigameTitle.text = currentMinigame.minigameName;
+//    }
+
+//    public IEnumerator CallMinigame()
+//    {
+//        yield return new WaitForSeconds(1);
+//        medleyController.EnableOverlay("tutorial");
+//        minigameIcon.tutorialInfo = currentMinigame;
+//        minigameIcon.Press();
+//    }
+//}

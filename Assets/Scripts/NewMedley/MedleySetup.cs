@@ -13,8 +13,8 @@ public class MedleySetup : MonoBehaviour
 	public TextMeshProUGUI gameTypeDisplay;
 	public TextMeshProUGUI numberOfVictoriesDisplay;
 
-	public int nOfPlayers;
-	public int nOfVictories;
+	public static int nOfPlayers;
+	public static int nOfVictories;
 	public MedleyModes mode;
 
 	public MeddleyPlayerIcon[] meddleyPlayerIcons;
@@ -83,7 +83,7 @@ public class MedleySetup : MonoBehaviour
 			{
 				mpi.gameObject.SetActive(true);
 				mpi.SetColor(PlayersManager.playerColor[i]);
-				mpi.text.text = PlayersManager.playerName[i];
+				mpi.SetName(PlayersManager.playerName[i]);
 			}
 		}
 	}

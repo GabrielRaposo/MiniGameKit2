@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//Raposo
+	//Sendo utilizado, controla os menus
 public class MedleyController : MonoBehaviour
 {
     [Header("References")]
@@ -46,11 +48,13 @@ public class MedleyController : MonoBehaviour
     static bool hasSetupControllers;
     static public string FirstScreen = "title";
 
+	public MedleyPartyControler partyControler;
+
     private void Start()
     {
         //FirstScreen = "freeplay";
         SwitchMenu(FirstScreen);
-        ModeManager.State = ModeManager.GameState.Medley;
+        ModeManager.State = ModeManager.GameState.Medley;		
     }
 
     void Update()
@@ -82,6 +86,7 @@ public class MedleyController : MonoBehaviour
             case "main":
                 currentMenu = mainMenu;
                 FirstScreen = "main";
+				partyControler.OpenParty();
                 break;
 			case "settings":
 				currentMenu = settingsMenu;
