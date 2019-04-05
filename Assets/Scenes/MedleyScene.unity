@@ -398,7 +398,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 438887455}
+      - m_Target: {fileID: 1393353259}
         m_MethodName: SwitchVictoryN
         m_Mode: 3
         m_Arguments:
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 438887455}
+      - m_Target: {fileID: 1393353259}
         m_MethodName: SwitchMode
         m_Mode: 3
         m_Arguments:
@@ -1927,11 +1927,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2330,7 +2330,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 438887455}
+      - m_Target: {fileID: 1393353259}
         m_MethodName: SwitchVictoryN
         m_Mode: 3
         m_Arguments:
@@ -2466,7 +2466,6 @@ GameObject:
   - component: {fileID: 438887453}
   - component: {fileID: 438887452}
   - component: {fileID: 438887451}
-  - component: {fileID: 438887455}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2584,35 +2583,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &438887455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438887450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87279e76a7be5c84fbaf475984c41ea6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNumbersDisplay: {fileID: 326396873}
-  gameTypeDisplay: {fileID: 1933588970}
-  numberOfVictoriesDisplay: {fileID: 1117724863}
-  mode: 0
-  meddleyPlayerIcons:
-  - {fileID: 9113536297048910909}
-  - {fileID: 530644635}
-  - {fileID: 832366226}
-  - {fileID: 475550657}
-  - {fileID: 64377081}
-  - {fileID: 1865538505}
-  - {fileID: 1262714751}
-  - {fileID: 1911070208}
-  - {fileID: 197467187}
-  - {fileID: 504186952}
-  - {fileID: 1047948832}
-  - {fileID: 1483620636}
 --- !u!1 &456952072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3410,7 +3380,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 438887455}
+      - m_Target: {fileID: 1393353259}
         m_MethodName: SwitchPlayerNumber
         m_Mode: 3
         m_Arguments:
@@ -5282,7 +5252,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 438887455}
+      - m_Target: {fileID: 1393353259}
         m_MethodName: SwitchMode
         m_Mode: 3
         m_Arguments:
@@ -6481,11 +6451,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 2
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6982,8 +6952,6 @@ MonoBehaviour:
   gameInfoDisplay: {fileID: 2033316107}
   gameName: {fileID: 512166922}
   gameRules: {fileID: 1438665322}
-  playerScores: 
-  playerMatchesPlayed: 
 --- !u!1 &1305413210
 GameObject:
   m_ObjectHideFlags: 0
@@ -7293,6 +7261,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366513254}
   m_CullTransparentMesh: 0
+--- !u!1 &1393353258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1393353260}
+  - component: {fileID: 1393353259}
+  m_Layer: 0
+  m_Name: MedleySetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1393353259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393353258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87279e76a7be5c84fbaf475984c41ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumbersDisplay: {fileID: 326396873}
+  gameTypeDisplay: {fileID: 1933588970}
+  numberOfVictoriesDisplay: {fileID: 1117724863}
+  meddleyPlayerIcons:
+  - {fileID: 9113536297048910909}
+  - {fileID: 530644635}
+  - {fileID: 832366226}
+  - {fileID: 475550657}
+  - {fileID: 64377081}
+  - {fileID: 1865538505}
+  - {fileID: 1262714751}
+  - {fileID: 1911070208}
+  - {fileID: 197467187}
+  - {fileID: 504186952}
+  - {fileID: 1047948832}
+  - {fileID: 1483620636}
+--- !u!4 &1393353260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393353258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 343.9734, y: 204.15668, z: 3.875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1411212129
 GameObject:
   m_ObjectHideFlags: 0
@@ -8691,7 +8718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1657592652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8760,7 +8787,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695200591}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -8904,7 +8931,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 438887455}
+      - m_Target: {fileID: 1393353259}
         m_MethodName: SwitchPlayerNumber
         m_Mode: 3
         m_Arguments:
@@ -9828,7 +9855,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 438887455}
+      - m_Target: {fileID: 0}
         m_MethodName: SwitchMode
         m_Mode: 3
         m_Arguments:
@@ -10646,11 +10673,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

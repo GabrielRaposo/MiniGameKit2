@@ -16,7 +16,7 @@ public class MedleySetup : MonoBehaviour
 
 	public static int nOfPlayers;
 	public static int nOfVictories;
-	public MedleyModes mode;
+	public static MedleyModes mode;
 
 	public MeddleyPlayerIcon[] meddleyPlayerIcons;
 	
@@ -55,7 +55,9 @@ public class MedleySetup : MonoBehaviour
 
 	public void SwitchVictoryN(int i)
 	{
-		//TODO matemática para equilibrar numeros de jogos
+		if (mode == MedleyModes.NumberOfGames && (nOfPlayers % 2 != 0))
+			i = i * 2;
+
 		nOfVictories += i;
 		if (nOfVictories < 1)
 			nOfVictories = 1;
@@ -71,15 +73,11 @@ public class MedleySetup : MonoBehaviour
 
 		mode = (MedleyModes)(value % lenght);
 
-		//if( value >= System.Enum.GetValues(typeof(MedleyModes)).Length)
-		//{
-		//	mode = 0;
-		//}
-		//if(value == -1)
-		//{
-		//	mode = (MedleyModes)((System.Enum.GetValues(typeof(MedleyModes)).Length)-1);
-		//}
-
+		if (mode == MedleyModes.NumberOfGames && nOfPlayers % 2 != 0 && nOfVictories % 2 != 0)
+		{
+			nOfVictories++;
+			UpdateNOfVictoriesDisplay();
+		}
 
 		UpdateGameTypeDisplay();
 	}	
