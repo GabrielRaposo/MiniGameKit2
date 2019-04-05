@@ -50,7 +50,7 @@ public class MedleyController : MonoBehaviour
 
 	public MedleyPartyControler partyControler;
 
-    private void Start()
+	private void Start()
     {
         //FirstScreen = "freeplay";
         SwitchMenu(FirstScreen);
@@ -96,7 +96,7 @@ public class MedleyController : MonoBehaviour
                 break;
 			case "playerDisplay":
 				currentMenu = playerSettingsMenu;
-				GetComponent<MedleySetup>().SettupPlayerDisplay();
+				FindObjectOfType<MedleySetup>().SettupPlayerDisplay();
 				break;
             default:
                 return;

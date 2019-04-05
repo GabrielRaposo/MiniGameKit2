@@ -8,7 +8,8 @@ using TMPro;
 public enum MedleyModes { NumberOfGames, NumberOfVictories};
 
 public class MedleySetup : MonoBehaviour
-{	
+{
+	public static MedleySetup i;
 	public TextMeshProUGUI playerNumbersDisplay;
 	public TextMeshProUGUI gameTypeDisplay;
 	public TextMeshProUGUI numberOfVictoriesDisplay;
@@ -21,13 +22,25 @@ public class MedleySetup : MonoBehaviour
 	
 	private void Awake()
 	{
-		nOfPlayers = 2;
-		nOfVictories = 1;
-		mode = MedleyModes.NumberOfGames;
+		if (i == null)
+		{
+			i = this;
+			nOfPlayers = 2;
+			nOfVictories = 1;
+			mode = MedleyModes.NumberOfGames;
+		}
+		else
+		{
+			if (i != this)
+			{
+				Destroy(this.gameObject);
+			}
+		}
 
 		UpdatePlayerNumberDisplay();
 		UpdateGameTypeDisplay();
 		UpdateNOfVictoriesDisplay();
+		DontDestroyOnLoad(this);
 	}
 
 	public void SwitchPlayerNumber(int i)
@@ -84,6 +97,7 @@ public class MedleySetup : MonoBehaviour
 				mpi.gameObject.SetActive(true);
 				mpi.SetColor(PlayersManager.playerColor[i]);
 				mpi.SetName(PlayersManager.playerName[i]);
+				mpi.HideScore();
 			}
 		}
 	}
