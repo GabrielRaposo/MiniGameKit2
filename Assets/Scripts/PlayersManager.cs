@@ -10,7 +10,7 @@ public class PlayersManager : MonoBehaviour {
         new Color(1f, 0.6f, 0.1058824f), // Laranja
         new Color(.957f, .259f, .259f),  // Vermelho
         new Color(.137f, .627f, .184f),   // Verde Escuro
-		new Color(1,0,0),
+		new Color(0.5f,0.25f,0),
 		new Color(0,1,1),
 		new Color(1,0,1),
 		new Color(1,1,0),

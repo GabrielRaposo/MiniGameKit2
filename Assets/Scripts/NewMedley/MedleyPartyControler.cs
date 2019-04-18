@@ -33,12 +33,17 @@ public class MedleyPartyControler : MonoBehaviour
 	[Header("Player Match Info")]
 	public static List<int> playerScores;
 	public static List<int> playerMatchesPlayed;
+	public static List<int> playersInDraw;
 
 	public static bool partyInProgress;
 	public static bool drawMode;
 
+	[Header("UI Elements")]
 	public static int round;
+	public TextMeshProUGUI roundText;
 	public static bool changeRoundNext;
+	public GameObject endGameScreen;
+	public TextMeshProUGUI endGameText;
 
 	private void Awake()
 	{
@@ -79,59 +84,76 @@ public class MedleyPartyControler : MonoBehaviour
 
 		if (!partyInProgress)
 		{
-			Debug.Log("Starting New Party()");
+			//Start New party
 			round = 0;
-			partyInProgress = true;
 			playerScores = new List<int>();
 			playerMatchesPlayed = new List<int>();
-
-			for (int i = 0; i < MedleySetup.nOfPlayers; i++)
-			{				
-				GameObject p = Instantiate(playerIconPrefab, playerLayoutHolder);
-				playerIcons.Add(p);
-				playerScores.Add(0);
-				p.GetComponent<MeddleyPlayerIcon>().SetColor(PlayersManager.playerColor[i]);
-				p.GetComponent<MeddleyPlayerIcon>().SetName(PlayersManager.playerName[i]);
-				p.GetComponent<MeddleyPlayerIcon>().SetScore(playerScores[i]);
-				playerMatchesPlayed.Add(0);
-			}
-
 		}
-
 		else
 		{
 			UpdateScores();
-			for (int i = 0;i < MedleySetup.nOfPlayers; i++)
-			{
-				GameObject p = Instantiate(playerIconPrefab, playerLayoutHolder);
-				p.GetComponent<MeddleyPlayerIcon>().SetColor(PlayersManager.playerColor[i]);
-				p.GetComponent<MeddleyPlayerIcon>().SetName(PlayersManager.playerName[i]);
-				p.GetComponent<MeddleyPlayerIcon>().SetScore(playerScores[i]);
-				playerIcons.Add(p);
-			}
 		}
+
+		for (int i = 0; i < MedleySetup.nOfPlayers; i++)
+		{				
+			if (!partyInProgress)
+			{
+				playerScores.Add(0);
+				playerMatchesPlayed.Add(0);
+			}
+
+			GameObject p = Instantiate(playerIconPrefab, playerLayoutHolder);//
+			playerIcons.Add(p);//
+			p.GetComponent<MeddleyPlayerIcon>().SetColor(PlayersManager.playerColor[i]);//
+			p.GetComponent<MeddleyPlayerIcon>().SetName(PlayersManager.playerName[i]);//
+			p.GetComponent<MeddleyPlayerIcon>().SetScore(playerScores[i]);//
+		}
+
+		if(!partyInProgress)
+			partyInProgress = true;
 
 		if (changeRoundNext)
 			ChangeRound();
 		
 		SelectActivePlayers();
-		//SelectMinigame();
 	}
 
 	public void ChangeRound()
 	{
+		//Animar isto
 		round++;
+		if (drawMode)
+			roundText.text = "DRAW";
+		else
+			roundText.text = "R: " + round.ToString();
 		changeRoundNext = false;
 		Debug.Log("ChangingRound");
 	}
 		
 	public void SelectActivePlayers()
 	{
-
-		int safe = 0;
-
+		//TODO acho que isso aqui ta dando erro no empate
 		int[] lowPool = GetPlayersThatPlayedEqualTheRound();
 		int[] moreThanPool = GetPlayersThatPlayedMoreThanTheRound();
+
+		if (!drawMode)
+		{
+			foreach(int p in moreThanPool)
+			{
+				playerIcons[p].GetComponent<MeddleyPlayerIcon>().SetColor(new Color(0.5f, 0.5f, 0.5f));
+			}
+		}
+		else
+		{
+			foreach(GameObject player in playerIcons)
+			{
+				player.GetComponent<MeddleyPlayerIcon>().SetColor(new Color(0.5f, 0.5f, 0.5f));
+			}
+			foreach(int p in playersInDraw)
+			{
+				playerIcons[p].GetComponent<MeddleyPlayerIcon>().SetColor(PlayersManager.playerColor[p]);
+			}
+		}
 
 		if(lowPool.Length <= 2 && lowPool.Length > 0)
 		{
@@ -171,31 +193,12 @@ public class MedleyPartyControler : MonoBehaviour
 
 			do
 			{
-				safe++;
 				PlayersManager.currentLeftPlayer = lowPool[Random.Range(0, lowPool.Length)];
-				if (safe > 500)
-					Debug.Break();
 			} while (PlayersManager.currentRightPlayer == PlayersManager.currentLeftPlayer);
 
 		}
 
 		DisplayActivePlayers();
-
-		////TODO fazer seleção considerando partidas já jogadas
-
-
-		//int r, l;
-
-		//r = Random.Range(0, MedleySetup.nOfPlayers);
-
-		//do
-		//{
-		//	l = Random.Range(0, MedleySetup.nOfPlayers);
-		//} while (r == l) ;
-
-		//PlayersManager.currentLeftPlayer = l;
-		//PlayersManager.currentRightPlayer = r;
-
 
 	}
 			
@@ -246,32 +249,41 @@ public class MedleyPartyControler : MonoBehaviour
 				break;
 		}
 
-		CheckIfGameOver();
+		if (!drawMode)
+			CheckIfGameOver();
+		else
+			CheckIfDrawOver();
+	}
 
+	void DebugPrintPlayerMatches()
+	{
+		//for (int i = 0; i < playerMatchesPlayed.Count; i++)
+		//{
+		//	Debug.Log("Player " + i.ToString() + " matches played:" + playerMatchesPlayed[i].ToString());
+		//}
 	}
 
 	void CheckIfGameOver()
 	{
-
 		int n = MedleySetup.nOfVictories;
-
+				
 		switch (MedleySetup.mode)
 		{
 			case MedleyModes.NumberOfGames:
-				Debug.Log("Played the same: "+AllPlayersPlayedTheSame().ToString());
-				Debug.Log("Player 0  matches: " + playerMatchesPlayed[0].ToString());
 				if (AllPlayersPlayedTheSame() && playerMatchesPlayed[0] == n)
 				{
 					if (GetHighestScoringPlayers().Length == 1)
 						EndGame(GetHighestScoringPlayers());
 					else
 					{
-						Debug.Log("Desempate");
-						//Desempate
+						DrawModeSetup();
 					}
 				}
 				else
-					Debug.Log("Segue o jogo");
+				{
+					//Debug.Log("AllPlayersPlayedTheSame(): " + AllPlayersPlayedTheSame().ToString() + " playerMatchesPlayed[0]: " + playerMatchesPlayed[0].ToString() + " n: " + n.ToString());
+					//Debug.Log("Segue o jogo");
+				}
 				break;
 			case MedleyModes.NumberOfVictories:
 				if(NumberOfPlayersWithSpecificScore(n) > 0)
@@ -283,13 +295,13 @@ public class MedleyPartyControler : MonoBehaviour
 							EndGame(GetHighestScoringPlayers());
 						else
 						{
-							Debug.Log("Desempate");
-							//Desempate
+							DrawModeSetup();
 						}
 					}
 					else
 					{
 						//TODO Alertazinho de pode acabar
+						//animar isto
 					}
 				}
 				else
@@ -300,9 +312,64 @@ public class MedleyPartyControler : MonoBehaviour
 		}
 	}
 
+	void CheckIfDrawOver()
+	{
+		if(playersInDraw.Count == 2)
+		{
+			if (playerScores[playersInDraw[0]] > playerScores[playersInDraw[1]])
+				EndGame(new int[] { playersInDraw[0] });
+			if(playerScores[playersInDraw[1]] > playerScores[playersInDraw[0]])
+				EndGame(new int[] { playersInDraw[1] });
+			if (playerScores[playersInDraw[1]] == playerScores[playersInDraw[0]])
+				Debug.Log("Ta empatado ainda segue o jogo");
+		}
+		else
+		{
+			int highScore = GetHighestScore();
+			List<int> playersToRemove = new List<int>();
+
+			foreach(int playerIndex in playersInDraw)
+			{
+				if (playerScores[playerIndex] < highScore)
+					playersToRemove.Add(playerIndex);
+			}
+
+			foreach (int playerIndex in playersToRemove)
+			{
+				playersInDraw.Remove(playerIndex);
+				Debug.Log("Jogador " + playerIndex.ToString() + "rodou");
+			}
+		}
+	}
+
+	void DrawModeSetup()
+	{
+		Debug.Log("EMPATE");
+		drawMode = true;
+		playersInDraw = new List<int>(GetHighestScoringPlayers());
+
+		string jogadoresEmpatados = "";
+
+		foreach(int p in playersInDraw)
+		{
+			jogadoresEmpatados += p.ToString() + ", ";
+		}
+		Debug.Log("Empatados: " + jogadoresEmpatados);
+
+	}
+
 	void EndGame(int[] winners)
 	{
-		Debug.Log("Acabou o jogo ganhou : " + winners.ToString());
+		endGameScreen.SetActive(true);
+		if(winners.Length == 1)
+		{
+			endGameText.text = PlayersManager.playerName[winners[0]] +" GANHOU!!!1!11!";
+			endGameText.color = PlayersManager.playerColor[winners[0]];
+		}
+		else
+		{
+			endGameText.text = "empate entre algumas pessoas aí";
+		}
 	}
 
 	private bool AllPlayersPlayedTheSame()
@@ -312,14 +379,39 @@ public class MedleyPartyControler : MonoBehaviour
 		foreach(int p in playerMatchesPlayed)
 		{
 			if (n != p)
+			{
 				return false;
-		}
-
+			}
+		}		
 		return true;
 	}
 
-	private int NumberOfPlayersWithSpecificScore(int n)
+	private bool AllPlayersInTheDrawPlayedTheSame()
 	{
+		int n = playerMatchesPlayed[playersInDraw[0]];
+
+		foreach(int p in playersInDraw)
+		{
+			if(n != playerMatchesPlayed[p])
+			{
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
+	private bool IsPlayerInDraw(int player)
+	{
+		foreach (int p in playersInDraw)
+			if (p == player)
+				return true;
+		return false;
+	}
+
+	private int NumberOfPlayersWithSpecificScore(int n)
+	{		
 		int count = 0;
 
 		foreach(int p in playerScores)
@@ -329,21 +421,25 @@ public class MedleyPartyControler : MonoBehaviour
 				count++;
 			}
 		}
+		Debug.Log("Finding players with " + n.ToString() + " points: " + count.ToString() + " players");
 		return count;
 	}
 
 	private int[] GetPlayersWithSpecifcScore(int n)
 	{
+		Debug.Log("Trying to get players that scored " + n.ToString());
 		int[] players;
 		players = new int[NumberOfPlayersWithSpecificScore(n)];
 		if (players.Length == 0)
+		{
 			return null;
+		}
 
 		int j = 0;
 
 		for (int i = 0; i < playerScores.Count; i++)
 		{
-			if (playerScores[i] < round)
+			if (playerScores[i] == n)
 			{
 				players[j] = i;
 				j++;
@@ -353,7 +449,7 @@ public class MedleyPartyControler : MonoBehaviour
 		return players;
 	}
 
-	private int[] GetHighestScoringPlayers()
+	private int GetHighestScore()
 	{
 		int highest = 0;
 
@@ -363,8 +459,13 @@ public class MedleyPartyControler : MonoBehaviour
 				highest = p;
 		}
 
-		return GetPlayersWithSpecifcScore(highest);
+		return highest;
 
+	}
+
+	private int[] GetHighestScoringPlayers()
+	{
+		return GetPlayersWithSpecifcScore(GetHighestScore());
 	}
 
 	private int[] GetPlayersThatPlayedLessThanTheRound()
@@ -413,8 +514,11 @@ public class MedleyPartyControler : MonoBehaviour
 		{
 			if (playerMatchesPlayed[i] == round)
 			{
-				players[j] = i;
-				j++;
+				if((drawMode && IsPlayerInDraw(i)) || (!drawMode))
+				{
+					players[j] = i;
+					j++;
+				}
 			}
 		}
 
@@ -440,8 +544,12 @@ public class MedleyPartyControler : MonoBehaviour
 		{
 			if (playerMatchesPlayed[i] > round)
 			{
-				players[j] = i;
-				j++;
+				if((drawMode && IsPlayerInDraw(i)) || (!drawMode))
+				{
+					players[j] = i;
+					j++;
+				}
+
 			}
 		}
 
