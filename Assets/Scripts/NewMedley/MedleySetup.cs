@@ -55,12 +55,17 @@ public class MedleySetup : MonoBehaviour
 
 	public void SwitchVictoryN(int i)
 	{
+
 		if (mode == MedleyModes.NumberOfGames && (nOfPlayers % 2 != 0))
 			i = i * 2;
 
 		nOfVictories += i;
 		if (nOfVictories < 1)
 			nOfVictories = 1;
+
+		if (nOfVictories < 2 && (nOfPlayers % 2 != 0))
+			nOfVictories = 2;
+
 		UpdateNOfVictoriesDisplay();
 	}
 

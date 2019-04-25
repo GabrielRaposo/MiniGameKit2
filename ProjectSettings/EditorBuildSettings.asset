@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Minigames/Ca\xE7a-Palavras/Ca\xE7a-Palavras.unity"
     guid: bd79043e4a2c1b940809b0f02a7346f8
+  - enabled: 1
+    path: Assets/Minigames/Debuger/Debuger.unity
+    guid: 4083a2dc889664949abc6bf5f5c749e2
   m_configObjects: {}

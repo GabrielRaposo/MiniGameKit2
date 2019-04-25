@@ -116,6 +116,7 @@ public class MedleyPartyControler : MonoBehaviour
 			ChangeRound();
 		
 		SelectActivePlayers();
+		SelectMinigame();
 	}
 
 	public void ChangeRound()
@@ -132,7 +133,6 @@ public class MedleyPartyControler : MonoBehaviour
 		
 	public void SelectActivePlayers()
 	{
-		//TODO acho que isso aqui ta dando erro no empate
 		int[] lowPool = GetPlayersThatPlayedEqualTheRound();
 		int[] moreThanPool = GetPlayersThatPlayedMoreThanTheRound();
 
@@ -147,7 +147,7 @@ public class MedleyPartyControler : MonoBehaviour
 		{
 			foreach(GameObject player in playerIcons)
 			{
-				player.GetComponent<MeddleyPlayerIcon>().SetColor(new Color(0.5f, 0.5f, 0.5f));
+				//player.GetComponent<MeddleyPlayerIcon>().SetColor(new Color(0.5f, 0.5f, 0.5f));
 			}
 			foreach(int p in playersInDraw)
 			{
@@ -405,8 +405,12 @@ public class MedleyPartyControler : MonoBehaviour
 	private bool IsPlayerInDraw(int player)
 	{
 		foreach (int p in playersInDraw)
+		{
 			if (p == player)
+			{
 				return true;
+			}
+		}
 		return false;
 	}
 

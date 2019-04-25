@@ -89,6 +89,8 @@ public class MedleyController : MonoBehaviour
 				partyControler.OpenParty();
                 break;
 			case "settings":
+				MedleySetup.nOfVictories = 2;
+				FindObjectOfType<MedleySetup>().UpdateNOfVictoriesDisplay();
 				currentMenu = settingsMenu;
 				break;
             case "main menu":
