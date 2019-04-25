@@ -37,6 +37,7 @@ public class MedleyPartyControler : MonoBehaviour
 
 	public static bool partyInProgress;
 	public static bool drawMode;
+	public static bool gameEnded;
 
 	[Header("UI Elements")]
 	public static int round;
@@ -94,6 +95,11 @@ public class MedleyPartyControler : MonoBehaviour
 			UpdateScores();
 		}
 
+		if (gameEnded)
+		{
+			return;
+		}
+
 		for (int i = 0; i < MedleySetup.nOfPlayers; i++)
 		{				
 			if (!partyInProgress)
@@ -147,7 +153,7 @@ public class MedleyPartyControler : MonoBehaviour
 		{
 			foreach(GameObject player in playerIcons)
 			{
-				//player.GetComponent<MeddleyPlayerIcon>().SetColor(new Color(0.5f, 0.5f, 0.5f));
+				player.GetComponent<MeddleyPlayerIcon>().SetColor(new Color(0.5f, 0.5f, 0.5f));
 			}
 			foreach(int p in playersInDraw)
 			{
@@ -325,20 +331,34 @@ public class MedleyPartyControler : MonoBehaviour
 		}
 		else
 		{
-			int highScore = GetHighestScore();
-			List<int> playersToRemove = new List<int>();
-
-			foreach(int playerIndex in playersInDraw)
+			if (AllPlayersInTheDrawPlayedTheSame())
 			{
-				if (playerScores[playerIndex] < highScore)
-					playersToRemove.Add(playerIndex);
-			}
+				int highScore = GetHighestScore();
+				List<int> playersToRemove = new List<int>();
 
-			foreach (int playerIndex in playersToRemove)
-			{
-				playersInDraw.Remove(playerIndex);
-				Debug.Log("Jogador " + playerIndex.ToString() + "rodou");
+				foreach (int playerIndex in playersInDraw)
+				{
+					if (playerScores[playerIndex] < highScore)
+						playersToRemove.Add(playerIndex);
+				}
+
+				foreach (int playerIndex in playersToRemove)
+				{
+					playersInDraw.Remove(playerIndex);
+					Debug.Log("Jogador " + playerIndex.ToString() + " rodou");
+				}
+
+				if(playersInDraw.Count == 1)
+				{
+					EndGame(GetHighestScoringPlayers());
+				}
+
 			}
+			else
+			{
+				Debug.Log("Não jogaram o mesmo numero de partidas");
+			}
+			
 		}
 	}
 
@@ -347,6 +367,11 @@ public class MedleyPartyControler : MonoBehaviour
 		Debug.Log("EMPATE");
 		drawMode = true;
 		playersInDraw = new List<int>(GetHighestScoringPlayers());
+
+		foreach(int player in playersInDraw)
+		{
+			playerMatchesPlayed[player] = round + 1;
+		}
 
 		string jogadoresEmpatados = "";
 
@@ -360,6 +385,8 @@ public class MedleyPartyControler : MonoBehaviour
 
 	void EndGame(int[] winners)
 	{
+		gameEnded = true;
+		Debug.Log("ENDGAME()");
 		endGameScreen.SetActive(true);
 		if(winners.Length == 1)
 		{
@@ -518,12 +545,33 @@ public class MedleyPartyControler : MonoBehaviour
 		{
 			if (playerMatchesPlayed[i] == round)
 			{
-				if((drawMode && IsPlayerInDraw(i)) || (!drawMode))
+				players[j] = i;
+				j++;				
+			}
+		}
+
+		if (drawMode)
+		{
+			int a = 0;
+			foreach(int player in players)
+			{
+				if (IsPlayerInDraw(player))
 				{
-					players[j] = i;
-					j++;
+					a++;
 				}
 			}
+			int[] temp = new int[a];
+			int i = 0;
+			foreach(int player in players)
+			{
+				if (IsPlayerInDraw(player))
+				{
+					temp[i] = player;
+					i++;
+				}
+			}
+			players = temp;
+			Debug.Log(a.ToString() + " players form draw played equal the round");
 		}
 
 		return players;
@@ -548,13 +596,33 @@ public class MedleyPartyControler : MonoBehaviour
 		{
 			if (playerMatchesPlayed[i] > round)
 			{
-				if((drawMode && IsPlayerInDraw(i)) || (!drawMode))
-				{
-					players[j] = i;
-					j++;
-				}
-
+				players[j] = i;
+				j++;
 			}
+		}
+
+		if (drawMode)
+		{
+			int a = 0;
+			foreach (int player in players)
+			{
+				if (IsPlayerInDraw(player))
+				{
+					a++;
+				}
+			}
+			int[] temp = new int[a];
+			int i = 0;
+			foreach (int player in players)
+			{
+				if (IsPlayerInDraw(player))
+				{
+					temp[i] = player;
+					i++;
+				}
+			}
+			players = temp;
+			Debug.Log(a.ToString() + " players form draw played more than the round");
 		}
 
 		return players;
