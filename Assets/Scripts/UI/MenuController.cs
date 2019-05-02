@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using DG.Tweening;
 
 
@@ -34,7 +35,8 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] private Menu startUpMenu;
 	[SerializeField] private Menu mainMenu;
-	[SerializeField] private Menu medleyMenu;
+	[FormerlySerializedAs("medleyMenu")]
+	[SerializeField] private Menu partyModeMenu;
 	[SerializeField] private Menu freeplayMenu;
     [SerializeField] private Menu controllerMenu;
 
@@ -44,8 +46,10 @@ public class MenuController : MonoBehaviour
 	
 	[SerializeField] private Overlay controllerOverlay;
 	[SerializeField] private Overlay confirmOverlay;
-	[SerializeField] private Overlay medleySettingOverlay;
-    [SerializeField] private Overlay medleyGameOverlay;
+	[FormerlySerializedAs("medleySettingOverlay")]
+	[SerializeField] private Overlay partyModeSettingOverlay;
+	[FormerlySerializedAs("medleyGameOverlay")]
+	[SerializeField] private Overlay partyModeGameOverlay;
     [SerializeField] private Overlay tutorialOverlay;
     [SerializeField] private Overlay optionsOverlay;
 
@@ -216,8 +220,8 @@ public class MenuController : MonoBehaviour
     {
         switch (scene)
         {
-            case "medley":
-                ModeManager.State = ModeManager.GameState.Medley;
+            case "party":
+                ModeManager.State = ModeManager.GameState.Party;
                 StartCoroutine(ModeManager.TransitionFromMinigame());
                 break;
 

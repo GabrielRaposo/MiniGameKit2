@@ -54,7 +54,7 @@ public class MedleyController : MonoBehaviour
     {
         //FirstScreen = "freeplay";
         SwitchMenu(FirstScreen);
-        ModeManager.State = ModeManager.GameState.Medley;		
+        ModeManager.State = ModeManager.GameState.Party;		
     }
 
     void Update()

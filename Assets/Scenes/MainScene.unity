@@ -6044,7 +6044,7 @@ MonoBehaviour:
   mainMenu:
     menuTransform: {fileID: 1420105884}
     previousMenu: 
-  medleyMenu:
+  partyModeMenu:
     menuTransform: {fileID: 0}
     previousMenu: 
   freeplayMenu:
@@ -6057,9 +6057,9 @@ MonoBehaviour:
     overlayTransform: {fileID: 0}
   confirmOverlay:
     overlayTransform: {fileID: 2104784327}
-  medleySettingOverlay:
+  partyModeSettingOverlay:
     overlayTransform: {fileID: 0}
-  medleyGameOverlay:
+  partyModeGameOverlay:
     overlayTransform: {fileID: 0}
   tutorialOverlay:
     overlayTransform: {fileID: 0}
@@ -13939,7 +13939,7 @@ GameObject:
   - component: {fileID: 1258171971}
   - component: {fileID: 1258171975}
   m_Layer: 5
-  m_Name: MedleyButton
+  m_Name: PartyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14107,7 +14107,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 335762211}
   m_OnClick:
     m_PersistentCalls:
@@ -14120,7 +14120,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: medley
+          m_StringArgument: party
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1258171974}

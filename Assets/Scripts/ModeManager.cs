@@ -8,7 +8,8 @@ public class ModeManager {
     {
         FreePlay,
         Medley,
-        Menu
+        Menu,
+		Party
     }
     static public GameState State;
 
@@ -23,7 +24,7 @@ public class ModeManager {
                 sceneIndex = 0;
                 break;
 
-            case GameState.Medley:
+            case GameState.Party:
                 sceneIndex = 1;
                 break;
 

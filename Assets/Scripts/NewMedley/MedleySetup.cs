@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public enum MedleyModes { NumberOfGames, NumberOfVictories};
+public enum PartyMode { NumberOfGames, NumberOfVictories};
 
 public class MedleySetup : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class MedleySetup : MonoBehaviour
 
 	public static int nOfPlayers;
 	public static int nOfVictories;
-	public static MedleyModes mode;
+	public static PartyMode mode;
 
 	public MeddleyPlayerIcon[] meddleyPlayerIcons;
 	
@@ -27,7 +27,7 @@ public class MedleySetup : MonoBehaviour
 			i = this;
 			nOfPlayers = 2;
 			nOfVictories = 1;
-			mode = MedleyModes.NumberOfGames;
+			mode = PartyMode.NumberOfGames;
 		}
 		else
 		{
@@ -56,7 +56,7 @@ public class MedleySetup : MonoBehaviour
 	public void SwitchVictoryN(int i)
 	{
 
-		if (mode == MedleyModes.NumberOfGames && (nOfPlayers % 2 != 0))
+		if (mode == PartyMode.NumberOfGames && (nOfPlayers % 2 != 0))
 			i = i * 2;
 
 		nOfVictories += i;
@@ -74,11 +74,11 @@ public class MedleySetup : MonoBehaviour
 		int value = (int)mode;
 		value += i;
 
-		int lenght = System.Enum.GetValues(typeof(MedleyModes)).Length;
+		int lenght = System.Enum.GetValues(typeof(PartyMode)).Length;
 
-		mode = (MedleyModes)(value % lenght);
+		mode = (PartyMode)(value % lenght);
 
-		if (mode == MedleyModes.NumberOfGames && nOfPlayers % 2 != 0 && nOfVictories % 2 != 0)
+		if (mode == PartyMode.NumberOfGames && nOfPlayers % 2 != 0 && nOfVictories % 2 != 0)
 		{
 			nOfVictories++;
 			UpdateNOfVictoriesDisplay();
@@ -117,10 +117,10 @@ public class MedleySetup : MonoBehaviour
 	{
 		switch (mode)
 		{
-			case MedleyModes.NumberOfGames:
+			case PartyMode.NumberOfGames:
 				gameTypeDisplay.text = "Numero de jogos";
 				break;
-			case MedleyModes.NumberOfVictories:
+			case PartyMode.NumberOfVictories:
 				gameTypeDisplay.text = "Numero de Vitorias";
 				break;
 		}

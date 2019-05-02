@@ -275,7 +275,7 @@ public class MedleyPartyControler : MonoBehaviour
 				
 		switch (MedleySetup.mode)
 		{
-			case MedleyModes.NumberOfGames:
+			case PartyMode.NumberOfGames:
 				if (AllPlayersPlayedTheSame() && playerMatchesPlayed[0] == n)
 				{
 					if (GetHighestScoringPlayers().Length == 1)
@@ -291,7 +291,7 @@ public class MedleyPartyControler : MonoBehaviour
 					//Debug.Log("Segue o jogo");
 				}
 				break;
-			case MedleyModes.NumberOfVictories:
+			case PartyMode.NumberOfVictories:
 				if(NumberOfPlayersWithSpecificScore(n) > 0)
 				{
 					Debug.Log("Tem alguem arriscando ganhar aí");
