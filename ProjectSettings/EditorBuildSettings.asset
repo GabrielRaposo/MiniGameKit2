@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PartyScene.unity
     guid: fb11a671c71eac6489c2294078556c30
   - enabled: 1
+    path: Assets/Scenes/MedleyScene.unity
+    guid: a68dd27e3a3e7f645a1b6210bf675b62
+  - enabled: 1
     path: Assets/Minigames/Samurais/Samurais.unity
     guid: 4e523b56a2be27349ae823ab53316e6e
   - enabled: 1

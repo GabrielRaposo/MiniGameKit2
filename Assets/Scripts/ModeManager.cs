@@ -32,6 +32,9 @@ public class ModeManager {
                 MenuController.FirstScreen = "main";
                 sceneIndex = 0;
                 break;
+            case GameState.Medley:
+                sceneIndex = 2;
+                break;
         }
 
         AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(sceneIndex);
