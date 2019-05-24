@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class SequencialMedleySettings : MonoBehaviour
 {
+    [Header("Menus")]
+    public GameObject titleMenu;
+    public GameObject colorSelectMenu;
+    public GameObject gameSelectMenu;
+
+
+    [Header("Color config")]
     public Image p1Color;
     public Image p2Color;
 

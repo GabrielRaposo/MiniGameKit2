@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-
+public enum MedleyGameType { Shuffle, Playlist};
 public class SequencialMedleyControler : MonoBehaviour
 {
     public List<TutorialObject> allgames;
