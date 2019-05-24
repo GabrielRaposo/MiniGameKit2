@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class SequencialMedleySettings : MonoBehaviour
 {
-    [Header("Menus")]
-    public GameObject titleMenu;
-    public GameObject colorSelectMenu;
-    public GameObject gameSelectMenu;
-
 
     [Header("Color config")]
     public Image p1Color;
@@ -21,11 +16,39 @@ public class SequencialMedleySettings : MonoBehaviour
 
     private SequencialMedleyControler sequencialMedleyControler;
 
+    private MedleyGameType gameMode;
+    public TextMeshProUGUI gameModeText;
+
+    public MedleyGameType GameMode
+    {
+        get
+        {
+            return gameMode;
+        }
+
+        set
+        {
+            gameMode = value;
+            sequencialMedleyControler.gameMode = gameMode;
+
+            switch (gameMode)
+            {
+                case MedleyGameType.Shuffle:
+                    gameModeText.text = "Shuffle";
+                    break;
+                case MedleyGameType.Playlist:
+                    gameModeText.text = "Playlist";
+                    break;
+            }
+        }
+    }
+
     private void Awake()
     {
+        sequencialMedleyControler = FindObjectOfType<SequencialMedleyControler>();
         p1ColorIndex = 0;
         p2ColorIndex = 1;
-        sequencialMedleyControler = FindObjectOfType<SequencialMedleyControler>();
+        GameMode = MedleyGameType.Shuffle;
     }
 
     void Update()
@@ -79,13 +102,17 @@ public class SequencialMedleySettings : MonoBehaviour
         }
     }
 
-    public void SelectColorsAndGoToGame()
+    public void ChangeGameMode()
+    {
+        if (GameMode == MedleyGameType.Shuffle)
+            GameMode = MedleyGameType.Playlist;
+        else
+            GameMode = MedleyGameType.Shuffle;
+    }
+
+    public void SelectColors()
     {
         PlayersManager.playerColor[0] = PlayersManager.playerDefaultColor[p1ColorIndex];
         PlayersManager.playerColor[1] = PlayersManager.playerDefaultColor[p2ColorIndex];       
-
-        sequencialMedleyControler.GoToRandomGame();
     }
-
-
 }

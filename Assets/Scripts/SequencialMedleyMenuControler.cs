@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 //Raposo
-	//Sendo utilizado, controla os menus do PartyMode
-public class MedleyController : MonoBehaviour
+//Sendo utilizado, controla os menus do PartyMode
+public class SequencialMedleyMenuControler : MonoBehaviour
 {
     [Header("References")]
 
@@ -32,9 +32,8 @@ public class MedleyController : MonoBehaviour
 
     [Header("Menus")]
     [SerializeField] private Menu titleMenu;
-    [SerializeField] private Menu mainMenu;
-	[SerializeField] private Menu settingsMenu;
-	[SerializeField] private Menu playerSettingsMenu;
+    [SerializeField] private Menu colorSelectionMenu;
+    [SerializeField] private Menu gameSelectionMenu;
 
     [Space(10)]
     [Header("Overlays")]
@@ -48,13 +47,12 @@ public class MedleyController : MonoBehaviour
     static bool hasSetupControllers;
     static public string FirstScreen = "title";
 
-	public MedleyPartyControler partyControler;
 
-	private void Start()
+    private void Start()
     {
         //FirstScreen = "freeplay";
         SwitchMenu(FirstScreen);
-        ModeManager.State = ModeManager.GameState.Party;		
+        ModeManager.State = ModeManager.GameState.Party;
     }
 
     void Update()
@@ -74,8 +72,8 @@ public class MedleyController : MonoBehaviour
 
     public void SwitchMenu(string menu)
     {
-		if (menu == "")
-			return;
+        if (menu == "")
+            return;
 
         currentMenu.menuTransform.gameObject.SetActive(false);
         switch (menu)
@@ -83,29 +81,26 @@ public class MedleyController : MonoBehaviour
             case "title":
                 currentMenu = titleMenu;
                 break;
-            case "main":
-                currentMenu = mainMenu;
-                FirstScreen = "main";
-				partyControler.OpenParty();
+            case "color":
+                currentMenu = colorSelectionMenu;
                 break;
-			case "settings":
-				MedleySetup.nOfVictories = 2;
-				FindObjectOfType<MedleySetup>().UpdateNOfVictoriesDisplay();
-				currentMenu = settingsMenu;
-				break;
+            case "games":
+                currentMenu = gameSelectionMenu;
+                break;
             case "main menu":
                 CallScene("main menu");
                 break;
-			case "playerDisplay":
-				currentMenu = playerSettingsMenu;
-				FindObjectOfType<MedleySetup>().SettupPlayerDisplay();
-				break;
             default:
                 return;
         }
         eventSystem.SetSelectedGameObject(null);
         currentMenu.menuTransform.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(currentMenu.firstButton);
+    }
+
+    public void MenuReturn()
+    {
+        SwitchMenu(currentMenu.previousMenu);
     }
 
     public void EnableOverlay(string overlay)

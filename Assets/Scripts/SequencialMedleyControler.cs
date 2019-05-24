@@ -28,6 +28,8 @@ public class SequencialMedleyControler : MonoBehaviour
     public Canvas betwenGamesCanvas;
     public Canvas otherCanvas;
 
+    public MedleyGameType gameMode;
+
     private void Start()
     {
         if (!medleyInProgress)
