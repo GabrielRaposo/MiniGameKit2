@@ -16,7 +16,7 @@ public class SequencialMedleySettings : MonoBehaviour
 
     private SequencialMedleyControler sequencialMedleyControler;
 
-    private MedleyGameType gameMode;
+    public MedleyGameType gameMode;
     public TextMeshProUGUI gameModeText;
 
     public MedleyGameType GameMode

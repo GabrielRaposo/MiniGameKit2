@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 //Raposo
 //Sendo utilizado, controla os menus do PartyMode
 public class SequencialMedleyMenuControler : MonoBehaviour
@@ -47,12 +48,23 @@ public class SequencialMedleyMenuControler : MonoBehaviour
     static bool hasSetupControllers;
     static public string FirstScreen = "title";
 
+	public SequencialMedleyControler medleyControler;
+	public SequencialMedleySettings medleySettings;
+
+	[Header("Game menu")]
+	public GameObject gamePoolMenuButtonShuffle;
+	public GameObject gamePoolMenuButtonPlaylist;
+	public GameObject gamePageBackground;
+	public GameObject playlistBar;
+	bool gameMenuReady = false;
 
     private void Start()
     {
         //FirstScreen = "freeplay";
         SwitchMenu(FirstScreen);
         ModeManager.State = ModeManager.GameState.Party;
+		medleyControler = FindObjectOfType<SequencialMedleyControler>();
+		medleySettings = FindObjectOfType<SequencialMedleySettings>();
     }
 
     void Update()
@@ -86,6 +98,9 @@ public class SequencialMedleyMenuControler : MonoBehaviour
                 break;
             case "games":
                 currentMenu = gameSelectionMenu;
+				if (!gameMenuReady)
+					SetUpGameMenu();
+
                 break;
             case "main menu":
                 CallScene("main menu");
@@ -102,6 +117,56 @@ public class SequencialMedleyMenuControler : MonoBehaviour
     {
         SwitchMenu(currentMenu.previousMenu);
     }
+
+	public void SetUpGameMenu()
+	{
+
+		TutorialObject[] tutorialObjects;
+		tutorialObjects = Resources.LoadAll<TutorialObject>("Tutorials");
+
+		if(medleySettings.gameMode == MedleyGameType.Shuffle)
+		{
+
+			foreach(TutorialObject TO in tutorialObjects)
+			{
+				GameObject button;
+				GamePoolMenuButton buttonScript;
+
+				button = Instantiate(gamePoolMenuButtonShuffle, gamePageBackground.transform);
+				buttonScript = button.GetComponent<GamePoolMenuButton>();
+
+				buttonScript.SetupButton(TO);
+
+			}
+
+		}
+
+		else
+		{
+			foreach (TutorialObject TO in tutorialObjects)
+			{
+				GameObject button;
+				GamePoolMenuButtonPlaylist buttonScript;
+
+				button = Instantiate(gamePoolMenuButtonPlaylist, gamePageBackground.transform);
+				buttonScript = button.GetComponent<GamePoolMenuButtonPlaylist>();
+
+				if(buttonScript == null)
+				{
+					Debug.Log("buttonScript null");
+					Debug.Break();
+				}
+
+				buttonScript.SetupButton(TO);
+				buttonScript.menuControler = this;
+
+			}
+		}
+
+		//gameMenuReady = true;
+
+
+	}
 
     public void EnableOverlay(string overlay)
     {
@@ -152,4 +217,11 @@ public class SequencialMedleyMenuControler : MonoBehaviour
                 return;
         }
     }
+
+	public void ReciveGameToAdd(GamePoolMenuButtonPlaylist button)
+	{
+		SequencialMedleyControler.currentGameList.Add(button.game);
+		Instantiate(button, playlistBar.transform);
+	}
+
 }
