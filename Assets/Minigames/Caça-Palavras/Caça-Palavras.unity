@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37312, g: 0.38074034, b: 0.35872734, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -575,6 +575,7 @@ MonoBehaviour:
   displayTargetWord: {fileID: 453465483}
   audioTyping: {fileID: 930276796}
   audioMain: {fileID: 331474309}
+  audioWin: {fileID: 0}
   endgameAnimationDelay: 0.5
   animationEndgameDuration: 2.2
 --- !u!4 &331474308
@@ -801,7 +802,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 125.55
+  m_fontSize: 75.25
   m_fontSizeBase: 110
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class GameRouletteButton : MonoBehaviour, IMoveHandler
 {
@@ -57,7 +56,13 @@ public class GameRouletteButton : MonoBehaviour, IMoveHandler
 
         if (codename != string.Empty)
         {
-            SceneManager.LoadScene("Minigames/" + codename + "/" + codename);
+            //SceneManager.LoadScene("Minigames/" + codename + "/" + codename);
+
+            SceneTransition sceneTransition = SceneTransition.instance;
+            if(sceneTransition != null)
+                sceneTransition.Call(codename);
+            else
+                SceneTransition.LoadScene(codename);
         }
     }
 }
