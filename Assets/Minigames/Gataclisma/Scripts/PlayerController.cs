@@ -114,8 +114,8 @@ namespace GataclismaNaPista
                             }
                             else
                             {
-                                streakText.GetComponent<RectTransform>().DOScale(streakText.fontScale * 1.2f, 0.15f);
-                                streakText.GetComponent<RectTransform>().DOScale(streakText.fontScale / 1.2f, 0.15f);
+                                streakText.GetComponent<RectTransform>().DOScale(streakText.font.faceInfo.scale * 1.2f, 0.15f);
+                                streakText.GetComponent<RectTransform>().DOScale(streakText.font.faceInfo.scale / 1.2f, 0.15f);
                             }
                             if(consecutiveHits == 30)
                             {
