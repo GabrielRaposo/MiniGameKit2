@@ -976,7 +976,7 @@ MonoBehaviour:
   m_PixelSnapping: 0
   m_CropFrameX: 1
   m_CropFrameY: 1
-  m_StretchFill: 0
+  m_StretchFill: 1
 --- !u!1 &2052017648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,6 +1730,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133863939873713110, guid: 27e163267479f7543b21136d0fd55faa,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133863939873713110, guid: 27e163267479f7543b21136d0fd55faa,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133863939873713110, guid: 27e163267479f7543b21136d0fd55faa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133863940975782556, guid: 27e163267479f7543b21136d0fd55faa,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133863940975782556, guid: 27e163267479f7543b21136d0fd55faa,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133863940975782556, guid: 27e163267479f7543b21136d0fd55faa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133863940975782556, guid: 27e163267479f7543b21136d0fd55faa,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e163267479f7543b21136d0fd55faa, type: 3}

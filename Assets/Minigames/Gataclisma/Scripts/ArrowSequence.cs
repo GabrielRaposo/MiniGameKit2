@@ -6,19 +6,35 @@ namespace GataclismaNaPista
 {
     public class ArrowSequence : MonoBehaviour
     {
+        /// <summary>
+        /// Padrões de ritmo usados no método SpawnSequence
+        /// </summary>
+        private enum Padroes
+        {
+            NORMAL, //1-1-1-1
+            UM_MEIO //1-1-(1/2)(1/2)-1
+        };
+
         public Queue<GameObject> ArrowQueue { get; private set; }
         public GameObject arrowPrefab;
-        public float arrowGap;
+        public float fallSpeed;
+        public float absoluteOffset;    //diferença entre tempo do script e tempo da música
         public static float arrowSize;
 
-        private float fallSpeed;
+        private GameManager gameManager;
+
+        private float firstArrowDelay; //tempo que a primeira seta demora do spawn até a input box em segundos
         private static float deadZone;
         private static float unqueueZone;
         private static float spawnZone;
 
         /*Essas variáveis aqui são meio gambiarras, eu acho? Tô inseguro*/
         public Arrow peekArrowScript { get; private set; } // Arrow que deve receber o input
-        private GameObject unqueuedDeadArrow; // Arrow após passar a área de input
+        public GameObject unqueuedDeadArrow; // Arrow após passar a área de input
+
+        //Alerta de gambiarra para as setas dos dois jogadores serem iguais:
+        private static List<Direction> directionsList = new List<Direction>();
+        private int directionListIndex = 0;
 
         private void Awake()
         {
@@ -27,13 +43,22 @@ namespace GataclismaNaPista
             spawnZone = (Camera.main.orthographicSize + arrowSize / 2);
             unqueueZone = this.transform.position.y - (this.GetComponent<SpriteRenderer>().bounds.size.y / 2 + arrowSize / 2);
             deadZone = -spawnZone;
+
+            //Gambiarra para as setas dos dois jogadores serem iguais
+            int numbOfDirections = 500;
+            for (int i = 0; i < numbOfDirections; i++) directionsList.Add((Direction)Random.Range(0, 4));
         }
 
         private void Start()
         {
-            Debug.Log(Time.fixedDeltaTime);
-            fallSpeed = GameObject.FindObjectOfType<GameManager>().BPM / 60f * (arrowGap + arrowSize) * Time.fixedDeltaTime;
-            /* Só tô trocando as cores das setas pra debugar, isso não vai acontecer no jogo */
+            int BPM = FindObjectOfType<GameManager>().BPM;
+
+            gameManager = FindObjectOfType<GameManager>();
+
+            SpawnSequence(3.79f, 19.032f, BPM, Padroes.NORMAL);
+            SpawnSequence(19.032f, 28.124f, BPM, Padroes.UM_MEIO);
+            SpawnSequence(30.99f, 42.301f, BPM, Padroes.NORMAL);
+            SpawnSequence(42.301f, 51.399f, BPM, Padroes.UM_MEIO);
         }
 
         private void Update()
@@ -43,25 +68,65 @@ namespace GataclismaNaPista
 
         private void FixedUpdate()
         {
-            FallAllArrows();
+            if (Time.time > gameManager.musicStartTime)
+            {
+                FallAllArrows();
+            }
         }
 
         void FallAllArrows()
         {
-            if (unqueuedDeadArrow != null) unqueuedDeadArrow.transform.position += (Vector3.down * fallSpeed);
+            if (unqueuedDeadArrow != null) unqueuedDeadArrow.transform.position += (Vector3.down *
+                    fallSpeed*Time.fixedDeltaTime);
             foreach (GameObject arrow in ArrowQueue)
             {
-                arrow.transform.position += (Vector3.down * fallSpeed);
+                arrow.transform.position += (Vector3.down * fallSpeed * Time.fixedDeltaTime);
             }
         }
 
-        public void SpawnArrow(Direction direction, int duration)
+        private void SpawnArrow(Direction direction, float spawnPositionY, float z)
         {
-            GameObject newArrow = Instantiate(arrowPrefab, new Vector3(this.transform.position.x, spawnZone), Quaternion.identity, this.transform);
-            newArrow.GetComponent<Arrow>().Initialize(direction, duration);
+            GameObject newArrow = Instantiate(arrowPrefab, new Vector3(this.transform.position.x, spawnPositionY, z), Quaternion.identity, this.transform);
+            newArrow.GetComponent<Arrow>().Initialize(direction, 1);
             ArrowQueue.Enqueue(newArrow);
             peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
             ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.cyan;
+        }
+
+        /// <summary>
+        /// Spawna uma sequencia de setas que começam a chegar na input box em um dado 'offset' de tempo
+        /// desde o início da música. A sequencia acaba em um tempo 'end' da música
+        /// </summary>
+        private void SpawnSequence(float offset, float end, float BPM, Padroes padrao)
+        {
+            float duration = end - offset;
+            float arrowGap = fallSpeed * 60 / BPM - arrowSize;
+            /* mais fácil de entender a fórmula:
+             * fallSpeed = (arrowGap + arrowSize) * BPM / 60f */
+
+            float offsetHeight = (offset + absoluteOffset) * fallSpeed - (spawnZone - transform.position.y);
+            
+            int numberOfArrows = (int)(duration * BPM / 60);
+
+            //spawna setas
+            for (int i = 0; i < numberOfArrows; i++)
+            {
+                float spawnPositionY = offsetHeight + spawnZone + (arrowGap + arrowSize) * i;
+
+                //Gambiarra paras as setas dos dois jogadores ficarem iguais
+                Direction direction = directionsList[directionListIndex];
+                directionListIndex++;
+
+                SpawnArrow(direction, spawnPositionY, spawnPositionY);
+            
+                if( padrao == Padroes.UM_MEIO && i % 4 == 2)
+                {
+                    directionListIndex--;
+                    direction = directionsList[directionListIndex];
+
+                    SpawnArrow(direction, spawnPositionY + (arrowGap + arrowSize) / 2, spawnPositionY + (arrowGap + arrowSize) / 2);
+                }
+            }
         }
 
         public void DestroyPeek(ScoreType score)
@@ -79,12 +144,16 @@ namespace GataclismaNaPista
                 }
                 else
                 {
+                    ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.white;
                     peekArrowScript.animator.Play("ArrowExplode");
                     Destroy(ArrowQueue.Peek(), 1f);
                 }
                 ArrowQueue.Dequeue();
-                peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
-                ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.cyan;
+                if (ArrowQueue.Count > 0)
+                {
+                    peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
+                    ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.cyan;
+                }
             }
         }
 
@@ -95,8 +164,12 @@ namespace GataclismaNaPista
                 unqueuedDeadArrow = ArrowQueue.Peek();
                 ArrowQueue.Dequeue();
                 unqueuedDeadArrow.GetComponent<SpriteRenderer>().color = Color.gray;
-                peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
-                ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.cyan;
+                //#########
+                if (ArrowQueue.Count > 0)
+                {
+                    peekArrowScript = ArrowQueue.Peek().GetComponent<Arrow>();
+                    ArrowQueue.Peek().GetComponent<SpriteRenderer>().color = Color.cyan;
+                }
             }
             if (unqueuedDeadArrow != null && unqueuedDeadArrow.transform.position.y < deadZone)
             {
@@ -113,5 +186,7 @@ namespace GataclismaNaPista
             Gizmos.color = Color.red;
             Gizmos.DrawLine(new Vector3(-cameraWidth, deadZone), new Vector3(cameraWidth, deadZone));
         }
+
+        
     }
 }

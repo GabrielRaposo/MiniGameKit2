@@ -17,16 +17,20 @@ namespace GataclismaNaPista
         public int duration { get; private set; } // duration é um integer aleatório de 1 até 2
         public Animator animator { get; private set; }
 
+        //super gambiarra pra identificar a seta que tomou miss
+        public bool clicked = false;
+
         public void Awake()
         {
             this.animator = GetComponent<Animator>();
-        }
+    }
 
         public void Initialize(Direction direction, int duration)
         {
             this.direction = direction;
             this.duration = duration;
             this.transform.rotation = Quaternion.Euler(0, 0, (int)direction * 90);
+            this.clicked = false;
         }
 
         /*public void Randomize()

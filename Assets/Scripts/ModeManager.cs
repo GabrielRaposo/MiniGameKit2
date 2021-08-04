@@ -37,12 +37,20 @@ public class ModeManager {
                 break;
         }
 
-        AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(sceneIndex);
-        sceneLoad.allowSceneActivation = false;
-        while (sceneLoad.progress < .9f)
-        {
-            yield return null;
-        }
-        sceneLoad.allowSceneActivation = true;
+        yield return null;
+
+        SceneTransition sceneTransition = SceneTransition.instance;
+        if(sceneTransition != null)
+            sceneTransition.Call(sceneIndex);
+        else
+            SceneTransition.LoadScene(sceneIndex);
+        
+        //AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(sceneIndex);
+        //sceneLoad.allowSceneActivation = false;
+        //while (sceneLoad.progress < .9f)
+        //{
+        //    yield return null;
+        //}
+        //sceneLoad.allowSceneActivation = true;
     }
 }

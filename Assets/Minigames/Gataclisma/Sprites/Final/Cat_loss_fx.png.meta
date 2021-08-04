@@ -1,0 +1,564 @@
+fileFormatVersion: 2
+guid: fa40bbc716764514886279bc3df6ff26
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Cat_loss_fx_0
+  - first:
+      213: 21300002
+    second: Cat_loss_fx_1
+  - first:
+      213: 21300004
+    second: Cat_loss_fx_2
+  - first:
+      213: 21300006
+    second: Cat_loss_fx_3
+  - first:
+      213: 21300008
+    second: Cat_loss_fx_4
+  - first:
+      213: 21300010
+    second: Cat_loss_fx_5
+  - first:
+      213: 21300012
+    second: Cat_loss_fx_6
+  - first:
+      213: 21300014
+    second: Cat_loss_fx_7
+  - first:
+      213: 21300016
+    second: Cat_loss_fx_8
+  - first:
+      213: 21300018
+    second: Cat_loss_fx_9
+  - first:
+      213: 21300020
+    second: Cat_loss_fx_10
+  - first:
+      213: 21300022
+    second: Cat_loss_fx_11
+  - first:
+      213: 21300024
+    second: Cat_loss_fx_12
+  - first:
+      213: 21300026
+    second: Cat_loss_fx_13
+  - first:
+      213: 21300028
+    second: Cat_loss_fx_14
+  - first:
+      213: 21300030
+    second: Cat_loss_fx_15
+  - first:
+      213: 21300032
+    second: Cat_loss_fx_16
+  - first:
+      213: 21300034
+    second: Cat_loss_fx_17
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 300
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cat_loss_fx_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1450
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39d0098c64bb208428cd6a6563479c84
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_1
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 1450
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc5bb046208c0fa4989b32219336e734
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_2
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 1450
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0833a10692643094fa0b4cfbf81ab28a
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1192
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 710325cccb1014245ad1ced0475317a0
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_4
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 1192
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fbbb8d25caff844c8a8e02fb0864c1c
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_5
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 1192
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92d3f4be426d0204e9bf7668b89f6b98
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 934
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db841e0f60f1ed94993dd20619a43270
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_7
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 934
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d75c17df4a4a62499b9783f72c4d1dd
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_8
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 934
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fff435bc9306e24ba3320f78b1055b5
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 676
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e44789a22660cdb4999ca7bafb3b5568
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_10
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 676
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee810d7955f92bd4b84297753df7fa5b
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_11
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 676
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab1ef2d53f08b834a8b547a864c29cc1
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 418
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4576a5f1c2f5349a36a4a3734e666e
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_13
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 418
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5745d182b9a4c924b8b64499740cb16b
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_14
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 418
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fb9bfe7785651e4db94f27e24f4fa6d
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d69748ff06d8744fb121f221e31f718
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_16
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 160
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7bcbd41649663b4491fdd19169613f6
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_loss_fx_17
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 160
+        width: 574
+        height: 258
+      alignment: 9
+      pivot: {x: 0.867, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a3143ef8dd98af488446941e8538d84
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2dd356114393cc843b28c1dba4153727
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
