@@ -45,6 +45,7 @@ public class MedleyPartyControler : MonoBehaviour
 	public static bool changeRoundNext;
 	public GameObject endGameScreen;
 	public TextMeshProUGUI endGameText;
+	public Button goToGameButton;
 
 	private void Awake()
 	{
@@ -61,6 +62,7 @@ public class MedleyPartyControler : MonoBehaviour
 		}
 
 		medleySetup = FindObjectOfType<MedleySetup>();
+		goToGameButton.onClick.AddListener(GoToMinigame);
 		//DontDestroyOnLoad(this.gameObject);
 	}
 

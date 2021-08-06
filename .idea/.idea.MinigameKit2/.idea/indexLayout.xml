@@ -3,7 +3,6 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
-      <Path>Assets</Path>
       <Path>Library/PackageCache/com.unity.2d.pixel-perfect@4.0.1</Path>
       <Path>Library/PackageCache/com.unity.ads@3.7.1</Path>
       <Path>Library/PackageCache/com.unity.analytics@3.5.3</Path>
