@@ -20,7 +20,7 @@ public class PlayersManager : MonoBehaviour {
 		new Color(.5019f, .5019f, .5019f) //Literalmente cinza
 	};
 
-	public static string[] playerDefaultName = new string[]
+	private static string[] playerDefaultName = new string[]
 	{
 		"Player Um",
 		"Player Dois",

@@ -14,6 +14,7 @@ public class MeddleyPlayerIcon : MonoBehaviour
 	public void SetColor(Color newColor)
 	{
 		colorBorder.color = newColor;
+		icon.color = newColor;
 	}
 
 	public void SetName(string name)

@@ -74,9 +74,14 @@ public class MedleySetup : MonoBehaviour
 		int value = (int)mode;
 		value += i;
 
-		int lenght = System.Enum.GetValues(typeof(PartyMode)).Length;
-
-		mode = (PartyMode)(value % lenght);
+		int enumLenght = System.Enum.GetNames(typeof(PartyMode)).Length;
+		
+		if (value < 0)
+			mode = (PartyMode) (enumLenght - 1);
+		else if(value >= enumLenght)
+			mode = (PartyMode) 0;
+		else
+			mode = (PartyMode) value;
 
 		if (mode == PartyMode.NumberOfGames && nOfPlayers % 2 != 0 && nOfVictories % 2 != 0)
 		{
