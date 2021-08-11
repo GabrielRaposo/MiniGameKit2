@@ -98,7 +98,7 @@ public class MedleyController : MonoBehaviour
                 break;
 			case "playerDisplay":
 				currentMenu = playerSettingsMenu;
-				FindObjectOfType<MedleySetup>().SettupPlayerDisplay();
+				FindObjectOfType<MedleySetup>().SetupPlayerDisplay();
 				break;
             default:
                 return;

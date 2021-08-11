@@ -11,10 +11,34 @@ public class MeddleyPlayerIcon : MonoBehaviour
 	public TextMeshProUGUI text;
 	public TextMeshProUGUI scoreText;
 
-	public void SetColor(Color newColor)
+	private int playerIndex;
+	public int colorIndex;
+
+	public void Init(int i)
 	{
-		colorBorder.color = newColor;
-		icon.color = newColor;
+		playerIndex = i;
+		colorIndex = i;
+		RestoreColor();
+	}
+	
+	public void SetColorIndex(int color)
+	{
+		colorIndex = color;
+		PlayersManager.SetPlayerColor(playerIndex, color);
+		RestoreColor();
+	}
+
+	public void ForceColor(Color color)
+	{
+		colorBorder.color = color;
+		icon.color = color;
+	}
+
+	public void RestoreColor()
+	{
+		Color c = PlayersManager.GetPlayerColor(playerIndex);
+		colorBorder.color = c;
+		icon.color = c;
 	}
 
 	public void SetName(string name)

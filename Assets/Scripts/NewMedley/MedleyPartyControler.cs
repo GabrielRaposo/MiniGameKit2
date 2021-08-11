@@ -109,12 +109,15 @@ public class MedleyPartyControler : MonoBehaviour
 				playerScores.Add(0);
 				playerMatchesPlayed.Add(0);
 			}
-
+			
 			GameObject p = Instantiate(playerIconPrefab, playerLayoutHolder);//
+			var meddleyPlayerIcon = p.GetComponent<MeddleyPlayerIcon>();
 			playerIcons.Add(p);//
-			p.GetComponent<MeddleyPlayerIcon>().SetColor(PlayersManager.playerColor[i]);//
-			p.GetComponent<MeddleyPlayerIcon>().SetName(PlayersManager.playerName[i]);//
-			p.GetComponent<MeddleyPlayerIcon>().SetScore(playerScores[i]);//
+			
+			meddleyPlayerIcon.Init(i);
+			
+			meddleyPlayerIcon.SetName(PlayersManager.playerName[i]);//
+			meddleyPlayerIcon.SetScore(playerScores[i]);//
 		}
 
 		if(!partyInProgress)
@@ -148,18 +151,18 @@ public class MedleyPartyControler : MonoBehaviour
 		{
 			foreach(int p in moreThanPool)
 			{
-				playerIcons[p].GetComponent<MeddleyPlayerIcon>().SetColor(new Color(0.5f, 0.5f, 0.5f));
+				playerIcons[p].GetComponent<MeddleyPlayerIcon>().ForceColor(new Color(0.5f, 0.5f, 0.5f));
 			}
 		}
 		else
 		{
 			foreach(GameObject player in playerIcons)
 			{
-				player.GetComponent<MeddleyPlayerIcon>().SetColor(new Color(0.5f, 0.5f, 0.5f));
+				player.GetComponent<MeddleyPlayerIcon>().ForceColor(new Color(0.5f, 0.5f, 0.5f));
 			}
 			foreach(int p in playersInDraw)
 			{
-				playerIcons[p].GetComponent<MeddleyPlayerIcon>().SetColor(PlayersManager.playerColor[p]);
+				playerIcons[p].GetComponent<MeddleyPlayerIcon>().RestoreColor();
 			}
 		}
 

@@ -19,6 +19,13 @@ public class MedleySetup : MonoBehaviour
 	public static PartyMode mode;
 
 	public MeddleyPlayerIcon[] meddleyPlayerIcons;
+
+	private List<int> colorsInUse;
+	
+	[Header("Layouts")]
+	
+	[SerializeField] private Transform topRow;
+	[SerializeField] private Transform bottomRow;
 	
 	private void Awake()
 	{
@@ -92,8 +99,15 @@ public class MedleySetup : MonoBehaviour
 		UpdateGameTypeDisplay();
 	}	
 
-	public void SettupPlayerDisplay()
+	public void SetupPlayerDisplay()
 	{
+		colorsInUse = new List<int>();
+		
+		if(nOfPlayers<=6)
+			bottomRow.gameObject.SetActive(false);
+		else
+			bottomRow.gameObject.SetActive(true);
+		
 		for (int i = 0; i < meddleyPlayerIcons.Length; i++)
 		{
 			MeddleyPlayerIcon mpi = meddleyPlayerIcons[i];
@@ -103,11 +117,57 @@ public class MedleySetup : MonoBehaviour
 			else
 			{
 				mpi.gameObject.SetActive(true);
-				mpi.SetColor(PlayersManager.playerColor[i]);
+				mpi.Init(i);
+				colorsInUse.Add(i);
 				mpi.SetName(PlayersManager.playerName[i]);
 				mpi.HideScore();
+
+				var index = i;
+				
+				var buttonClickedEvent = mpi.GetComponent<Button>().onClick;
+				buttonClickedEvent.RemoveAllListeners();
+				buttonClickedEvent.AddListener(()=>SwapColor(index));
+				
 			}
 		}
+	}
+
+	private void SwapColor(int player)
+	{
+		if(colorsInUse.Count >= PlayersManager.ColorCount) return;
+		
+		Debug.Log("---");
+
+		string debugS = "";
+		foreach (var i1 in colorsInUse)
+		{
+			debugS += i1.ToString() + ", ";
+		}
+		Debug.Log(debugS);
+		
+		var icon = meddleyPlayerIcons[player];
+
+		int starting = icon.colorIndex;
+		int i = icon.colorIndex;
+		
+		i++;
+
+		if (i >= PlayersManager.ColorCount)
+			i = 0;
+		
+		Debug.Log($"i={i}");
+
+		while (colorsInUse.Contains(i))
+		{
+			i++;
+			if (i >= PlayersManager.ColorCount)
+				i = 0;
+			Debug.Log($"i={i}");
+		}
+
+		icon.SetColorIndex(i);
+		colorsInUse.Remove(starting);
+		colorsInUse.Add(i);
 	}
 
 	public void UpdatePlayerNumberDisplay()

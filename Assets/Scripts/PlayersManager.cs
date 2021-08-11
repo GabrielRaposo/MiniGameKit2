@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayersManager : MonoBehaviour {
+public static class PlayersManager{
 
-	public static Color[] playerDefaultColor = new Color[]
+	private static Color[] playerDefaultColor = new Color[]
 	{
 		new Color(0f, 0.682353f, 1f),    // Azul 
         new Color(1f, 0.6f, 0.1058824f), // Laranja
@@ -20,28 +20,60 @@ public class PlayersManager : MonoBehaviour {
 		new Color(.5019f, .5019f, .5019f) //Literalmente cinza
 	};
 
+	public static float ColorCount => playerDefaultColor.Length; 
+
 	private static string[] playerDefaultName = new string[]
 	{
-		"Player Um",
-		"Player Dois",
-		"Player Tres",
-		"Player Quatro",
-		"Player Cienco",
-		"Player Siex",
-		"Player 7",
-		"Player 8",
-		"Player 9",
-		"Player 10",
-		"Player 11",
-		"Player 12",
+		"1",
+		"2",
+		"3",
+		"4",
+		"5",
+		"6",
+		"7",
+		"8",
+		"9",
+		"10",
+		"11",
+		"12",
 	};
 
-    public static Color[] playerColor = playerDefaultColor;
+    public static Color[] playerColor;
 
 	public static string[] playerName = playerDefaultName;
 
     public static int currentLeftPlayer = 0;
     public static int currentRightPlayer = 1;
+
+    public static void InitPlayerColorList()
+    {
+	    playerColor = new Color[playerDefaultColor.Length];
+
+	    Debug.Log("InitPlayerColorList()");
+	    
+	    for (int i = 0; i < playerColor.Length; i++)
+	    {
+		    playerColor[i] = playerDefaultColor[i];
+	    }
+    }
+
+    public static Color GetPlayerColor(int index)
+    {
+	    Debug.Log($"GetPlayerColor({index})");
+	    if(playerColor == null) InitPlayerColorList();
+	    if(playerColor.Length == 0) InitPlayerColorList();
+
+	    return playerColor[index];
+    }
+
+    public static void SetPlayerColor(int playerIndex, int defaultColorIndex)
+    {
+	    Debug.Log($"SetPlayerColor({playerIndex}->{defaultColorIndex})");
+	    if(playerColor == null) InitPlayerColorList();
+	    if(playerColor.Length == 0) InitPlayerColorList();
+
+	    playerColor[playerIndex] = playerDefaultColor[defaultColorIndex];
+    }
 
     public enum Result { Draw, LeftWin, RightWin }
     public static Result result;

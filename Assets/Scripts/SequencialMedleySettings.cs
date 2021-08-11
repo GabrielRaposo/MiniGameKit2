@@ -53,22 +53,24 @@ public class SequencialMedleySettings : MonoBehaviour
 
     void Update()
     {
-        p1Color.color = PlayersManager.playerDefaultColor[p1ColorIndex];
-        p2Color.color = PlayersManager.playerDefaultColor[p2ColorIndex];
+        // p1Color.color = PlayersManager.playerDefaultColor[p1ColorIndex];
+        // p2Color.color = PlayersManager.playerDefaultColor[p2ColorIndex];
     }
 
+    
+    //ARRUMAR ISSO AQUI
     public void ChangeP1Color(int i)
     {
         p1ColorIndex += i;
 
         if(p1ColorIndex < 0)
         {
-            p1ColorIndex = PlayersManager.playerDefaultColor.Length - 1;
+            //p1ColorIndex = PlayersManager.playerDefaultColor.Length - 1;
         }
-        else if(p1ColorIndex >= PlayersManager.playerDefaultColor.Length - 1)
-        {
-            p1ColorIndex = 0;
-        }
+        // else if(p1ColorIndex >= PlayersManager.playerDefaultColor.Length - 1)
+        // {
+        //     p1ColorIndex = 0;
+        // }
 
         if(p1ColorIndex == p2ColorIndex)
         {
@@ -84,14 +86,14 @@ public class SequencialMedleySettings : MonoBehaviour
     {
         p2ColorIndex += i;
 
-        if (p2ColorIndex < 0)
-        {
-            p2ColorIndex = PlayersManager.playerDefaultColor.Length - 1;
-        }
-        else if (p2ColorIndex >= PlayersManager.playerDefaultColor.Length - 1)
-        {
-            p2ColorIndex = 0;
-        }
+        // if (p2ColorIndex < 0)
+        // {
+        //     p2ColorIndex = PlayersManager.playerDefaultColor.Length - 1;
+        // }
+        // else if (p2ColorIndex >= PlayersManager.playerDefaultColor.Length - 1)
+        // {
+        //     p2ColorIndex = 0;
+        // }
 
         if (p2ColorIndex == p1ColorIndex)
         {
@@ -112,7 +114,7 @@ public class SequencialMedleySettings : MonoBehaviour
 
     public void SelectColors()
     {
-        PlayersManager.playerColor[0] = PlayersManager.playerDefaultColor[p1ColorIndex];
-        PlayersManager.playerColor[1] = PlayersManager.playerDefaultColor[p2ColorIndex];       
+        // PlayersManager.playerColor[0] = PlayersManager.playerDefaultColor[p1ColorIndex];
+        // PlayersManager.playerColor[1] = PlayersManager.playerDefaultColor[p2ColorIndex];       
     }
 }
