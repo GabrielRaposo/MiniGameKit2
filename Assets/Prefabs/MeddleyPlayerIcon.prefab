@@ -871,6 +871,7 @@ MonoBehaviour:
   colorBorder: {fileID: 8480419474982430856}
   text: {fileID: 8060639761950046443}
   scoreText: {fileID: 1118770461774425347}
+  colorIndex: 0
 --- !u!114 &8093964315855202969
 MonoBehaviour:
   m_ObjectHideFlags: 0

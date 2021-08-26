@@ -16,6 +16,11 @@ public class SceneTransition : MonoBehaviour {
         } else Destroy(transform.parent.gameObject);
     }
 
+    public void AnimateWithoutSceneLoad()
+    {
+        StartCoroutine(Animate());
+    }
+
     public void Call(string name)
     {
         StartCoroutine(Animate(name));
@@ -42,6 +47,7 @@ public class SceneTransition : MonoBehaviour {
             imageAnchor.localPosition += Vector3.left * moveSpeed;
         }
         AsyncOperation asyncOperation;
+        
         if(index > -1)
         {
             asyncOperation = SceneManager.LoadSceneAsync(index);
@@ -58,6 +64,36 @@ public class SceneTransition : MonoBehaviour {
         yield return new WaitForSecondsRealtime(.5f);
         asyncOperation.allowSceneActivation = true;
         //Time.timeScale = 1;
+
+        while (imageAnchor.localPosition.x > targetX)
+        {
+            yield return new WaitForEndOfFrame();
+            imageAnchor.localPosition += Vector3.left * moveSpeed;
+        }
+    }
+    
+    public IEnumerator Animate()
+    {
+        float 
+            startingX = 2300f,
+            middleX = 0f,
+            targetX = -2300f,
+            moveSpeed = 200f;
+
+        //Time.timeScale = 0;
+        imageAnchor.localPosition = Vector3.right * startingX;
+        while(imageAnchor.localPosition.x > middleX)
+        {
+            yield return new WaitForEndOfFrame();
+            imageAnchor.localPosition += Vector3.left * moveSpeed;
+        }
+        
+        // while (asyncOperation.progress < .9f)
+        // {
+        //     yield return null;
+        // }
+        
+        yield return new WaitForSecondsRealtime(.5f);
 
         while (imageAnchor.localPosition.x > targetX)
         {

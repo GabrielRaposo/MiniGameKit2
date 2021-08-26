@@ -86,6 +86,8 @@ public class MedleyController : MonoBehaviour
             case "main":
                 currentMenu = mainMenu;
                 FirstScreen = "main";
+                var canvas = FindObjectOfType<SceneTransition>();
+                if (canvas != null) canvas.AnimateWithoutSceneLoad();
 				partyControler.OpenParty();
                 break;
 			case "settings":
