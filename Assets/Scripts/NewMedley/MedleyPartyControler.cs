@@ -11,7 +11,7 @@ public class MedleyPartyControler : MonoBehaviour
 
 	[Header("Icon Placement")]
 	public GameObject playerIconPrefab;
-	public Transform playerLayoutHolder;
+	public MedleyPlayersLayoutManager playersLayoutManager;
 	List<GameObject> playerIcons;
 
 	public GameObject currentLeftPlayerDisplay;
@@ -102,6 +102,8 @@ public class MedleyPartyControler : MonoBehaviour
 			return;
 		}
 
+		var iconsList = new List<MeddleyPlayerIcon>();
+		
 		for (int i = 0; i < MedleySetup.nOfPlayers; i++)
 		{				
 			if (!partyInProgress)
@@ -109,16 +111,19 @@ public class MedleyPartyControler : MonoBehaviour
 				playerScores.Add(0);
 				playerMatchesPlayed.Add(0);
 			}
-			
-			GameObject p = Instantiate(playerIconPrefab, playerLayoutHolder);//
+
+			GameObject p = Instantiate(playerIconPrefab);//
 			var meddleyPlayerIcon = p.GetComponent<MeddleyPlayerIcon>();
 			playerIcons.Add(p);//
+			iconsList.Add(meddleyPlayerIcon);
 			
 			meddleyPlayerIcon.Init(i);
 			
 			meddleyPlayerIcon.SetName(PlayersManager.playerName[i]);//
 			meddleyPlayerIcon.SetScore(playerScores[i]);//
 		}
+		
+		playersLayoutManager.PlaceIcons(iconsList);
 
 		if(!partyInProgress)
 			partyInProgress = true;

@@ -28,6 +28,10 @@ public class MeddleyPlayerIcon : MonoBehaviour
 		RestoreColor();
 	}
 
+	public Color GetColor()
+	{
+		return PlayersManager.GetPlayerColor(colorIndex);
+	}
 	public void ForceColor(Color color)
 	{
 		colorBorder.color = color;
@@ -39,6 +43,7 @@ public class MeddleyPlayerIcon : MonoBehaviour
 		Color c = PlayersManager.GetPlayerColor(playerIndex);
 		colorBorder.color = c;
 		icon.color = c;
+		//text.color = c;
 	}
 
 	public void SetName(string name)

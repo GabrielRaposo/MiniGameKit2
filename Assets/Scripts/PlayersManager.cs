@@ -24,18 +24,18 @@ public static class PlayersManager{
 
 	private static string[] playerDefaultName = new string[]
 	{
-		"1",
-		"2",
-		"3",
-		"4",
-		"5",
-		"6",
-		"7",
-		"8",
-		"9",
-		"10",
-		"11",
-		"12",
+		"Pandeiro",
+		"Guitarra",
+		"Violino",
+		"Flauta",
+		"Ocarina",
+		"Clarinete",
+		"Harpa",
+		"Trompete",
+		"Gaita",
+		"Xilofone",
+		"Bateria",
+		"Banjo"
 	};
 
     public static Color[] playerColor;
